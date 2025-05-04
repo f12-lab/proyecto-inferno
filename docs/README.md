@@ -1,5 +1,3 @@
-En esta sección se encuentran las instrucciones detalladas para acceder y trabajar con cada una de las máquinas vulnerables desplegadas. Cada máquina representa un entorno aislado con una temática específica, basada en los siete pecados capitales.
-
 ## Máquinas disponibles
 
 | Nombre     | Ruta                                  | Descripción breve                        |
@@ -14,10 +12,11 @@ En esta sección se encuentran las instrucciones detalladas para acceder y traba
 
 ## Requisitos
 
-- Kali Linux o sistema compatible con herramientas de pentesting.
-- Acceso a red local con las máquinas vulnerables.
-- Cliente SSH, nmap, gobuster, etc.
+- Los archivos necesarios pueden descargarse desde la página principal del proyecto: [fondomarcador.com/inferno](https://fondomarcador.com/inferno/).
+  - **Piramide**: corresponde al archivo `autodeploy.sh`.
+  - **Cubos**: se encuentran al final de cada sección y contienen los archivos específicos de cada máquina.
+- Se recomienda utilizar un sistema operativo basado en Linux. Para tareas de pentesting, **Kali Linux** es la opción más adecuada.
+- Las herramientas necesarias y las instrucciones de despliegue están detalladas individualmente en cada una de las páginas correspondientes a las máquinas.
 
-## Notas importantes
-
-- Todas las máquinas están diseñadas para uso educativo.
+> [!NOTE]  
+> Todas las máquinas están diseñadas exclusivamente con fines educativos. No deben utilizarse en entornos no autorizados.
