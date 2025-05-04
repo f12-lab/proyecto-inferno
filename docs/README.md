@@ -18,5 +18,4 @@
 - Se recomienda utilizar un sistema operativo basado en Linux. Para tareas de pentesting, **Kali Linux** es la opción más adecuada.
 - Las herramientas necesarias y las instrucciones de despliegue están detalladas individualmente en cada una de las páginas correspondientes a las máquinas.
 
-> [!NOTE]  
-> Todas las máquinas están diseñadas exclusivamente con fines educativos. No deben utilizarse en entornos no autorizados.
+> **Advertencia:** Todas las máquinas están diseñadas exclusivamente con fines educativos.
