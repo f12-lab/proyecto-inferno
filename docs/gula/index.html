@@ -1,0 +1,2196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="author" content="Manuel L. Quero">
+<title>Gula</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Gula</h1>
+<div class="details">
+<span id="author" class="author">Manuel L. Quero</span><br>
+<span id="revdate">2025-03-31</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_ataques_ddos_y_dos">Ataques DDoS y DoS</a>
+<ul class="sectlevel2">
+<li><a href="#_cómo_se_producen_los_ataques_ddos">¿Cómo se producen los ataques DDoS?</a></li>
+<li><a href="#_cómo_se_producen_los_ataques_dos">¿Cómo se producen los ataques DoS?</a></li>
+</ul>
+</li>
+<li><a href="#_tipos_de_ataques_dos_y_ddos">Tipos de ataques DoS y DDoS</a>
+<ul class="sectlevel2">
+<li><a href="#_1_ataques_de_consumo_de_recursos">1. Ataques de Consumo de Recursos</a></li>
+<li><a href="#_2_ataques_de_explotación_de_vulnerabilidades">2. Ataques de Explotación de Vulnerabilidades</a></li>
+<li><a href="#_3_ataques_de_amplificación_y_reflexión">3. Ataques de Amplificación y Reflexión</a></li>
+<li><a href="#_4_ataques_lógicos_o_de_estado">4. Ataques Lógicos o de Estado</a></li>
+</ul>
+</li>
+<li><a href="#_solucionar_la_máquina">Solucionar la máquina</a>
+<ul class="sectlevel2">
+<li><a href="#_despliegue_de_la_máquina">Despliegue de la máquina</a></li>
+<li><a href="#_1_ataques_de_consumo_de_recursos_2">1. Ataques de Consumo de Recursos</a></li>
+<li><a href="#_2_ataques_de_explotación_de_vulnerabilidades_2">2. Ataques de Explotación de Vulnerabilidades</a></li>
+<li><a href="#_3_ataques_de_amplificación_y_reflexión_2">3. Ataques de Amplificación y Reflexión</a></li>
+<li><a href="#_4_ataques_lógicos_o_de_estado_2">4. Ataques Lógicos o de Estado</a></li>
+</ul>
+</li>
+<li><a href="#_cómo_prevenir">¿Cómo prevenir?</a>
+<ul class="sectlevel2">
+<li><a href="#_1_ataques_de_consumo_de_recursos_3">1. Ataques de Consumo de Recursos</a></li>
+<li><a href="#_2_ataques_de_explotación_de_vulnerabilidades_3">2. Ataques de Explotación de Vulnerabilidades</a></li>
+<li><a href="#_3_ataques_de_amplificación_y_reflexión_3">3. Ataques de Amplificación y Reflexión</a></li>
+<li><a href="#_4_ataques_lógicos_o_de_estado_3">4. Ataques Lógicos o de Estado</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ataques_ddos_y_dos">Ataques DDoS y DoS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Los ataques distribuidos de denegación de servicio (DDoS) son aquellos que se producen cuando un atacante envía tráfico artificial desde varios dispositivos a los servidores que hospedan una web o una aplicación para que estos dejen de estar disponibles para los usuarios; existen diferentes tipos de ataques DDoS, pero todos tienen el mismo fin: saturar un servidor con tráfico ilegítimo, para detener la operatividad de un servicio en línea de forma temporal o permanente.</p>
+</div>
+<div class="paragraph">
+<p>Por otra parte tenemos los ataques de denegación de servicio (DoS) donde solo proviene de una sola fuente.</p>
+</div>
+<div class="sect2">
+<h3 id="_cómo_se_producen_los_ataques_ddos">¿Cómo se producen los ataques DDoS?</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Para generar ese tráfico artificial, primeramente necesitaríamos muchos ordenadores, es decir, obtener el servicio de una botnet. Para ello se infectan con malware dispositivos, creando ordenadores zombie. Una vez se tienen varios dispositivos infectados se configuran los servidores de comando y control (C2) para manejar la botnet.</p>
+</li>
+<li>
+<p>El atacante enviará órdenes a los bots para comenzar a generar tráfico masivo hacia los servidores víctima. Estos ataques utilizan diferentes técnicas para enviar paquetes de datos hacia el objetivo, los cuales veremos más adelante.</p>
+</li>
+<li>
+<p>Una vez que está en marcha el ataque, el servidor colapsará debido a la saturación del tráfico. Desde el punto de vista de un cliente, experimentarán ralentización o falta de acceso.</p>
+</li>
+<li>
+<p>Los atacantes desde este punto, si ven que ha sucumbido el servidor ante su ataque pueden o pedir un rescate a la víctima (ransom DDoS) o aprovechar esto y hacer otro tipo de ataques (exfiltración de datos, inyección de malware, etc.).</p>
+</li>
+<li>
+<p>Este ataque es más difícil de mitigar, ya que proviene de múltiples IPs.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cómo_se_producen_los_ataques_dos">¿Cómo se producen los ataques DoS?</h3>
+<div class="paragraph">
+<p>Este es el caso sobre el que trata la máquina y sobre el que nos vamos a centrar, ya que no se suele tener una botnet al uso, por lo que utilizaremos nuestro propio dispositivo.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Como indica el nombre este ataque ya no es distribuido, asi que solamente se realiza desde un solo dispositivo o IP.</p>
+</li>
+<li>
+<p>El atacante hace un envío masivo de peticiones o explotación de vulnerabilidades desde una única máquina. Y se espera a que se consuman todos los recursos del servidor (CPU, memoria, ancho de banda).</p>
+</li>
+<li>
+<p>Como podemos observar la finalidad es la misma que la del ataque DDoS, unicamente que este requiere menos recursos y es más sencillo de mitigar, ya que se puede banear la IP exacta que envía tantas peticiones por segundo, aunque ya veremos más adelante cómo mitigar este tipo de ataques.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tipos_de_ataques_dos_y_ddos">Tipos de ataques DoS y DDoS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Los ataques pueden clasificarse en varios tipos según el método de ataque utilizado. Principalmente pueden enfocarse en agotar recursos, explotar vulnerabilidades, amplificar tráfico o saturar conexiones. Hay que tener en cuenta que, aunque no se comente, en todos los ataques se <a href="https://www.cloudflare.com/es-es/learning/ddos/glossary/ip-spoofing/">suplanta la IP</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_1_ataques_de_consumo_de_recursos">1. Ataques de Consumo de Recursos</h3>
+<div class="paragraph">
+<p>Estos ataques buscan agotar los recursos del sistema, como CPU, memoria o ancho de banda, para que no se pueda responder a solicitudes legítimas.</p>
+</div>
+<div class="sect3">
+<h4 id="_a_ping_flood_icmp">a. Ping flood (ICMP)</h4>
+<div class="paragraph">
+<p>En este, el atacante intenta sobrecargar un dispositivo objetivo con paquetes de solicitud de eco ICMP, es decir, a base de pings se intenta saturar el ancho de banda.</p>
+</div>
+<div class="paragraph">
+<p>Una solicitud ICMP requiere algunos recursos del servidor para procesar cada solicitud y para enviar una respuesta. La solicitud también requiere ancho de banda tanto en el mensaje entrante (solicitud de eco) como en la respuesta saliente (respuesta de eco). El ataque de inundación de Ping pretende sobrecargar la capacidad del dispositivo objetivo para responder al elevado número de solicitudes y/o sobrecargar la conexión de red con tráfico falso.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>El atacante envía muchos paquetes de solicitud de eco de ICMP al servidor objetivo utilizando varios dispositivos.</p>
+</li>
+<li>
+<p>A continuación, el servidor objetivo envía un paquete de respuesta de eco de ICMP a la dirección IP de cada dispositivo solicitante como respuesta.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/ping-icmp.png" alt="ICMP flood">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_syn_flood">b. SYN Flood</h4>
+<div class="paragraph">
+<p>En este caso se envian repetidamente paquetes de solicitud de conexión inicial (SYN), el atacante puede sobrecargar todos los puertos disponibles en el servidor víctima, lo que hará que el dispositivo responda al tráfico legítimo muy lentamente o incluso que no responda en absoluto.</p>
+</div>
+<div class="paragraph">
+<p>Este ataque aprovecha el proceso de las conexiones TCP. Como ya sabemos, en una situación normal se producen los siguientes procesos:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/syn-flood-1.png" alt="Conexión TCP">
+</div>
+</div>
+<div class="paragraph">
+<p>En un ataque se aprovecha el hecho de que, después de que se ha recibido un paquete SYN inicial, el servidor responderá con uno o más paquetes SYN/ACK y esperará el paso final del protocolo de enlace. Así es como funciona:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>El atacante envía muchos paquetes SYN al servidor víctima, generalmente mediante una dirección IP falsificada.</p>
+</li>
+<li>
+<p>El servidor víctima entonces responde a cada una de las solicitudes de conexión y deja abierto un puerto listo para recibir la respuesta.</p>
+</li>
+<li>
+<p>Mientras el servidor espera a que llegue el paquete ACK final, el cual nunca llegará, el atacante sigue enviando más paquetes SYN. La llegada de cada nuevo paquete SYN hace que el servidor mantenga temporalmente abierta una nueva conexión de puerto durante cierta cantidad de tiempo y, una vez que se hayan utilizado todos los puertos disponibles, el servidor ya no puede funcionar con normalidad, llevándolo a su sobrecarga.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/syn-flood-2.png" alt="SYN flood">
+</div>
+</div>
+<div class="paragraph">
+<p>También hay varios formas de llevarlo a cabo:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Ataque directo</strong>: El atacante envía paquetes SYN sin falsificar la IP, pero bloquea respuestas SYN-ACK para mantener el ataque activo.</p>
+</li>
+<li>
+<p><strong>Ataque con suplantación</strong>: Se falsifica la dirección IP en los paquetes SYN para dificultar la mitigación y el rastreo del atacante.</p>
+</li>
+<li>
+<p><strong>Ataque distribuido (DDoS)</strong>: Se usa una botnet para generar un ataque masivo, con dispositivos que pueden falsificar sus IPs, haciendo el rastreo casi imposible.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_c_udp_flood">c. UDP Flood</h4>
+<div class="paragraph">
+<p>En este ataque lo que se pretende es enviar paquetes UDP a puertos aleatorios, forzando al servidor a responder con "puerto inalcanzable".</p>
+</div>
+<div class="paragraph">
+<p>De normal, un servidor responde a un paquete UDP enviado a uno de sus puertos de la siguiente forma:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>El servidor comprueba primero si se está ejecutando algún programa que esté escuchando solicitudes en el puerto especificado.</p>
+</li>
+<li>
+<p>Si ningún programa recibe paquetes en ese puerto, el servidor responde con un paquete ICMP (ping) para informar al remitente de que no se podía alcanzar el destino.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Entoces, si tiene que realizar este proceso para una petición, podemos llegar a imaginar que ocurre si se envían muchas peticiones. Como resultado de que el servidor víctima utiliza recursos para comprobar y luego responder a cada paquete UDP recibido, los recursos del objetivo pueden agotarse muy rápido cuando se recibe una gran avalancha de paquetes UDP, lo que provoca una denegación de servicio al tráfico normal.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/udp-flood.png" alt="UDP Flood">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_ataques_de_explotación_de_vulnerabilidades">2. Ataques de Explotación de Vulnerabilidades</h3>
+<div class="paragraph">
+<p>Aprovechan fallos en el software o protocolo de red para hacer que el sistema colapse.</p>
+</div>
+<div class="sect3">
+<h4 id="_a_slowloris">a. Slowloris</h4>
+<div class="paragraph">
+<p><a href="https://github.com/gkbrk/slowloris">Slowloris</a> es un programa que permite que un atacante sobrecargue un servidor objetivo al abrir y mantener muchas conexiones simultáneas HTTP entre el atacante y el objetivo.</p>
+</div>
+<div class="paragraph">
+<p>El ataque se produce en la <strong>capa de aplicación</strong> y funciona al abrir conexiones a un servidor web objetivo y mantener esas conexiones abiertas todo el tiempo que se pueda. Slowloris es una herramienta de ataque específica diseñada para permitir que una sola máquina derribe un servidor sin utilizar mucho ancho de banda, en su lugar tiene como objetivo utilizar los recursos del servidor con solicitudes que parecen más lentas de lo normal, pero que por lo demás imitan el tráfico regular.</p>
+</div>
+<div class="paragraph">
+<p>El servidor atacado solo tendrá un número determinado de hilos disponibles para gestionar conexiones concurrentes. Cada hilo del servidor intentará mantenerse en servicio mientras espera a que se complete la solicitud lenta, lo cual nunca ocurre. Cuando se haya superado el máximo de conexiones posibles del servidor, no se responderá a cada conexión adicional y se producirá una denegación de servicio.</p>
+</div>
+<div class="paragraph">
+<p>Este ataque se produce en 4 pasos:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>El atacante abre múltiples conexiones al servidor objetivo mediante el envío de múltiples encabezados de solicitudes HTTP parciales.</p>
+</li>
+<li>
+<p>El objetivo es abrir un hilo para cada solicitud entrante, con la intención de cerrar el hilo una vez que se haya completado la conexión. Para ser eficiente, si una conexión tarda demasiado, el servidor agotará el tiempo de la conexión excesivamente larga, liberando el hilo para la siguiente solicitud.</p>
+</li>
+<li>
+<p>Para evitar que el objetivo agote las conexiones, el atacante envía periódicamente encabezados de solicitud parciales al objetivo para mantener activa la solicitud. Básicamente, dice: "¡Todavía estoy aquí! Solo soy lento, por favor, espérame".</p>
+</li>
+<li>
+<p>El servidor objetivo nunca es capaz de liberar ninguna de las conexiones parciales abiertas mientras espera a que termine la solicitud. Una vez que todos los hilos disponibles están en uso, el servidor será incapaz de responder a las solicitudes adicionales realizadas desde el tráfico regular, provocando una denegación de servicio.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/Slowloris.jpg" alt="Slowloris">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_teardrop_attack">b. Teardrop Attack</h4>
+<div class="paragraph">
+<p>En este caso se usan paquetes fragmentados de datos para inundar el servidor o la red de una víctima. Dado que el servidor no puede volver a ensamblar los paquetes, se produce una sobrecarga del servidor.</p>
+</div>
+<div class="paragraph">
+<p>Los datos, o el tráfico de la red, suelen desglosarse en pequeños fragmentos y, luego, etiquetarse con un número específico en lo que se conoce como el campo "Fragment Offset". Volver a organizarlos en el orden correcto una vez que llegan es lo que suele suceder cuando no hay un ataque de por medio.</p>
+</div>
+<div class="paragraph">
+<p>Entonces durante un ataque Teardrop, el ciberdelincuente inyecta un error en el campo "Fragment Offset", que interrumpe el proceso de resecuenciamiento. Como resultado, el sistema recolecta un grupo grande de datos fragmentados dañados que no se pueden volver a ensamblar adecuadamente. Lamentablemente, tu sistema se sobrecarga y se bloquea sin advertencias (adecuadas).</p>
+</div>
+<div class="paragraph">
+<p>Este ataque afectaba principalmente a sistemas antiguos como Windows 95, NT y algunas versiones de Linux</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/Teardrop.jpg" alt="Teardrop">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_c_ping_of_death_pod">c. Ping of Death (PoD)</h4>
+<div class="paragraph">
+<p>Este ataque es el precursos del <strong>Ping flood</strong> visto anteriormente. Consiste en el envio de paquetes más extensos que el tamaño máximo de paquetes de una conexión a Internet.</p>
+</div>
+<div class="paragraph">
+<p>Estos paquetes son superior a 65,535 bytes, lo que provoca errores de reensamblaje en sistemas antiguos y puede causar fallos del sistema o reinicios. Este ataque aprovecha vulnerabilidades específicas en el manejo de fragmentación de paquetes de ciertos sistemas operativos más antiguos.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/ping-of-death.png" alt="PoD">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_ataques_de_amplificación_y_reflexión">3. Ataques de Amplificación y Reflexión</h3>
+<div class="paragraph">
+<p>Utilizan servidores de terceros para amplificar el tráfico hacia la víctima, generando un volumen de datos inmenso. Todos los ataques de amplificación aprovechan una disparidad en el consumo de ancho de banda entre un atacante y el recurso web objetivo.</p>
+</div>
+<div class="sect3">
+<h4 id="_a_dns_amplification">a. DNS Amplification</h4>
+<div class="paragraph">
+<p>En este ataque un atacante aprovecha la funcionalidad de los solucionadores de DNS abiertos para sobrecargar una red o servidor específico con una cantidad amplificada de tráfico, impidiendo el acceso.</p>
+</div>
+<div class="paragraph">
+<p>Consiste en enviar consultas breves que derivan en extensas respuestas que permiten aumentar el volumen del tráfico, produciendo la caida del servidor. También hay que tener en cuenta el efecto devastador que tiene esto realizado por una botnet.</p>
+</div>
+<div class="paragraph">
+<p>Este ataque se ejecuta de la siguiente manera:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>El atacante utiliza un punto de conexión en riesgo para enviar paquetes UDP con direcciones IP falsificadas a un recursor de DNS. La dirección falsificada en los paquetes señala a la dirección IP real de la víctima.</p>
+</li>
+<li>
+<p>Cada uno de los paquetes UDP realiza una solicitud a un solucionador de DNS, que a menudo aprueba un argumento como "CUALQUIERA" para recibir la respuesta más extensa posible.</p>
+</li>
+<li>
+<p>Después de recibir las solicitudes, el solucionador de DNS, que intenta ser útil respondiendo, envía una respuesta extensa a la dirección IP falsificada.</p>
+</li>
+<li>
+<p>La dirección IP del servidor recibe la respuesta y la infraestructura de red asociada se ve inundada por una avalancha de tráfico, produciendo la denegación de servicio.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/dns-amplification.png" alt="DNS Amplification">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_ntp_amplification">b. NTP Amplification</h4>
+<div class="paragraph">
+<p>En este ataque se aprovecha la funcionalidad de un servidor NTP (protocolo de tiempo de red) para sobrecargar una red o servidor específico con una cantidad amplificada de tráfico UDP, lo que impide al tráfico normal acceder al servidor víctima.</p>
+</div>
+<div class="paragraph">
+<p>Lo que se pretende es explotar el comando monlist en servidores NTP vulnerables para multiplicar el tráfico de solicitud, generando una respuesta hasta 206 veces mayor, permitiendo a un atacante amplificar su ataque de DDoS con un impacto masivo.</p>
+</div>
+<div class="paragraph">
+<p>Este ataque se realiza de la siguiente manera:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>El atacante utiliza una red de bots para enviar paquetes UDP con direcciones IP falsificadas a un servidor NTP que tiene el comando monlist activado. La dirección IP falsificada en cada paquete se dirige a la dirección IP real de la víctima.</p>
+</li>
+<li>
+<p>Cada paquete UDP hace una solicitud al servidor NTP utilizando su comando monlist, lo que provoca una extensa respuesta.</p>
+</li>
+<li>
+<p>El servidor responde entonces a la dirección falsificada con los datos resultantes.</p>
+</li>
+<li>
+<p>La dirección IP del servidor recibe la respuesta y la infraestructura de red asociada se ve sobrecargada por la avalancha de tráfico, con la consiguiente denegación de servicio.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/ntp-amplification.png" alt="NTP Amplification">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_c_memcached_amplification">c. Memcached Amplification</h4>
+<div class="paragraph">
+<p>En este caso el atacante falsifica las solicitudes a un <strong>servidor memcached</strong> UDP vulnerable, que luego inunda a la víctima objetivo con tráfico de Internet, lo que puede llegar a sobrecargar los recursos de la misma. Mientras está sobrecargada la infraestructura de Internet del objetivo, no se pueden procesar nuevas solicitudes, por lo que se produce la denegación de servicio.</p>
+</div>
+<div class="paragraph">
+<p><strong>Memcached</strong> es un sistema de almacenamiento en caché de bases de datos para acelerar sitios web y redes.</p>
+</div>
+<div class="paragraph">
+<p>El ataque funciona como los anteriores que hemos visto sobre amplificación, ya que se envían solicitudes falsas a un servidor vulnerable, que luego responde con una mayor cantidad de datos que la solicitud inicial, magnificando el volumen de tráfico. Este método de ataque de amplificación es posible ya que los servidores de memcached tienen la opción de funcionar con el protocolo UDP. UDP se utiliza porque nunca se consulta al host objetivo si está o no dispuesto a recibir los datos, lo que permite enviar una gran cantidad de datos al objetivo sin su consentimiento previo.</p>
+</div>
+<div class="paragraph">
+<p>Un ataque basado en memcached se produce:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Un atacante implanta una gran <strong>carga útil</strong> de datos en un servidor memcached en riesgo.</p>
+</li>
+<li>
+<p>A continuación, el atacante falsifica una solicitud HTTP GET con la dirección IP de la víctima.</p>
+</li>
+<li>
+<p>El servidor de memcached vulnerable que recibe la solicitud, que intenta ser útil respondiendo, envía una respuesta extensa al objetivo.</p>
+</li>
+<li>
+<p>El servidor objetivo o su infraestructura es incapaz de procesar la gran cantidad de datos enviados desde el servidor memcached, lo cual provoca una sobrecarga y una denegación de servicio a las solicitudes legítimas.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Ejemplo de ataque mecached:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/memcached-attack.png" alt="Memcached">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_ataques_lógicos_o_de_estado">4. Ataques Lógicos o de Estado</h3>
+<div class="paragraph">
+<p>Estos ataques aprovechan la gestión de conexiones del sistema para hacer que los recursos se agoten.</p>
+</div>
+<div class="sect3">
+<h4 id="_a_http_flood">a. HTTP Flood</h4>
+<div class="paragraph">
+<p>La intención de este ataque es saturar un servidor objetivo con solicitudes HTTP, en la capa de aplicación. Normalmente se utilizan botnets para este tipo de ataques.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/http-flood-attack.png" alt="HTTP Flood">
+</div>
+</div>
+<div class="paragraph">
+<p>Hay dos variantes:</p>
+</div>
+<div class="paragraph">
+<p><strong>Ataque HTTP GET</strong></p>
+</div>
+<div class="paragraph">
+<p>Varios dispositivos envian múltiples solicitudes de imágenes, archivos o algún otro activo desde un servidor objetivo. Cuando el objetivo se vea inundado con solicitudes y respuestas entrantes, se producirá una denegación de servicio</p>
+</div>
+<div class="paragraph">
+<p><strong>Ataque HTTP POST</strong></p>
+</div>
+<div class="paragraph">
+<p>Este tipo de ataque se hace a través de los formularios, donde se suelen enviar los datos a una base de datos. El proceso de gestionar los datos del formulario y ejecutar los comandos necesarios de la base de datos es relativamente intensivo en comparación con la cantidad de potencia de procesamiento y el ancho de banda que se necesita para enviar la solicitud POST. Este ataque utiliza la disparidad en el consumo relativo de recursos, al enviar muchas solicitudes POST directamente a un servidor objetivo hasta que se sature su capacidad</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_rudy_r_u_dead_yet">b. RUDY (R U Dead Yet?)</h4>
+<div class="paragraph">
+<p><a href="https://github.com/sahilchaddha/rudyjs">RUDY</a> es una herramienta cuyo objetivo es mantener un servidor web atado al enviar datos de formularios a un ritmo muy lento. La herramienta detecta los campos del formulario y aprovecharse del proceso de envío del mismo.</p>
+</div>
+<div class="paragraph">
+<p>Un ataque R.U.D.Y. se realiza en los siguientes pasos:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>La herramienta R.U.D.Y. rastrea la aplicación de la víctima en busca de un campo de formulario.</p>
+</li>
+<li>
+<p>Cuando encuentra un formulario, la herramienta crea una solicitud POST HTTP para imitar el envío de un formulario legítimo. Esta solicitud POST contiene un encabezado que alerta al servidor de que se va a enviar un contenido muy extenso.</p>
+</li>
+<li>
+<p>Luego, la herramienta alarga el proceso de envío de los datos del formulario al dividirlo en paquetes de hasta 1 byte cada uno, y al enviar estos paquetes al servidor a intervalos aleatorios de unos 10 segundos cada uno.</p>
+</li>
+<li>
+<p>La herramienta sigue enviando datos de forma indefinida. El servidor web mantendrá la conexión abierta para aceptar los paquetes, ya que el comportamiento del ataque es similar al de un usuario con una velocidad de conexión lenta que envía datos de un formulario. Entretanto, se ve afectada la capacidad del servidor web para manejar el tráfico legítimo, por lo que termina saturándose.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/RUDY.jpg" alt="RUDY">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_solucionar_la_máquina">Solucionar la máquina</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vamos a ver en esta guía cómo realizar ataques de denagación de servicios y cómo estos afectan a un servidor mal configurado. Aprenderemos principalmente cómo realizarlos y ver lo que ocurre en nuestra máquina.</p>
+</div>
+<div class="paragraph">
+<p>Para ello utilizaremos varias herramientas que estarán disponibles en el contenedor <strong>dos</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.kali.org/tools/hping3/">hping3</a></p>
+</li>
+<li>
+<p><a href="https://github.com/gkbrk/slowloris">slowloris</a></p>
+</li>
+<li>
+<p>ping</p>
+</li>
+<li>
+<p><a href="https://github.com/C4PIT4L/TearDrop">TearDrop</a></p>
+</li>
+<li>
+<p><a href="https://github.com/LimerBoy/Impulse">Impulse</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sahilchaddha/rudyjs">Rudyjs</a></p>
+</li>
+<li>
+<p><a href="https://github.com/rodarima/lsi/blob/master/p2/dnsdrdos.c">dnsdrdos.c</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sería conveniente utilizar una distribución Linux, es recomendable usar Kali Linux.</p>
+</div>
+<div class="sect2">
+<h3 id="_despliegue_de_la_máquina">Despliegue de la máquina</h3>
+<div class="paragraph">
+<p>Como requisito, necesitaremos tener instalado docker y docker-compose.</p>
+</div>
+<div class="paragraph">
+<p>Podemos ver como instalar docker para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/engine/install/">Instalar Docker</a></p>
+</div>
+<div class="paragraph">
+<p>Podemos ver como instalar docker-compose para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/compose/install/linux/">Instalar Docker-Compose</a></p>
+</div>
+<div class="paragraph">
+<p>Necesitaremos descargar primeramente el auto_deploy.sh, el cual se muestra como una pirámide en la página. Después en un directorio deberemos tener el auto_deploy.sh, gula.tar y docker-compose.yml, deberemos acceder con la terminal a dicho directorio y ejecutar el siguiente comando.</p>
+</div>
+<div class="paragraph">
+<p>(Si el auto_deploy no tiene permisos se los damos mediante <strong>chmod +x</strong>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo bash auto_deploy.sh gula.tar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Tendremos tres imagenes, dos son del servidor y la otra es un entorno de ataque, donde están todas las herramientas configuradas y listas para usar. Si queremos usar este entorno, en una terminal ponemos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo su
+$ docker exec -ti dos /bin/bash</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En caso de querer comprobar el servidor con <strong>tcpdump</strong>, deberemos acceder al contenedor de nginx:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo su
+$ docker exec -ti nginx /bin/bash</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>También podemos ver las estadísticas de los contenedores poniendo <strong>docker stats</strong> en la terminal.</p>
+</div>
+<div class="paragraph">
+<p>En cuanto a acceder a la página, es recomendable crear un nuevo perfil en nuestro navegador y borrar la cache de este por cada ataque. De esta forma comprobaremos que se ha realizado o no, sería como entrar por primera vez.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Navegador</th>
+<th class="tableblock halign-left valign-top">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Firefox</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">about:profiles</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Brave</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">brave://settings/manageProfile</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chrome</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chrome://settings &#8594; "Personas"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Opera</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">opera://settings/side-profiles-settings</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_nociones_básicas">Nociones básicas</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>tcpdump</strong> &#8594; Es una herramienta de línea de comandos utilizada para capturar y analizar el tráfico de red en tiempo real. Permite inspeccionar los paquetes que circulan por una interfaz de red, filtrar tráfico específico por protocolos, direcciones IP o puertos, y visualizar detalles sobre las conexiones de red. Es útil para diagnosticar problemas de red, auditar la seguridad o estudiar el comportamiento de aplicaciones en la red.</p>
+</li>
+<li>
+<p><strong>docker stats</strong> &#8594; Muestra información en tiempo real sobre el rendimiento de los contenedores en ejecución. Los datos que proporciona son útiles para monitorear el consumo de recursos y detectar posibles problemas de rendimiento.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>CPU %</strong> &#8594; Indica el porcentaje de uso de la CPU por parte del contenedor. Es útil para detectar si un contenedor está consumiendo demasiados recursos de procesamiento.</p>
+</li>
+<li>
+<p><strong>MEM USAGE / LIMIT</strong> &#8594; Muestra la cantidad de memoria RAM utilizada por el contenedor, junto con el límite de memoria asignado. Esto permite ver si un contenedor está alcanzando su límite de memoria, lo que podría llevar a que se detenga o se vuelva inestable.</p>
+</li>
+<li>
+<p><strong>MEM %</strong> &#8594; El porcentaje de la memoria total asignada al contenedor que está siendo utilizada.</p>
+</li>
+<li>
+<p><strong>NET I/O</strong> &#8594; Muestra la cantidad de datos que el contenedor ha enviado y recibido por la red. Esta cifra es útil para evaluar si el contenedor está generando un alto volumen de tráfico de red, lo que podría indicar que está manejando grandes cantidades de datos o que está siendo atacado</p>
+</li>
+<li>
+<p><strong>BLOCK I/O</strong> &#8594; Muestra la cantidad de datos leída y escrita por el contenedor en el sistema de almacenamiento (disco). Es útil para detectar cuellos de botella en el rendimiento del contenedor relacionados con el acceso a disco.</p>
+</li>
+<li>
+<p><strong>PIDS</strong> &#8594; El número de procesos activos dentro del contenedor. Si este número es muy alto, puede indicar que el contenedor está ejecutando demasiados procesos.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_ataques_de_consumo_de_recursos_2">1. Ataques de Consumo de Recursos</h3>
+<div class="sect3">
+<h4 id="_a_ping_flood_icmp_2">a. Ping flood (ICMP)</h4>
+<div class="sect4">
+<h5 id="_comando">Comando</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo hping3 --icmp -flood -a (IPspoof) (IP)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Mediante este comando podremos enviar muchos paquetes ICMP como hemos visto anteriormente, con nuestra IP falsificada.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>hping3</strong> &#8594; Es una herramienta para generar paquetes de red personalizados y hacer pruebas de red o ataques de denegación de servicio (DoS).</p>
+</li>
+<li>
+<p><strong>--icmp</strong> &#8594; Indica que se van a enviar paquetes ICMP (tipo "ping"), similares a los enviados por el comando ping.</p>
+</li>
+<li>
+<p><strong>--flood</strong> &#8594; Envía paquetes lo más rápido posible sin esperar respuesta, generando un gran volumen de tráfico.</p>
+</li>
+<li>
+<p><strong>-a (IPspoof)</strong> &#8594; Usa IP spoofing, es decir, falsifica la dirección IP de origen, haciendo que el ataque parezca provenir de otra máquina.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_resultados_del_ataque">Resultados del ataque</h5>
+<div class="paragraph">
+<p><strong>Limitaciones del entorno local</strong></p>
+</div>
+<div class="paragraph">
+<p>El ataque está diseñado para saturar el ancho de banda de un servidor remoto.</p>
+</div>
+<div class="paragraph">
+<p>En nuestro caso, tanto el atacante como el servidor están en la misma máquina o en la misma red local, lo que elimina la latencia de la red y la congestión del tráfico externo.</p>
+</div>
+<div class="paragraph">
+<p>Al no haber una "distancia" real que recorrer para los paquetes, el tráfico no se propaga como en un ataque real.</p>
+</div>
+<div class="paragraph">
+<p><strong>Análisis del tráfico con tcpdump</strong></p>
+</div>
+<div class="paragraph">
+<p>Si ejecutamos el ataque y analizamos el tráfico desde el servidor Nginx con tcpdump, podemos ver cómo se reciben las peticiones.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ tcpdump -i eth0 icmp</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/1/Pingflood/tcpdump.png" alt="Tcpdump">
+</div>
+</div>
+<div class="paragraph">
+<p>En los resultados, observamos que solo 481825 paquetes han sido capturados de un total de 7786662 paquetes filtrados, el resto ha sido descartado por el kernel.</p>
+</div>
+<div class="paragraph">
+<p>Esto ocurre porque el sistema no puede manejar un volumen tan alto de paquetes, por lo que los descarta antes de procesarlos.</p>
+</div>
+<div class="paragraph">
+<p><strong>Monitoreo con docker stats</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/1/Pingflood/dockerstats.png" alt="Dockerstats">
+</div>
+</div>
+<div class="paragraph">
+<p>Al revisar docker stats durante el ataque, no se observan cambios significativos en el uso de recursos.</p>
+</div>
+<div class="paragraph">
+<p>Lo único que aumenta es el Net I/O de Nginx, ya que está recibiendo las solicitudes maliciosas.</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, como los paquetes son descartados antes de ser procesados, el ancho de banda real no se ve afectado.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_syn_flood_2">b. SYN Flood</h4>
+<div class="sect4">
+<h5 id="_comando_2">Comando</h5>
+<div class="paragraph">
+<p>Mediante el siguiente comando enviaremos un ataque SYN flood con direcciones IP falsificadas para saturar la tabla de conexiones del servidor y hacer que deje de aceptar conexiones legítimas.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo hping3 -c 15000 -d 120 -S -w 64 -p 80 --flood --rand-source (IP)</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>hping3</strong> &#8594; Es una herramienta de red utilizada para enviar paquetes TCP/IP personalizados. Es muy útil para pruebas de red y ataques de denegación de servicio (DoS).</p>
+</li>
+<li>
+<p><strong>-c 15000</strong> &#8594; Indica el número de paquetes a enviar, en este caso, 15,000 paquetes.</p>
+</li>
+<li>
+<p><strong>-d 120</strong> &#8594; Establece el tamaño del payload de cada paquete a 120 bytes.</p>
+</li>
+<li>
+<p><strong>-S</strong> &#8594; Establece el flag SYN en el paquete TCP. Esto es clave para un ataque SYN flood, ya que inicia una conexión TCP sin completar el "handshake".</p>
+</li>
+<li>
+<p><strong>-w 64</strong> &#8594; Define el tamaño de la ventana TCP. Esto es el tamaño de la ventana de recepción de datos en el protocolo TCP.</p>
+</li>
+<li>
+<p><strong>-p 80</strong> &#8594; Especifica el puerto de destino. En este caso, el puerto 80, que es utilizado por HTTP.</p>
+</li>
+<li>
+<p><strong>--flood</strong> &#8594; Envía paquetes lo más rápido posible sin esperar respuesta, generando un gran volumen de tráfico.</p>
+</li>
+<li>
+<p><strong>--rand-source</strong> &#8594; Hace que la fuente de los paquetes sea aleatoria, lo que dificulta el rastreo del origen del ataque (hace que el ataque sea de tipo "spoofed").</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_resultados_del_ataque_2">Resultados del ataque</h5>
+<div class="paragraph">
+<p><strong>Inicio del ataque</strong></p>
+</div>
+<div class="paragraph">
+<p>Una vez que iniciamos el ataque, es recomendable esperar unos segundos para que su efecto se refleje en el servidor.</p>
+</div>
+<div class="paragraph">
+<p><strong>Verificación del efecto</strong></p>
+</div>
+<div class="paragraph">
+<p>Para comprobar si el ataque ha tenido éxito, intentamos acceder a la IP del servidor desde el navegador.</p>
+</div>
+<div class="paragraph">
+<p>Es importante limpiar la caché del navegador o usar un perfil nuevo para evitar datos almacenados. (Esta recomendación puede incluirse en la parte de despliegue del documento).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/1/SYNflood/cargando.png" alt="Cargando">
+</div>
+</div>
+<div class="paragraph">
+<p>Como podemos ver, el servidor no responde y la página no carga. Esto indica que el ataque ha sido exitoso y está afectando la disponibilidad del servicio.</p>
+</div>
+<div class="paragraph">
+<p><strong>Análisis con tcpdump</strong></p>
+</div>
+<div class="paragraph">
+<p>Durante un breve escaneo con tcpdump, observamos que se han capturado 21 paquetes de un total de 3955070 paquetes procesados, el resto ha sido descartado por el kernel.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ tcpdump -i any 'tcp[tcpflags] &amp; (tcp-syn) != 0 and tcp[tcpflags] &amp; (tcp-ack) == 0'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Esto indica que hay una gran cantidad de paquetes SYN intentando establecer conexiones, lo que reduce progresivamente la disponibilidad del servidor para aceptar clientes legítimos.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/1/SYNflood/tcpdump.png" alt="Tcpdump">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Análisis del impacto con docker stats</strong></p>
+</div>
+<div class="paragraph">
+<p>Al monitorear el servidor con docker stats, observamos un Net I/O de 4.68GB / 4.27MB.</p>
+</div>
+<div class="paragraph">
+<p>Esto sugiere que la carga de red es muy elevada, lo que aumenta las probabilidades de que algunos paquetes logren completar el handshake y consuman recursos del servidor.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/1/SYNflood/dockerstats.png" alt="Dockerstats">
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_c_udp_flood_2">c. UDP Flood</h4>
+<div class="sect4">
+<h5 id="_comando_3">Comando</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo hping3 --udp -p 53 -d 120 --flood (IP)</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>hping3</strong> &#8594; Es una herramienta para generar paquetes de red personalizados y hacer pruebas de red o ataques de denegación de servicio (DoS).</p>
+</li>
+<li>
+<p><strong>--udp</strong> &#8594; Envía paquetes UDP en lugar de los predeterminados TCP.</p>
+</li>
+<li>
+<p><strong>-p 53</strong> &#8594; Especifica el puerto de destino, en este caso 53 (DNS) (Otros puertos que se pueden usar son 123 (NTP) y 161 (SNMP) ya que van por UDP)</p>
+</li>
+<li>
+<p><strong>-d 120</strong> &#8594; Define el tamaño de los paquetes en 120 bytes.</p>
+</li>
+<li>
+<p><strong>--flood</strong> &#8594; Envía paquetes lo más rápido posible sin esperar respuesta, generando un gran volumen de tráfico.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_resultados_del_ataque_3">Resultados del ataque</h5>
+<div class="paragraph">
+<p><strong>Inicio del ataque</strong></p>
+</div>
+<div class="paragraph">
+<p>Este ataque no lo podemos realizar en nuestro entorno. Esto es debido a que no hay ancho de banda involucrado, ocurriendo el mismo caso que en el ataque de ping flood. Cuando el puerto de destino no está abierto, el sistema responde con un paquete ICMP (ping). Al ejecutarse en un entorno local, no se genera tráfico significativo, por lo que no se pueden observar efectos claros en la red.</p>
+</div>
+<div class="paragraph">
+<p><strong>Análisis con tcpdump</strong></p>
+</div>
+<div class="paragraph">
+<p>Durante un breve escaneo con tcpdump, observamos que se han capturado 71323 paquetes de un total de 2390095 paquetes procesados, el resto de los paquetes ha sido descartado por el kernel.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ tcpdump -i any udp</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Esto indica que el ataque se está ejecutando correctamente y que los paquetes están llegando al servidor. Sin embargo, al no haber distancia real en la red ni consumo de ancho de banda, los efectos son mínimos en este entorno.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/1/UDPflood/tcpdump.png" alt="Tcpdump">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Análisis del impacto con docker stats</strong></p>
+</div>
+<div class="paragraph">
+<p>Al monitorear el servidor con docker stats, observamos un Net I/O de aproximadamente 5.9GB / 600KB.</p>
+</div>
+<div class="paragraph">
+<p>Esto sugiere que el servidor está recibiendo una gran cantidad de paquetes, pero no está generando una respuesta significativa en términos de tráfico saliente. Esto confirma que, aunque el ataque está en marcha, en un entorno local no se logra un impacto real en el rendimiento del servidor.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/1/UDPflood/dockerstats.png" alt="Dockerstats">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_ataques_de_explotación_de_vulnerabilidades_2">2. Ataques de Explotación de Vulnerabilidades</h3>
+<div class="sect3">
+<h4 id="_a_slowloris_2">a. Slowloris</h4>
+<div class="sect4">
+<h5 id="_requisitos">Requisitos</h5>
+<div class="paragraph">
+<p>Deberemos tener antes python3 instalado (Debian/Ubuntu):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo apt upgrade
+$ sudo apt install python3 python3-pip python3-dev python3-venv build-essential</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En caso de usar otra distribución mira esto &#8594; <a href="https://www.geeksforgeeks.org/how-to-install-python-on-linux/" class="bare">https://www.geeksforgeeks.org/how-to-install-python-on-linux/</a></p>
+</div>
+<div class="paragraph">
+<p>Descargamos la herramienta, para ello tenemos dos opciones:</p>
+</div>
+<div class="paragraph">
+<p><strong>Pip install</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo pip3 install slowloris
+$ slowloris example.com</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Git clone</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ git clone https://github.com/gkbrk/slowloris.git
+$ cd slowloris
+$ python3 slowloris.py example.com</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_comando_4">Comando</h5>
+<div class="paragraph">
+<p>En este caso, es recomendable usar varias terminales con este comando, de esta forma es más rápido el ataque.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo slowloris (IP)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_resultados_del_ataque_4">Resultados del ataque</h5>
+<div class="paragraph">
+<p>Este ataque ha sido exitoso en nuestro entorno; no solo impide el acceso a la página, sino que la ha dejado completamente inaccesible.</p>
+</div>
+<div class="paragraph">
+<p><strong>Verificación del efecto</strong></p>
+</div>
+<div class="paragraph">
+<p>Accedemos con nuestro perfil a la IP del servidor y nos debe salir lo siguiente:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/2/slowloris/conexion.png" alt="ConexionError">
+</div>
+</div>
+<div class="paragraph">
+<p>Esto nos indica que se ha realizado con exito el ataque DoS.</p>
+</div>
+<div class="paragraph">
+<p><strong>Análisis con tcpdump</strong></p>
+</div>
+<div class="paragraph">
+<p>Analizando los datos capturados con tcpdump, podemos observar que nuestro ataque está ocupando múltiples conexiones al puerto 80 y que estas conexiones no están siendo cerradas, sino que permanecen abiertas. Esto es lo que ocurre con Slowloris, donde el atacante envía solicitudes HTTP parciales para mantener las conexiones activas y agotar los recursos del servidor.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ tcpdump -i eth0 -n port 80 and tcp[13] = 2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Además, en las terminales donde ejecutamos Slowloris, podemos ver que la herramienta indica el envío del encabezado Keep-Alive a los sockets abiertos, lo que refuerza la persistencia de las conexiones.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/2/slowloris/tcpdump.png" alt="Tcpdump">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Análisis del impacto con docker stats</strong></p>
+</div>
+<div class="paragraph">
+<p>Por otro lado, al inspeccionar el consumo de recursos con docker stats, observamos que el contenedor del servidor está recibiendo 30GB en Net I/O, lo que representa un tráfico alto para un servidor web. Este consumo masivo de red sugiere que el servidor está siendo saturado con solicitudes, lo que contribuye a su caída.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/2/slowloris/dockerstats.png" alt="Dockerstats">
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_teardrop">b. Teardrop</h4>
+<div class="sect4">
+<h5 id="_requisitos_2">Requisitos</h5>
+<div class="paragraph">
+<p>Deberemos tener antes python3 instalado (Debian/Ubuntu):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo apt upgrade
+$ sudo apt install python3 python3-pip python3-dev python3-venv build-essential</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En caso de usar otra distribución mira esto &#8594; <a href="https://www.geeksforgeeks.org/how-to-install-python-on-linux/" class="bare">https://www.geeksforgeeks.org/how-to-install-python-on-linux/</a></p>
+</div>
+<div class="paragraph">
+<p>Descargamos la herramienta:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ git clone https://github.com/C4PIT4L/TearDrop.git
+$ cd TearDrop
+$ python3 -m venv venv
+$ source venv/bin/activate
+$ pip install -r requirements.txt</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_comando_5">Comando</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo python teardrop.py (IP) 1500 --indefinite</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>python teardrop.py</strong> &#8594; Ejecuta el script teardrop.py, que genera paquetes malformados.</p>
+</li>
+<li>
+<p><strong>(IP)</strong> &#8594; IP víctima.</p>
+</li>
+<li>
+<p><strong>1500</strong> &#8594; Tamaño de los paquetes fragmentados en bytes.</p>
+</li>
+<li>
+<p><strong>--indefinite</strong> &#8594; Opción que indica que el ataque se ejecutará de forma continua hasta que lo detengas (Ctrl + C).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_resultados_del_ataque_5">Resultados del ataque</h5>
+<div class="paragraph">
+<p>Como pudimos ver anteriormente, este ataque se ejecutaba en servidores antiguos con sistemas Windows 95, NT 4.0 y Linux 2.0, pero los sistemas modernos simplemente descartan estos paquetes.
+Además en una red local, los fragmentos IP llegan demasiado rápido y no generan problemas de reensamblado. En redes antiguas con alta latencia, el ataque funcionaba porque los fragmentos llegaban en momentos diferentes.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_c_ping_of_death_pod_2">c. Ping of Death (PoD)</h4>
+<div class="sect4">
+<h5 id="_comando_6">Comando</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ ping -s 65500 -c 1000 (IP)</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>-s 65500</strong> &#8594; Tamaño del paquete (máximo 65535 bytes, pero algunos sistemas tienen límites menores).</p>
+</li>
+<li>
+<p><strong>-c 1000</strong> &#8594; Enviar 1000 paquetes.</p>
+</li>
+<li>
+<p><strong>(IP)</strong> &#8594; La IP del objetivo.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_resultados_del_ataque_6">Resultados del ataque</h5>
+<div class="paragraph">
+<p>Al igual que el anterior, este ataque solo afecta a sistemas antiguos (Windows 95/98/NT, Linux 2.0, algunos routers antiguos).</p>
+</div>
+<div class="paragraph">
+<p>Actualmente el protocolo IPv4 permite que los paquetes se dividan en fragmentos si son demasiado grandes. Si un paquete se fragmenta y el receptor no puede reconstruirlo correctamente, simplemente lo descarta</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_ataques_de_amplificación_y_reflexión_2">3. Ataques de Amplificación y Reflexión</h3>
+<div class="sect3">
+<h4 id="_a_dns_amplification_2">a. DNS Amplification</h4>
+<div class="sect4">
+<h5 id="_requisitos_3">Requisitos</h5>
+<div class="paragraph">
+<p>Vamos a usar una antiguo script de C, por lo que haremos lo siguiente:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ mkdir dnsdrdos
+$ cd dnsdrdos
+$ wget https://github.com/rodarima/lsi/blob/master/p2/dnsdrdos.c
+$ gcc dnsdrdos.c -o dnsdrdos.o -Wall -ansi</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Una vez compilado el script, necesitamos crear una lista de servidores dns, que serán los que envien paquetes al servidor víctima:</p>
+</div>
+<div class="paragraph">
+<p>Podemos obtener los servidores dns de la siguiente página &#8594; <a href="https://public-dns.info/" class="bare">https://public-dns.info/</a></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_comando_7">Comando</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo ./dnsdrdos.o -f (dnslist.txt) -s (IP víctima) -l (tiempo del ataque)</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>-f</strong> &#8594; El archivo txt con la lista de servidores dns, solo una IP por linea</p>
+</li>
+<li>
+<p><strong>-s</strong> &#8594; La IP a la que vamos a atacar</p>
+</li>
+<li>
+<p><strong>-l</strong> &#8594; El tiempo de duración del ataque</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_resultados_del_ataque_7">Resultados del ataque</h5>
+<div class="paragraph">
+<p>Este ataque es bastante eficaz, como se está utilizando una IP local (nuestra red interna), los servidores DNS amplifican las peticiones hacia esta dirección. El tráfico amplificado llena la red local con solicitudes, causando congestión. Sin embargo, el servidor DNS local sigue funcionando, ya que no se ve afectado por el ataque en términos de disponibilidad. El problema es que, dado que el tráfico afecta a nuestra red interna, otras aplicaciones y servicios de red que dependen de la conexión (como navegación web o actualizaciones de paquetes) se ven ralentizados o incluso interrumpidos.</p>
+</div>
+<div class="paragraph">
+<p><strong>Gráficos en Kali Linux</strong></p>
+</div>
+<div class="paragraph">
+<p>En Kali Linux, en la parte superior derecha, hay unos gráficos que muestran el uso de la CPU. Podemos observar cómo, durante el ataque, el gráfico comienza a reflejar un incremento en la carga del procesador. Esto indica que el servidor está procesando un número elevado de solicitudes, lo que confirma que el ataque está en curso.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/3/dns/kali.png" alt="KaliGraphs">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Análisis con tcpdump</strong></p>
+</div>
+<div class="paragraph">
+<p>Utilizando tcpdump, se puede observar cómo las peticiones de las IPs de los servidores DNS están llegando a la red. Cada una de estas solicitudes genera una respuesta amplificada, lo que contribuye a la sobrecarga del ancho de banda y la congestión en la red local.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/3/dns/tcpdump.png" alt="Tcpdump">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Análisis con docker stats</strong></p>
+</div>
+<div class="paragraph">
+<p>Al consultar docker stats, se observa que no hay una carga significativa en los contenedores. Esto ocurre ya que el ataque está afectando principalmente el ancho de banda de la red local, y no la carga de los servicios dentro de los contenedores.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/3/dns/dockerstats.png" alt="Dockerstats">
+</div>
+</div>
+<div class="paragraph">
+<p>Un buen ejemplo de cómo el ataque afecta la funcionalidad de la red es al intentar realizar una actualización de paquetes con apt. Durante el ataque, se observa que la actualización no puede completarse, ya que los paquetes necesarios para la actualización no llegan debido a la congestión en la red.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/3/dns/updateError.png" alt="UpdateError">
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_ntp_amplification_2">b. NTP Amplification</h4>
+<div class="sect4">
+<h5 id="_requisitos_4">Requisitos</h5>
+<div class="paragraph">
+<p>Deberemos tener antes python3 instalado (Debian/Ubuntu):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo apt upgrade
+$ sudo apt install python3 python3-pip python3-dev python3-venv build-essential</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En caso de usar otra distribución mira esto &#8594; <a href="https://www.geeksforgeeks.org/how-to-install-python-on-linux/" class="bare">https://www.geeksforgeeks.org/how-to-install-python-on-linux/</a></p>
+</div>
+<div class="paragraph">
+<p>Para este ataque vamos a usar la herramienta Impulse, vamos a descargarla e instalar los requisitos.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ git clone https://github.com/LimerBoy/Impulse.git
+$ cd Impulse
+$ python3 -m venv venv
+$ source venv/bin/activate
+$ pip3 install -r requirements.txt
+$ python3 impulse.py --help</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ya estará lista para usar esta versátil herramienta.</p>
+</div>
+<div class="paragraph">
+<p>También hay servidores NTP cómo en el caso de DNS &#8594; <a href="https://tf.nist.gov/tf-cgi/servers.cgi" class="bare">https://tf.nist.gov/tf-cgi/servers.cgi</a></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_comando_8">Comando</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo python3 impulse.py --method NTP --time 200 --threads 15 --target (IP):123</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>--method NTP</strong> &#8594; Especifica el método de ataque a utilizar. En este caso, se trata de un ataque de amplificación NTP (Network Time Protocol). Este tipo de ataque funciona enviando solicitudes maliciosas a servidores NTP abiertos para generar un volumen de tráfico mayor dirigido al objetivo.</p>
+</li>
+<li>
+<p><strong>--time 200</strong> &#8594; Define la duración del ataque en segundos. En este caso, el ataque se ejecutará durante 200 segundos.</p>
+</li>
+<li>
+<p><strong>--threads 15</strong> &#8594; Especifica el número de hilos que se utilizarán para ejecutar el ataque en paralelo. Cuantos más hilos, más solicitudes simultáneas se enviarán, aumentando el volumen de tráfico generado.</p>
+</li>
+<li>
+<p>-<strong>-target (IP):123</strong> &#8594; La IP víctima y el puerto al que vamos a atacar.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_resultados_del_ataque_8">Resultados del ataque</h5>
+<div class="paragraph">
+<p>Aunque este ataque suele ser efectivo, no alcanza la misma potencia que el anterior. Esto se debe a que la amplificación del tráfico NTP es menor, lo que reduce la probabilidad de causar una saturación inmediata de la red. Para que un ataque de este tipo tenga un impacto significativo, se necesita un volumen de tráfico considerable; si los paquetes generados no llenan el ancho de banda disponible, el efecto será mínimo.</p>
+</div>
+<div class="paragraph">
+<p><strong>Gráficos en Kali Linux</strong></p>
+</div>
+<div class="paragraph">
+<p>Podemos observar cómo los paquetes llegan a nuestro contenedor, de manera similar al ataque anterior.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/3/ntp/kali.png" alt="KaliGraphs">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Análisis con tcpdump</strong></p>
+</div>
+<div class="paragraph">
+<p>Además, con tcpdump podemos ver que se han capturado 1500 paquetes de un total de 11413, utilizando el siguiente comando en una terminal fuera de los contenedores:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">tcpdump -i eth0 port 123 -vv</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/3/ntp/tcpdump.png" alt="Tcpdump">
+</div>
+</div>
+<div class="paragraph">
+<p>A pesar de esto, seguimos teniendo acceso a todos los servicios sin interrupciones, lo que indica que el ataque no es lo suficientemente fuerte en este caso. La red local tiene suficiente capacidad para absorber el tráfico y el ataque no está generando suficiente tráfico porque el número de threads y el tiempo son insuficientes.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_c_memcached">c. Memcached</h4>
+<div class="sect4">
+<h5 id="_reconocimiento">Reconocimiento</h5>
+<div class="paragraph">
+<p>En este caso, este ataque sirve unicamente para servidores con servicio memcached, este servicio suele estar presente en el puerto 11211.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ nmap -p 11211 --script memcached-info (IP)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_herramientas">Herramientas</h5>
+<div class="paragraph">
+<p>Deberemos tener antes python3 instalado (Debian/Ubuntu):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo apt upgrade
+$ sudo apt install python3 python3-pip python3-dev python3-venv build-essential</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En caso de usar otra distribución mira esto &#8594; <a href="https://www.geeksforgeeks.org/how-to-install-python-on-linux/" class="bare">https://www.geeksforgeeks.org/how-to-install-python-on-linux/</a></p>
+</div>
+<div class="paragraph">
+<p>Hay varias herramientas que puedan realizar este ataque:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Impulse</strong> &#8594; Podemos volver a usar la misma herramienta del anterior ataque.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ git clone https://github.com/LimerBoy/Impulse.git
+$ cd Impulse
+$ python3 -m venv venv
+$ source venv/bin/activate
+$ pip3 install -r requirements.txt
+$ python3 impulse.py --help</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><a href="https://github.com/649/Memcrashed-DDoS-Exploit">Memcrashed</a></strong> &#8594; Esta herramienta está centrada principalmente en este tipo de ataques, pero necesita usar Shodan API, que se puede obtener gratis si se tiene una cuenta .edu de mail.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ git clone https://github.com/649/Memcrashed-DDoS-Exploit.git
+$ cd Memcrashed-DDoS-Exploit
+$ echo "SHODAN_KEY" &gt; api.txt
+$ docker build -t memcrashed .
+$ docker run -it memcrashed</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Podemos ver un ejemplo de cómo funciona está herramienta:</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_comando_9">Comando</h5>
+<div class="paragraph">
+<p>En caso de que queramos realizarlo con <strong>Impulse</strong>, realizaremos el siguiente comando.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo python3 impulse.py --method MEMCACHED --time 200 --threads 15 --target (IP):11211</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>--method MEMCACHED</strong> &#8594; Especifica el tipo de ataque, en este caso, amplificación Memcached.</p>
+</li>
+<li>
+<p><strong>--time 200</strong> &#8594; Define la duración del ataque en segundos. En este caso, el ataque se ejecutará durante 200 segundos.</p>
+</li>
+<li>
+<p><strong>--threads 15</strong> &#8594; Especifica el número de hilos que se utilizarán para ejecutar el ataque en paralelo. Cuantos más hilos, más solicitudes simultáneas se enviarán, aumentando el volumen de tráfico generado.</p>
+</li>
+<li>
+<p><strong>--target (IP):11211</strong> &#8594; Dirección IP del objetivo y puerto al que se enviará el tráfico.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_resultados_del_ataque_9">Resultados del ataque</h5>
+<div class="paragraph">
+<p>Por desgracia, no dispongo de un servidor memcached, pero podemos ver una prueba hacia un servidor real: <a href="https://www.youtube.com/watch?v=7oozYx9AfPM">video</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_ataques_lógicos_o_de_estado_2">4. Ataques Lógicos o de Estado</h3>
+<div class="sect3">
+<h4 id="_a_http_flood_2">a. HTTP Flood</h4>
+<div class="sect4">
+<h5 id="_herramientas_2">Herramientas</h5>
+<div class="paragraph">
+<p>Para este tipo de ataques hay varias herramientas, de hecho ya vimos una que es Slowloris, pero me gustaría abordar otras que son parecidas o mejores:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><a href="https://sourceforge.net/projects/loic/">Low Orbit Ion Cannon (LOIC)</a></strong> &#8594; Originalmente desarrollada para pruebas de estrés en redes, LOIC permite enviar un gran volumen de solicitudes TCP, UDP o HTTP a un objetivo específico. Su uso ha sido asociado a ataques DDoS coordinados.</p>
+</li>
+<li>
+<p><strong><a href="https://sourceforge.net/projects/highorbitioncannon/">High Orbit Ion Cannon (HOIC)</a></strong> &#8594; Considerada la sucesora de LOIC, HOIC es capaz de generar un volumen aún mayor de tráfico hacia el objetivo. Utiliza scripts llamados "boosters" para aumentar la efectividad del ataque y puede apuntar a múltiples URLs simultáneamente.</p>
+</li>
+<li>
+<p><strong><a href="https://github.com/R3DHULK/HULK">HULK (HTTP Unbearable Load King)</a></strong> &#8594; Esta herramienta genera tráfico HTTP único y obfusca las solicitudes para evadir sistemas de detección de intrusos. Su objetivo es desbordar el servidor con solicitudes únicas, dificultando su mitigación.</p>
+</li>
+<li>
+<p><strong><a href="https://sourceforge.net/projects/torshammer/">Tor&#8217;s Hammer</a></strong> &#8594; Diseñada para realizar ataques de denegación de servicio a través de la red Tor, esta herramienta envía solicitudes POST lentas para mantener abiertas las conexiones y agotar los recursos del servidor.</p>
+</li>
+<li>
+<p><strong><a href="https://github.com/epsylon/ufonet">UFONet</a></strong> &#8594; Es una herramienta DDoS que utiliza 'zombies' o bots para crear ataques masivos. Permite realizar ataques de inundación HTTP y otros métodos, aprovechando vulnerabilidades en servidores web.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Algunas de estas herramientas pueden no ser muy eficaces actualmente como puede ser LOIC, HOIC, HULK. Pero por otra parte tenemos herramientas que pueden ser utiles en la actualidad como Slowloris, Tor&#8217;s Hammer, UFONet.</p>
+</div>
+<div class="paragraph">
+<p>De todas formas, el efecto que pueden tener depende de la herramienta que escojamos. Por ello he encontrado una herramienta que puede realizar 56 metodos de ataques DDoS:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/MatrixTM/MHDDoS">MHDDoS</a> &#8594; Es una herramienta escrita en Python 3 que permite realizar ataques de denegación de servicio distribuido (DDoS) mediante una amplia variedad de métodos tanto para la capa 7 (HTTP/HTTPS) como para la capa 4 (red).</p>
+</div>
+<div class="paragraph">
+<p>Podemos ver ejemplos de esta herramienta en acción en el siguiente enlace &#8594; <a href="https://blog.elhacker.net/2025/01/ejemplos-ataques-ddos-capa-7-con-mhddos.html">MHDDoS ejemplos</a></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_rudy_r_u_dead_yet_2">b. RUDY (R U Dead Yet?)</h4>
+<div class="paragraph">
+<p>Este ataque es muy efectivo contra nuestro formulario, ya que se encarga de hacer ataques tanto POST que es nuestro caso, como GET.</p>
+</div>
+<div class="sect4">
+<h5 id="_requisitos_5">Requisitos</h5>
+<div class="paragraph">
+<p>Es necesario instalar npm para esta herramienta:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ apt update
+$ apt install npm
+$ git clone https://github.com/sahilchaddha/rudyjs.git
+$ cd rudyjs
+$ npm install -g rudyjs</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_comando_10">Comando</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo rudy -t "http://(IP)/formulario.php" -d 5 -n 500 -m "POST"</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>-t "http://(IP)/formulario.php"</strong> &#8594; El objetivo del ataque, en este caso, un formulario en nuestro servidor.</p>
+</li>
+<li>
+<p><strong>-d 5</strong> &#8594; Retraso de 5 segundos entre el envío de pequeños fragmentos de datos.</p>
+</li>
+<li>
+<p><strong>-n 500</strong> &#8594; Intenta abrir 500 conexiones simultáneas al servidor, manteniendolas abiertas</p>
+</li>
+<li>
+<p><strong>-m "POST"</strong> &#8594; Indica que el ataque usará el método POST.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_resultados_del_ataque_10">Resultados del ataque</h5>
+<div class="paragraph">
+<p>En este ataque, podemos observar un efecto inmediato en nuestro formulario, ya que el servidor devuelve un error 500 (Internal Server Error). Esto ocurre porque se han agotado los recursos del servidor debido al envío de solicitudes HTTP POST extremadamente lentas, manteniendo las conexiones abiertas sin cerrarlas. Como resultado, el servidor queda saturado al intentar procesar todas las conexiones simultáneamente, lo que puede provocar la interrupción del servicio.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/4/RUDY/error500.png" alt="Error500">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Análisis con tcpdump</strong></p>
+</div>
+<div class="paragraph">
+<p>Por otro lado, mediante tcpdump, podemos capturar y analizar el tráfico generado durante el ataque. Esto nos permite verificar que todas las solicitudes están llegando al servidor. Podemos ver en tiempo real cómo las solicitudes POST se transmiten de manera fragmentada, lo que confirma el efecto del ataque</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo tcpdump -i eth0 port 80 -A | grep -i "POST"</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/imagenes-vuln/4/RUDY/tcpdump.png" alt="Tcpdump">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cómo_prevenir">¿Cómo prevenir?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En esta sección vamos a ver las formas de mitigar cada uno de los anteriores ataques mencionados</p>
+</div>
+<div class="sect2">
+<h3 id="_1_ataques_de_consumo_de_recursos_3">1. Ataques de Consumo de Recursos</h3>
+<div class="sect3">
+<h4 id="_a_ping_flood_icmp_3">a. Ping flood (ICMP)</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Desactivar ICMP</strong> &#8594; La manera más sencilla es desactivando la funcionalidad ICMP del dispositivo objetivo. El administrador puede deshabilitar en el dispositivo la capacidad de enviar y recibir cualquier solicitud que utilice el ICMP. Esto produce que el dispositivo en cuestión no responda a las solicitudes de ping, de traceroute y otras actividades de red.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sysctl -w net.ipv4.icmp_echo_ignore_all=1</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Reglas de firewall</strong> &#8594; Configurar reglas en el firewall para limitar el tráfico ICMP (iptables, pf, firewalld).</p>
+</li>
+<li>
+<p><strong>Rate limiting</strong> &#8594; Implementar <em>rate limiting</em> para ICMP en dispositivos de red.</p>
+</li>
+<li>
+<p><strong>Fail2Ban</strong> &#8594; Utilizar herramientas como <a href="https://github.com/fail2ban/fail2ban">Fail2Ban</a> para bloquear direcciones con solicitudes excesivas.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_syn_flood_3">b. SYN Flood</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Aumentar la cola de registros</strong> &#8594; Para poder aumentar con éxito el backlog máximo, el sistema tiene que reservar recursos de memoria adicionales para atender las nuevas solicitudes. Si el sistema no cuenta con memoria suficiente para gestionar el aumento del backlog, el rendimiento del sistema se verá afectado, pero mejor eso a que se produzca una negación de servicio.</p>
+</li>
+<li>
+<p><strong>Reciclar la conexión TCP medio abierta más antigua</strong> &#8594; Consiste en sobrescribir la conexión medio abierta más antigua una vez se haya completado el backlog, requiere que se puedan establecer en su totalidad las conexiones legítimas en menos tiempo del que necesita el backlog para llenarse de paquetes SYN maliciosos. Esto no resulta muy eficaz si el backlog es pequeño o si el ataque aumenta.</p>
+</li>
+<li>
+<p><strong>Cookies de SYN</strong> &#8594; El servidor debe crear una cookie, de esta manera se evita el riesgo de que se caigan las conexiones cuando se haya completado el backlog, por lo que el servidor responde a cada solicitud de conexión con un paquete SYN-ACK, pero luego descarta la solicitud SYN del backlog, elimina la solicitud de la memoria y dejan el puerto abierto y preparado para una nueva conexión. Si la solicitud es legítima, el cliente devolverá un paquete ACK final al servidor y este reconstruirá (con algunas limitaciones) la entrada de la cola del backlog de SYN. Durante este proceso se perderá información acerca de la conexión TCP.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sysctl -w net.ipv4.tcp_syncookies=1</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Tiempo de espera</strong> &#8594; Reducir el tiempo de espera de las conexiones medio abiertas (<strong>tcp_max_syn_backlog</strong> y <strong>tcp_synack_retries</strong> en <strong>sysctl</strong>).</p>
+</li>
+<li>
+<p><strong>Rate limiting</strong> &#8594; Implementar rate limiting en el firewall para el tráfico SYN.</p>
+</li>
+<li>
+<p><strong>Balanceadores de carga</strong> &#8594; Usar balanceadores de carga o sistemas de mitigación DDoS como Cloudflare o AWS Shield. Cloudflare mitiga este tipo de ataques parcialmente al ubicarse entre el servidor de destino y la inundación SYN.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_c_udp_flood_3">c. UDP Flood</h4>
+<div class="paragraph">
+<p>La mayoría de los sistemas operativos limitan la tasa de respuesta de los paquetes ICMP, principalmente para interrumpir los ataque DDoS que requieren una respuesta ICMP. El problema es que los paquetes legítimos también pueden ser filtrados en el proceso. Si la inundación UDP tiene un volumen lo suficientemente alto como para saturar la tabla de estado del firewall del servidor objetivo, no se podría mitigar ya que el cuello de botella se producirá en la parte previa del dispositivo objetivo.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Filtrar firewall</strong> &#8594; Esto permite descartar paquetes sospechosos. Sin embargo, el firewall también puede colapsarse bajo el volumen de datos como hemos visto antes.</p>
+</li>
+<li>
+<p><strong>Configurar servicios UDP (DNS, NTP)</strong> &#8594; Las consultas DNS o NTP suelen ejecutarse mediante UDP. Con esta medida, cualquier otra fuente que genere una cantidad masiva de tráfico UDP se considerará sospechosa y los paquetes en cuestión se descartarán.</p>
+</li>
+<li>
+<p><strong>IDS/IPS</strong> &#8594; Implementar rate limiting y reglas de detección de tráfico anómalo en el IDS/IPS.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_ataques_de_explotación_de_vulnerabilidades_3">2. Ataques de Explotación de Vulnerabilidades</h3>
+<div class="sect3">
+<h4 id="_a_slowloris_3">a. Slowloris</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Aumentar la disponibilidad del servidor</strong> &#8594; Aumentar el número máximo de clientes que el servidor permitirá en cualquier momento aumentará el número de conexiones que el atacante debe hacer antes de poder sobrecargar el servidor. Aunque, un atacante puede escalar el número de ataques para superar la capacidad del servidor, independientemente de los aumentos.</p>
+</li>
+<li>
+<p><strong>Limitar la velocidad de las solicitudes entrantes</strong> &#8594; Restringir el acceso en función de ciertos factores de uso ayudará a mitigar un ataque Slowloris. Técnicas como la limitación del número máximo de conexiones que puede realizar una única dirección IP, la restricción de las velocidades de transferencia lentas, y la limitación del tiempo máximo que un cliente puede permanecer conectado son enfoques para limitar la eficacia de los ataques bajos y lentos. Por ejemplo configurando límites en Apache/Nginx (Timeout, KeepAliveTimeout) o implementar mod_evasive en Apache o limit_req en Nginx.</p>
+</li>
+<li>
+<p><strong>Protección basada en la nube</strong> &#8594; Usar un servicio que pueda funcionar como proxy inverso, protegiendo el servidor de origen o un balanceador de carga que detecte y limite conexiones lentas.</p>
+</li>
+<li>
+<p><strong>WAF</strong> &#8594; Usar un <a href="https://www.cloudflare.com/es-es/learning/ddos/glossary/web-application-firewall-waf">Web Application Firewall</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_teardrop_attack_2">b. Teardrop Attack</h4>
+<div class="paragraph">
+<p>Ciertamente la técnica de ataque <strong>Teardrop</strong> está anticuanda, por lo que las siguientes recomendaciones también se pueden aplicar a las demás.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Actualizar</strong> &#8594; Mantener el sistema operativo y el firmware actualizados (los sistemas modernos ya no son vulnerables).</p>
+</li>
+<li>
+<p><strong>Bloquea los puertos</strong> &#8594; Desactivar los puertos 139 y 445, esto bloqueará mensajes del servidor potencialmente peligrosos en los sistemas que no pudieron recibir las actualizaciones de seguridad de sus proveedores.</p>
+</li>
+<li>
+<p><strong>Configurar firewall</strong> &#8594; Habilitar protecciones en el firewall para fragmentación anómala de paquetes</p>
+</li>
+<li>
+<p><strong>IDS/IPS</strong> &#8594; Utilizar un IDS/IPS para detectar y bloquear ataques basados en fragmentación.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_c_ping_of_death_pod_3">c. Ping of Death (PoD)</h4>
+<div class="paragraph">
+<p>El PoD surgió inicialmente a mediados de la década de 1990. Se han protegido muchos dispositivos contra los ataques PoD desde entonces. Muchos sitios también siguen deteniendo los mensajes de ping ICMP para prevenir estos ataques y controlar las próximas variaciones de este ataque DoS.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Actualizar el software regularmente</strong> &#8594; Los desarrolladores lanzan parches de seguridad para corregir vulnerabilidades en sus productos. Mantén tus sistemas actualizados para evitar que los atacantes exploten fallos conocidos en el manejo de paquetes.</p>
+</li>
+<li>
+<p><strong>Filtrar el tráfico ICMP</strong> &#8594; Configura el firewall para bloquear los pings fragmentados o maliciosos sin afectar las funciones legítimas de ICMP. De esta manera, evitas interrupciones del sistema sin comprometer herramientas de monitoreo y diagnóstico.</p>
+</li>
+<li>
+<p><strong>Evaluar paquetes tras el reensamblado</strong> &#8594; Es crucial verificar que los paquetes reconstruidos no excedan el tamaño permitido. Un límite de tamaño adecuado puede prevenir bloqueos causados por paquetes malformados.</p>
+</li>
+<li>
+<p><strong>Implementar un buffer de seguridad</strong> &#8594; Aumentar el tamaño del buffer de red ayuda a gestionar paquetes más grandes sin que afecten la estabilidad del sistema. Esto mitiga posibles ataques basados en sobrecarga de datos.</p>
+</li>
+<li>
+<p><strong>Herramientas</strong> &#8594; Utilizar herramientas de monitoreo para detectar tráfico ICMP anómalo (Tcpdump, Iptables, Suricata, etc).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_ataques_de_amplificación_y_reflexión_3">3. Ataques de Amplificación y Reflexión</h3>
+<div class="sect3">
+<h4 id="_a_dns_amplification_3">a. DNS Amplification</h4>
+<div class="paragraph">
+<p>Los servidores individuales y empresariales tienen pocas opciones para mitigar ataques volumétricos, ya que el mayor impacto ocurre en la infraestructura del ISP. Si el tráfico generado es demasiado alto, el proveedor de servicios puede bloquear la IP de la víctima para proteger su red, interrumpiendo el servicio. Servicios externos como Cloudflare ofrecen soluciones de mitigación contra DDoS para reducir este riesgo.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Restricción de solucionadores DNS abiertos</strong> &#8594; Los ataques de amplificación DNS dependen de servidores mal configurados que responden a cualquier solicitud. Para evitar que sean usados en ataques, estos solucionadores deben configurarse para responder solo a dispositivos dentro de un dominio de confianza, limitando así el abuso en ataques de reflexión y amplificación.</p>
+</li>
+<li>
+<p><strong>Filtrado de IP de origen y bloqueo de paquetes falsificados</strong> &#8594; Los ataques basados en UDP utilizan direcciones IP falsificadas para redirigir el tráfico hacia la víctima. Los proveedores de servicios deben rechazar tráfico con direcciones de origen manipuladas para evitar su uso en ataques. Implementar filtrado de ingreso ayuda a detener paquetes falsificados antes de que salgan de la red y sean utilizados en ataques de amplificación.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_ntp_amplification_3">b. NTP Amplification</h4>
+<div class="paragraph">
+<p>Los servidores particulares y empresariales tienen pocas opciones para mitigar ataques volumétricos, ya que el mayor impacto ocurre en la infraestructura del proveedor de servicios de Internet (ISP). Si el tráfico generado es demasiado alto, el ISP puede bloquear la IP de la víctima para proteger su red, lo que interrumpe el servicio del afectado. Para reducir este riesgo, se recomienda el uso de servicios de protección remota como Cloudflare, que ofrece mitigación contra DDoS.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Desactivación del comando monlist en servidores NTP</strong> &#8594; Muchas versiones antiguas de servidores NTP son vulnerables a ataques de amplificación mediante el comando monlist. Para evitar que los atacantes utilicen estos servidores en ataques, se recomienda actualizar NTP a la versión 4.2.7 o superior, donde esta función está deshabilitada por defecto. Si la actualización no es posible, los administradores pueden aplicar soluciones siguiendo las recomendaciones del US-CERT.</p>
+</li>
+<li>
+<p><strong>Filtrado de IP de origen y bloqueo de paquetes falsificados</strong> &#8594; Los ataques de amplificación UDP dependen del uso de direcciones IP falsificadas para redirigir tráfico masivo hacia la víctima. Los proveedores de servicios deben implementar filtrado de ingreso para rechazar paquetes con direcciones de origen manipuladas y evitar que estos salgan de la red. Cloudflare recomienda esta práctica y notifica a los proveedores vulnerables que incumplen el estándar BCP38, ayudando a frenar estos ataques antes de que afecten a la red objetivo.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_c_memcached_amplification_2">c. Memcached Amplification</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Desactivar UDP en servidores Memcached</strong> &#8594; Memcached tiene habilitado el soporte de UDP por defecto, lo que puede ser explotado en ataques de amplificación. Si no es necesario, se recomienda deshabilitar UDP para reducir el riesgo de que el servidor sea utilizado en un ataque DDoS.</p>
+</li>
+<li>
+<p><strong>Implementar firewalls en servidores Memcached</strong> &#8594; Para aquellos que necesitan utilizar UDP en Memcached, se recomienda configurar firewalls que restrinjan el acceso desde Internet. Esto permite su uso dentro de una red segura sin exponer el servicio a posibles ataques.</p>
+</li>
+<li>
+<p><strong>Filtrado de paquetes para evitar la suplantación de IP</strong> &#8594; Los ataques DDoS aprovechan la falsificación de direcciones IP para redirigir tráfico a la víctima. Para evitar esto, los proveedores de servicios de Internet (ISP) deben implementar filtrado de paquetes, asegurando que los paquetes salientes no puedan falsificar su origen. Si todos los proveedores aplicaran este filtrado, los ataques basados en la suplantación de IP desaparecerían.</p>
+</li>
+<li>
+<p><strong>Reducir el tamaño de las respuestas UDP</strong> &#8594; Una estrategia para eliminar la amplificación en ataques UDP es diseñar software que limite la cantidad de datos enviados en respuesta a una solicitud. Si la respuesta es igual o menor al tamaño de la solicitud inicial, la amplificación deja de ser viable, reduciendo el impacto de estos ataques.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_ataques_lógicos_o_de_estado_3">4. Ataques Lógicos o de Estado</h3>
+<div class="sect3">
+<h4 id="_a_http_flood_3">a. HTTP Flood</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Desafíos Computacionales</strong> &#8594; Para evitar que bots maliciosos realicen solicitudes masivas, se pueden implementar pruebas como CAPTCHA o retos basados en JavaScript. Estas técnicas obligan al cliente a realizar una tarea computacional antes de que la solicitud sea procesada, lo que dificulta la automatización de los ataques.</p>
+</li>
+<li>
+<p><strong>Uso de un Firewall de Aplicaciones Web (WAF)</strong> &#8594; Un WAF permite filtrar y bloquear tráfico malicioso en la capa de aplicación. Puede detectar User-Agents sospechosos, limitar la frecuencia de solicitudes desde una misma IP y aplicar reglas personalizadas para mitigar ataques específicos de HTTP Flood.</p>
+</li>
+<li>
+<p><strong>Bases de Datos de Reputación de IP</strong> &#8594; Al mantener listas de direcciones IP con historial de comportamiento malicioso, es posible bloquear tráfico proveniente de redes conocidas por realizar ataques DDoS. También se pueden aplicar restricciones geográficas si se detecta que un ataque proviene de una región en particular.</p>
+</li>
+<li>
+<p><strong>Análisis en Tiempo Real</strong> &#8594; El monitoreo constante del tráfico permite detectar patrones de ataque y ajustar las reglas de mitigación en tiempo real. Empresas como Cloudflare utilizan esta estrategia para actualizar sus medidas de protección dinámicamente y bloquear solicitudes maliciosas sin afectar a los usuarios legítimos.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_rudy_r_u_dead_yet_3">b. RUDY (R U Dead Yet?)</h4>
+<div class="paragraph">
+<p>Los ataques R.U.D.Y. (R-U-Dead-Yet?) son ataques bajos y lentos que intentan agotar los recursos del servidor enviando solicitudes con un ritmo extremadamente lento. Como son más sutiles que otros ataques DDoS, su detección puede ser complicada.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Reducir el tiempo de espera de conexión</strong> &#8594; Establecer intervalos de tiempo más estrictos en el servidor web ayuda a evitar que las conexiones maliciosas permanezcan activas indefinidamente. No obstante, esta solución podría afectar a usuarios legítimos con conexiones lentas.</p>
+</li>
+<li>
+<p><strong>Uso de un proxy inverso con protección DDoS</strong> &#8594; Soluciones como Cloudflare o similares pueden filtrar el tráfico sospechoso sin afectar a los usuarios reales. Un proxy inverso analiza las conexiones activas y bloquea aquellas que presentan patrones típicos de ataques bajos y lentos.</p>
+</li>
+<li>
+<p><strong>Configurar límites en el tamaño y duración de las solicitudes</strong> &#8594; Es posible establecer reglas que restrinjan la cantidad de tiempo que una solicitud puede permanecer abierta sin enviar datos, evitando que los atacantes mantengan sesiones activas por largos períodos.</p>
+</li>
+<li>
+<p><strong>Implementar mecanismos de detección de tráfico anómalo</strong> &#8594; El monitoreo en tiempo real permite detectar patrones de comportamiento sospechosos, como múltiples conexiones que envían datos extremadamente despacio. Sistemas de prevención de intrusos (IPS) pueden ayudar a bloquear estos intentos.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>"Los usuarios son el eslabón más débil de cualquier sistema de seguridad."
+
+- Kevin Mitnick</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2025-04-13 16:34:28 UTC
+</div>
+</div>
+</body>
+</html>
