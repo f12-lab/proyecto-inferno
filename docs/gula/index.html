@@ -440,7 +440,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Gula</h1>
 <div class="details">
 <span id="author" class="author">Manuel L. Quero</span><br>
-<span id="revdate">2025-03-31</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -566,7 +565,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ol>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/ping-icmp.png" alt="ICMP flood">
 </div>
@@ -580,7 +579,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Este ataque aprovecha el proceso de las conexiones TCP. Como ya sabemos, en una situación normal se producen los siguientes procesos:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/syn-flood-1.png" alt="Conexión TCP">
 </div>
@@ -601,7 +600,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ol>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/syn-flood-2.png" alt="SYN flood">
 </div>
@@ -644,7 +643,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Entoces, si tiene que realizar este proceso para una petición, podemos llegar a imaginar que ocurre si se envían muchas peticiones. Como resultado de que el servidor víctima utiliza recursos para comprobar y luego responder a cada paquete UDP recibido, los recursos del objetivo pueden agotarse muy rápido cuando se recibe una gran avalancha de paquetes UDP, lo que provoca una denegación de servicio al tráfico normal.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/udp-flood.png" alt="UDP Flood">
 </div>
@@ -686,7 +685,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ol>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Slowloris.jpg" alt="Slowloris">
 </div>
@@ -706,7 +705,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Este ataque afectaba principalmente a sistemas antiguos como Windows 95, NT y algunas versiones de Linux</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/Teardrop.jpg" alt="Teardrop">
 </div>
@@ -720,7 +719,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Estos paquetes son superior a 65,535 bytes, lo que provoca errores de reensamblaje en sistemas antiguos y puede causar fallos del sistema o reinicios. Este ataque aprovecha vulnerabilidades específicas en el manejo de fragmentación de paquetes de ciertos sistemas operativos más antiguos.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/ping-of-death.png" alt="PoD">
 </div>
@@ -759,7 +758,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ol>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/dns-amplification.png" alt="DNS Amplification">
 </div>
@@ -792,7 +791,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ol>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/ntp-amplification.png" alt="NTP Amplification">
 </div>
@@ -831,7 +830,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Ejemplo de ataque mecached:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/memcached-attack.png" alt="Memcached">
 </div>
@@ -848,7 +847,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>La intención de este ataque es saturar un servidor objetivo con solicitudes HTTP, en la capa de aplicación. Normalmente se utilizan botnets para este tipo de ataques.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/http-flood-attack.png" alt="HTTP Flood">
 </div>
@@ -893,7 +892,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ol>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/RUDY.jpg" alt="RUDY">
 </div>
@@ -1066,8 +1065,8 @@ $ docker exec -ti nginx /bin/bash</code></pre>
 <div class="paragraph">
 <p>Mediante este comando podremos enviar muchos paquetes ICMP como hemos visto anteriormente, con nuestra IP falsificada.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
 <p><strong>hping3</strong> &#8594; Es una herramienta para generar paquetes de red personalizados y hacer pruebas de red o ataques de denegación de servicio (DoS).</p>
 </li>
@@ -1080,7 +1079,7 @@ $ docker exec -ti nginx /bin/bash</code></pre>
 <li>
 <p><strong>-a (IPspoof)</strong> &#8594; Usa IP spoofing, es decir, falsifica la dirección IP de origen, haciendo que el ataque parezca provenir de otra máquina.</p>
 </li>
-</ol>
+</ul>
 </div>
 </div>
 <div class="sect4">
@@ -1108,7 +1107,7 @@ $ docker exec -ti nginx /bin/bash</code></pre>
 <pre class="highlight"><code class="language-bash" data-lang="bash">$ tcpdump -i eth0 icmp</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/1/Pingflood/tcpdump.png" alt="Tcpdump">
 </div>
@@ -1122,7 +1121,7 @@ $ docker exec -ti nginx /bin/bash</code></pre>
 <div class="paragraph">
 <p><strong>Monitoreo con docker stats</strong></p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/1/Pingflood/dockerstats.png" alt="Dockerstats">
 </div>
@@ -1150,8 +1149,8 @@ $ docker exec -ti nginx /bin/bash</code></pre>
 <pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo hping3 -c 15000 -d 120 -S -w 64 -p 80 --flood --rand-source (IP)</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
 <p><strong>hping3</strong> &#8594; Es una herramienta de red utilizada para enviar paquetes TCP/IP personalizados. Es muy útil para pruebas de red y ataques de denegación de servicio (DoS).</p>
 </li>
@@ -1176,7 +1175,7 @@ $ docker exec -ti nginx /bin/bash</code></pre>
 <li>
 <p><strong>--rand-source</strong> &#8594; Hace que la fuente de los paquetes sea aleatoria, lo que dificulta el rastreo del origen del ataque (hace que el ataque sea de tipo "spoofed").</p>
 </li>
-</ol>
+</ul>
 </div>
 </div>
 <div class="sect4">
@@ -1196,7 +1195,7 @@ $ docker exec -ti nginx /bin/bash</code></pre>
 <div class="paragraph">
 <p>Es importante limpiar la caché del navegador o usar un perfil nuevo para evitar datos almacenados. (Esta recomendación puede incluirse en la parte de despliegue del documento).</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/1/SYNflood/cargando.png" alt="Cargando">
 </div>
@@ -1218,7 +1217,7 @@ $ docker exec -ti nginx /bin/bash</code></pre>
 <div class="paragraph">
 <p>Esto indica que hay una gran cantidad de paquetes SYN intentando establecer conexiones, lo que reduce progresivamente la disponibilidad del servidor para aceptar clientes legítimos.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/1/SYNflood/tcpdump.png" alt="Tcpdump">
 </div>
@@ -1232,7 +1231,7 @@ $ docker exec -ti nginx /bin/bash</code></pre>
 <div class="paragraph">
 <p>Esto sugiere que la carga de red es muy elevada, lo que aumenta las probabilidades de que algunos paquetes logren completar el handshake y consuman recursos del servidor.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/1/SYNflood/dockerstats.png" alt="Dockerstats">
 </div>
@@ -1248,8 +1247,8 @@ $ docker exec -ti nginx /bin/bash</code></pre>
 <pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo hping3 --udp -p 53 -d 120 --flood (IP)</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
 <p><strong>hping3</strong> &#8594; Es una herramienta para generar paquetes de red personalizados y hacer pruebas de red o ataques de denegación de servicio (DoS).</p>
 </li>
@@ -1265,7 +1264,7 @@ $ docker exec -ti nginx /bin/bash</code></pre>
 <li>
 <p><strong>--flood</strong> &#8594; Envía paquetes lo más rápido posible sin esperar respuesta, generando un gran volumen de tráfico.</p>
 </li>
-</ol>
+</ul>
 </div>
 </div>
 <div class="sect4">
@@ -1290,7 +1289,7 @@ $ docker exec -ti nginx /bin/bash</code></pre>
 <div class="paragraph">
 <p>Esto indica que el ataque se está ejecutando correctamente y que los paquetes están llegando al servidor. Sin embargo, al no haber distancia real en la red ni consumo de ancho de banda, los efectos son mínimos en este entorno.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/1/UDPflood/tcpdump.png" alt="Tcpdump">
 </div>
@@ -1304,7 +1303,7 @@ $ docker exec -ti nginx /bin/bash</code></pre>
 <div class="paragraph">
 <p>Esto sugiere que el servidor está recibiendo una gran cantidad de paquetes, pero no está generando una respuesta significativa en términos de tráfico saliente. Esto confirma que, aunque el ataque está en marcha, en un entorno local no se logra un impacto real en el rendimiento del servidor.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/1/UDPflood/dockerstats.png" alt="Dockerstats">
 </div>
@@ -1375,7 +1374,7 @@ $ python3 slowloris.py example.com</code></pre>
 <div class="paragraph">
 <p>Accedemos con nuestro perfil a la IP del servidor y nos debe salir lo siguiente:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/2/slowloris/conexion.png" alt="ConexionError">
 </div>
@@ -1397,7 +1396,7 @@ $ python3 slowloris.py example.com</code></pre>
 <div class="paragraph">
 <p>Además, en las terminales donde ejecutamos Slowloris, podemos ver que la herramienta indica el envío del encabezado Keep-Alive a los sockets abiertos, lo que refuerza la persistencia de las conexiones.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/2/slowloris/tcpdump.png" alt="Tcpdump">
 </div>
@@ -1408,7 +1407,7 @@ $ python3 slowloris.py example.com</code></pre>
 <div class="paragraph">
 <p>Por otro lado, al inspeccionar el consumo de recursos con docker stats, observamos que el contenedor del servidor está recibiendo 30GB en Net I/O, lo que representa un tráfico alto para un servidor web. Este consumo masivo de red sugiere que el servidor está siendo saturado con solicitudes, lo que contribuye a su caída.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/2/slowloris/dockerstats.png" alt="Dockerstats">
 </div>
@@ -1566,7 +1565,7 @@ $ gcc dnsdrdos.c -o dnsdrdos.o -Wall -ansi</code></pre>
 <div class="paragraph">
 <p>En Kali Linux, en la parte superior derecha, hay unos gráficos que muestran el uso de la CPU. Podemos observar cómo, durante el ataque, el gráfico comienza a reflejar un incremento en la carga del procesador. Esto indica que el servidor está procesando un número elevado de solicitudes, lo que confirma que el ataque está en curso.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/3/dns/kali.png" alt="KaliGraphs">
 </div>
@@ -1577,7 +1576,7 @@ $ gcc dnsdrdos.c -o dnsdrdos.o -Wall -ansi</code></pre>
 <div class="paragraph">
 <p>Utilizando tcpdump, se puede observar cómo las peticiones de las IPs de los servidores DNS están llegando a la red. Cada una de estas solicitudes genera una respuesta amplificada, lo que contribuye a la sobrecarga del ancho de banda y la congestión en la red local.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/3/dns/tcpdump.png" alt="Tcpdump">
 </div>
@@ -1588,7 +1587,7 @@ $ gcc dnsdrdos.c -o dnsdrdos.o -Wall -ansi</code></pre>
 <div class="paragraph">
 <p>Al consultar docker stats, se observa que no hay una carga significativa en los contenedores. Esto ocurre ya que el ataque está afectando principalmente el ancho de banda de la red local, y no la carga de los servicios dentro de los contenedores.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/3/dns/dockerstats.png" alt="Dockerstats">
 </div>
@@ -1596,7 +1595,7 @@ $ gcc dnsdrdos.c -o dnsdrdos.o -Wall -ansi</code></pre>
 <div class="paragraph">
 <p>Un buen ejemplo de cómo el ataque afecta la funcionalidad de la red es al intentar realizar una actualización de paquetes con apt. Durante el ataque, se observa que la actualización no puede completarse, ya que los paquetes necesarios para la actualización no llegan debido a la congestión en la red.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/3/dns/updateError.png" alt="UpdateError">
 </div>
@@ -1658,7 +1657,7 @@ $ python3 impulse.py --help</code></pre>
 <p><strong>--threads 15</strong> &#8594; Especifica el número de hilos que se utilizarán para ejecutar el ataque en paralelo. Cuantos más hilos, más solicitudes simultáneas se enviarán, aumentando el volumen de tráfico generado.</p>
 </li>
 <li>
-<p>-<strong>-target (IP):123</strong> &#8594; La IP víctima y el puerto al que vamos a atacar.</p>
+<p><strong>--target (IP):123</strong> &#8594; La IP víctima y el puerto al que vamos a atacar.</p>
 </li>
 </ul>
 </div>
@@ -1674,7 +1673,7 @@ $ python3 impulse.py --help</code></pre>
 <div class="paragraph">
 <p>Podemos observar cómo los paquetes llegan a nuestro contenedor, de manera similar al ataque anterior.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/3/ntp/kali.png" alt="KaliGraphs">
 </div>
@@ -1690,7 +1689,7 @@ $ python3 impulse.py --help</code></pre>
 <pre class="highlight"><code class="language-bash" data-lang="bash">tcpdump -i eth0 port 123 -vv</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/3/ntp/tcpdump.png" alt="Tcpdump">
 </div>
@@ -1893,7 +1892,7 @@ $ npm install -g rudyjs</code></pre>
 <div class="paragraph">
 <p>En este ataque, podemos observar un efecto inmediato en nuestro formulario, ya que el servidor devuelve un error 500 (Internal Server Error). Esto ocurre porque se han agotado los recursos del servidor debido al envío de solicitudes HTTP POST extremadamente lentas, manteniendo las conexiones abiertas sin cerrarlas. Como resultado, el servidor queda saturado al intentar procesar todas las conexiones simultáneamente, lo que puede provocar la interrupción del servicio.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/4/RUDY/error500.png" alt="Error500">
 </div>
@@ -1909,7 +1908,7 @@ $ npm install -g rudyjs</code></pre>
 <pre class="highlight"><code class="language-bash" data-lang="bash">sudo tcpdump -i eth0 port 80 -A | grep -i "POST"</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="assets/imagenes-vuln/4/RUDY/tcpdump.png" alt="Tcpdump">
 </div>
@@ -2189,7 +2188,7 @@ $ npm install -g rudyjs</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-04-13 16:34:28 UTC
+Last updated 2025-05-05 16:32:39 UTC
 </div>
 </div>
 </body>

