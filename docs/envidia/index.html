@@ -444,6 +444,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_despliegue_de_la_máquina">Despliegue de la máquina</a></li>
 <li><a href="#_escalada_de_privilegios">Escalada de privilegios</a>
 <ul class="sectlevel2">
 <li><a href="#_tipos_de_escalada">Tipos de escalada</a></li>
@@ -452,7 +453,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_solucionar_la_máquina">Solucionar la máquina</a>
 <ul class="sectlevel2">
-<li><a href="#_despliegue_de_la_máquina">Despliegue de la máquina</a></li>
 <li><a href="#_1_archivo_sudoers_2">1. Archivo sudoers</a></li>
 <li><a href="#_2_binario_suid_2">2. Binario SUID</a></li>
 <li><a href="#_3_cron_ejecutando_script_editable_2">3. Cron ejecutando script editable</a></li>
@@ -474,9 +474,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div id="preamble">
+<div class="sect1">
+<h2 id="_despliegue_de_la_máquina">Despliegue de la máquina</h2>
 <div class="sectionbody">
-<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>Sería conveniente utilizar una distribución Linux, es recomendable usar Kali Linux.</p>
+</div>
+<div class="paragraph">
+<p>Como requisito, necesitaremos tener instalado docker y docker-compose.</p>
+</div>
+<div class="paragraph">
+<p>Podemos ver como instalar docker para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/engine/install/">Instalar Docker</a></p>
+</div>
+<div class="paragraph">
+<p>Podemos ver como instalar docker-compose para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/compose/install/linux/">Instalar Docker-Compose</a></p>
+</div>
+<div class="paragraph">
+<p>Necesitaremos descargar primeramente el auto_deploy.sh, el cual se muestra como una pirámide en la página. Después deberemos meter en un directorio tanto el auto_deploy.sh como el archivo de envidia.tar, y ejecutar los siguientes comandos.</p>
+</div>
+<div class="paragraph">
+<p>(Si el auto_deploy no tiene permisos se los damos mediante <strong>chmod +x</strong>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo bash auto_deploy.sh envidia.tar</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -608,7 +631,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>La opción <strong>no_root_squash</strong> en la configuración de NFS permite que el usuario root en el cliente mantenga privilegios de root en el servidor al acceder a los recursos compartidos. Esto puede ser explotado por un atacante para crear archivos con permisos SUID en el servidor, facilitando la obtención de una shell con privilegios elevados. Por defecto, NFS utiliza root_squash para mapear al usuario root del cliente a un usuario anónimo sin privilegios, como nfsnobody, mitigando este riesgo.</p>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -652,29 +674,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="imageblock text-center">
 <div class="content">
 <img src="assets/SSHerror.png" alt="SSHerror">
-</div>
-</div>
-<div class="sect2">
-<h3 id="_despliegue_de_la_máquina">Despliegue de la máquina</h3>
-<div class="paragraph">
-<p>Como requisito, necesitaremos tener instalado docker y docker-compose.</p>
-</div>
-<div class="paragraph">
-<p>Podemos ver como instalar docker para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/engine/install/">Instalar Docker</a></p>
-</div>
-<div class="paragraph">
-<p>Podemos ver como instalar docker-compose para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/compose/install/linux/">Instalar Docker-Compose</a></p>
-</div>
-<div class="paragraph">
-<p>Necesitaremos descargar primeramente el auto_deploy.sh, el cual se muestra como una pirámide en la página. Después deberemos meter en un directorio tanto el auto_deploy.sh como el archivo de envidia.tar, y ejecutar los siguientes comandos.</p>
-</div>
-<div class="paragraph">
-<p>(Si el auto_deploy no tiene permisos se los damos mediante <strong>chmod +x</strong>).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo bash auto_deploy.sh envidia.tar</code></pre>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -1051,7 +1050,6 @@ CapAmb -&gt; Ambient capabilities</code></pre>
 <div class="paragraph">
 <p>Cómo hemos visto en este último, el código del programa estaba en C, si hubiese estado en Python o Bash, no hubiese funcionado el PATH hijacking. Esto es porque el bit SUID solo funciona con binarios compilados (como los hechos en C) porque el sistema los ejecuta directamente y respeta el privilegio del propietario (por ejemplo, root). En cambio, los scripts como Bash o Python son interpretados, y el sistema lanza el intérprete (no el script) sin aplicar el SUID, por seguridad. Así se evita que scripts fácilmente modificables obtengan privilegios elevados.</p>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -1221,7 +1219,7 @@ CapAmb -&gt; Ambient capabilities</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-05 17:42:12 UTC
+Last updated 2025-05-08 17:04:25 UTC
 </div>
 </div>
 </body>

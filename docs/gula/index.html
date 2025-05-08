@@ -444,6 +444,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_despliegue_de_la_máquina">Despliegue de la máquina</a></li>
 <li><a href="#_ataques_ddos_y_dos">Ataques DDoS y DoS</a>
 <ul class="sectlevel2">
 <li><a href="#_cómo_se_producen_los_ataques_ddos">¿Cómo se producen los ataques DDoS?</a></li>
@@ -460,7 +461,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_solucionar_la_máquina">Solucionar la máquina</a>
 <ul class="sectlevel2">
-<li><a href="#_despliegue_de_la_máquina">Despliegue de la máquina</a></li>
+<li><a href="#_nociones_básicas">Nociones básicas</a></li>
 <li><a href="#_1_ataques_de_consumo_de_recursos_2">1. Ataques de Consumo de Recursos</a></li>
 <li><a href="#_2_ataques_de_explotación_de_vulnerabilidades_2">2. Ataques de Explotación de Vulnerabilidades</a></li>
 <li><a href="#_3_ataques_de_amplificación_y_reflexión_2">3. Ataques de Amplificación y Reflexión</a></li>
@@ -479,9 +480,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div id="preamble">
+<div class="sect1">
+<h2 id="_despliegue_de_la_máquina">Despliegue de la máquina</h2>
 <div class="sectionbody">
-<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>Sería conveniente utilizar una distribución Linux, es recomendable usar Kali Linux.</p>
+</div>
+<div class="paragraph">
+<p>Como requisito, necesitaremos tener instalado docker y docker-compose.</p>
+</div>
+<div class="paragraph">
+<p>Podemos ver como instalar docker para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/engine/install/">Instalar Docker</a></p>
+</div>
+<div class="paragraph">
+<p>Podemos ver como instalar docker-compose para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/compose/install/linux/">Instalar Docker-Compose</a></p>
+</div>
+<div class="paragraph">
+<p>Necesitaremos descargar primeramente el auto_deploy.sh, el cual se muestra como una pirámide en la página. Después en un directorio deberemos tener el auto_deploy.sh, gula.tar y docker-compose.yml, deberemos acceder con la terminal a dicho directorio y ejecutar el siguiente comando.</p>
+</div>
+<div class="paragraph">
+<p>(Si el auto_deploy no tiene permisos se los damos mediante <strong>chmod +x</strong>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo bash auto_deploy.sh gula.tar</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -897,7 +921,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <img src="assets/RUDY.jpg" alt="RUDY">
 </div>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -935,31 +958,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><a href="https://github.com/rodarima/lsi/blob/master/p2/dnsdrdos.c">dnsdrdos.c</a></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>Sería conveniente utilizar una distribución Linux, es recomendable usar Kali Linux.</p>
-</div>
-<div class="sect2">
-<h3 id="_despliegue_de_la_máquina">Despliegue de la máquina</h3>
-<div class="paragraph">
-<p>Como requisito, necesitaremos tener instalado docker y docker-compose.</p>
-</div>
-<div class="paragraph">
-<p>Podemos ver como instalar docker para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/engine/install/">Instalar Docker</a></p>
-</div>
-<div class="paragraph">
-<p>Podemos ver como instalar docker-compose para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/compose/install/linux/">Instalar Docker-Compose</a></p>
-</div>
-<div class="paragraph">
-<p>Necesitaremos descargar primeramente el auto_deploy.sh, el cual se muestra como una pirámide en la página. Después en un directorio deberemos tener el auto_deploy.sh, gula.tar y docker-compose.yml, deberemos acceder con la terminal a dicho directorio y ejecutar el siguiente comando.</p>
-</div>
-<div class="paragraph">
-<p>(Si el auto_deploy no tiene permisos se los damos mediante <strong>chmod +x</strong>).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo bash auto_deploy.sh gula.tar</code></pre>
-</div>
 </div>
 <div class="paragraph">
 <p>Tendremos tres imagenes, dos son del servidor y la otra es un entorno de ataque, donde están todas las herramientas configuradas y listas para usar. Si queremos usar este entorno, en una terminal ponemos:</p>
@@ -1015,8 +1013,8 @@ $ docker exec -ti nginx /bin/bash</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sect3">
-<h4 id="_nociones_básicas">Nociones básicas</h4>
+<div class="sect2">
+<h3 id="_nociones_básicas">Nociones básicas</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1048,7 +1046,6 @@ $ docker exec -ti nginx /bin/bash</code></pre>
 </div>
 </li>
 </ul>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -1913,7 +1910,6 @@ $ npm install -g rudyjs</code></pre>
 <img src="assets/imagenes-vuln/4/RUDY/tcpdump.png" alt="Tcpdump">
 </div>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -2188,7 +2184,7 @@ $ npm install -g rudyjs</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-05 16:32:39 UTC
+Last updated 2025-05-08 15:43:15 UTC
 </div>
 </div>
 </body>

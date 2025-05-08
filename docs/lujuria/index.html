@@ -444,6 +444,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_despliegue_de_la_máquina">Despliegue de la máquina</a></li>
 <li><a href="#_ataque_xss">Ataque XSS</a>
 <ul class="sectlevel2">
 <li><a href="#_tipos_de_ataques_xss">Tipos de ataques XSS</a></li>
@@ -451,7 +452,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_solucionar_la_máquina">Solucionar la máquina</a>
 <ul class="sectlevel2">
-<li><a href="#_despliegue_de_la_máquina">Despliegue de la máquina</a></li>
 <li><a href="#_víctima">Víctima</a></li>
 <li><a href="#_atacante">Atacante</a></li>
 <li><a href="#_finalizar">Finalizar</a></li>
@@ -468,6 +468,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_despliegue_de_la_máquina">Despliegue de la máquina</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sería conveniente utilizar una distribución Linux, es recomendable usar Kali Linux.</p>
+</div>
+<div class="paragraph">
+<p>Como requisito, necesitaremos tener instalado docker y docker-compose.</p>
+</div>
+<div class="paragraph">
+<p>Podemos ver como instalar docker para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/engine/install/">Instalar Docker</a></p>
+</div>
+<div class="paragraph">
+<p>Podemos ver como instalar docker-compose para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/compose/install/linux/">Instalar Docker-Compose</a></p>
+</div>
+<div class="paragraph">
+<p>Necesitaremos descargar primeramente el auto_deploy.sh, el cual se muestra como una pirámide en la página. Después deberemos meter en un directorio tanto el auto_deploy.sh como el archivo de lujuria.tar, y ejecutar los siguientes comandos.</p>
+</div>
+<div class="paragraph">
+<p>(Si el auto_deploy no tiene permisos se los damos mediante <strong>chmod +x</strong>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo bash auto_deploy.sh lujuria.tar</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_ataque_xss">Ataque XSS</h2>
 <div class="sectionbody">
@@ -581,32 +609,7 @@ wrapInner()</pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>Sería conveniente utilizar una distribución Linux, es recomendable usar Kali Linux.</p>
-</div>
-<div class="sect2">
-<h3 id="_despliegue_de_la_máquina">Despliegue de la máquina</h3>
-<div class="paragraph">
-<p>Como requisito, necesitaremos tener instalado docker y docker-compose.</p>
-</div>
-<div class="paragraph">
-<p>Podemos ver como instalar docker para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/engine/install/">Instalar Docker</a></p>
-</div>
-<div class="paragraph">
-<p>Podemos ver como instalar docker-compose para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/compose/install/linux/">Instalar Docker-Compose</a></p>
-</div>
-<div class="paragraph">
-<p>Necesitaremos descargar primeramente el auto_deploy.sh, el cual se muestra como una pirámide en la página. Después deberemos meter en un directorio tanto el auto_deploy.sh como el archivo de lujuria.tar, y ejecutar los siguientes comandos.</p>
-</div>
-<div class="paragraph">
-<p>(Si el auto_deploy no tiene permisos se los damos mediante <strong>chmod +x</strong>).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo bash auto_deploy.sh lujuria.tar</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Como el despliegue es en local, para comprobar que todo se ha realizado correctamente, deberemos crear dos usuarios en nuestro navegador de confianza:</p>
+<p>Como el despliegue es en local, para comprobar que todo se ha realizado correctamente, deberemos crear dos usuarios en nuestro navegador de confianza (víctima y atacante):</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -638,7 +641,6 @@ wrapInner()</pre>
 </tr>
 </tbody>
 </table>
-</div>
 <div class="sect2">
 <h3 id="_víctima">Víctima</h3>
 <div class="paragraph">
@@ -845,7 +847,7 @@ $ python3 app.py</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-05 16:11:26 UTC
+Last updated 2025-05-08 14:59:46 UTC
 </div>
 </div>
 </body>

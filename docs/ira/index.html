@@ -444,6 +444,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_despliegue_de_la_máquina">Despliegue de la máquina</a></li>
 <li><a href="#_ataque_de_fuerza_bruta">Ataque de Fuerza Bruta</a>
 <ul class="sectlevel2">
 <li><a href="#_1_ataque_de_fuerza_bruta_estándar">1. Ataque de fuerza bruta estándar</a></li>
@@ -460,7 +461,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_solucionar_la_máquina">Solucionar la máquina</a>
 <ul class="sectlevel2">
-<li><a href="#_despliegue_de_la_máquina">Despliegue de la máquina</a></li>
 <li><a href="#_ataque_de_fuerza_bruta_2">Ataque de Fuerza Bruta</a></li>
 <li><a href="#_rce">RCE</a></li>
 </ul>
@@ -475,9 +475,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div id="preamble">
+<div class="sect1">
+<h2 id="_despliegue_de_la_máquina">Despliegue de la máquina</h2>
 <div class="sectionbody">
-<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>Sería conveniente utilizar una distribución Linux, es recomendable usar Kali Linux.</p>
+</div>
+<div class="paragraph">
+<p>Como requisito, necesitaremos tener instalado docker y docker-compose.</p>
+</div>
+<div class="paragraph">
+<p>Podemos ver como instalar docker para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/engine/install/">Instalar Docker</a></p>
+</div>
+<div class="paragraph">
+<p>Podemos ver como instalar docker-compose para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/compose/install/linux/">Instalar Docker-Compose</a></p>
+</div>
+<div class="paragraph">
+<p>Necesitaremos descargar primeramente el auto_deploy.sh, el cual se muestra como una pirámide en la página. Después en un directorio deberemos tener el auto_deploy.sh, ira.tar y docker-compose.yml, deberemos acceder con la terminal a dicho directorio y ejecutar el siguiente comando.</p>
+</div>
+<div class="paragraph">
+<p>(Si el auto_deploy no tiene permisos se los damos mediante <strong>chmod +x</strong>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo bash auto_deploy.sh ira.tar</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -562,32 +585,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><a href="https://www.kali.org/tools/netcat/">Netcat</a></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>Sería conveniente utilizar una distribución Linux, es recomendable usar Kali Linux.</p>
-</div>
-<div class="sect2">
-<h3 id="_despliegue_de_la_máquina">Despliegue de la máquina</h3>
-<div class="paragraph">
-<p>Como requisito, necesitaremos tener instalado docker y docker-compose.</p>
-</div>
-<div class="paragraph">
-<p>Podemos ver como instalar docker para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/engine/install/">Instalar Docker</a></p>
-</div>
-<div class="paragraph">
-<p>Podemos ver como instalar docker-compose para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/compose/install/linux/">Instalar Docker-Compose</a></p>
-</div>
-<div class="paragraph">
-<p>Necesitaremos descargar primeramente el auto_deploy.sh, el cual se muestra como una pirámide en la página. Después en un directorio deberemos tener el auto_deploy.sh, ira.tar y docker-compose.yml, deberemos acceder con la terminal a dicho directorio y ejecutar el siguiente comando.</p>
-</div>
-<div class="paragraph">
-<p>(Si el auto_deploy no tiene permisos se los damos mediante <strong>chmod +x</strong>).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo bash auto_deploy.sh ira.tar</code></pre>
-</div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_ataque_de_fuerza_bruta_2">Ataque de Fuerza Bruta</h3>
@@ -1582,7 +1579,7 @@ $ ./covermyass</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-05 17:23:16 UTC
+Last updated 2025-05-08 16:34:52 UTC
 </div>
 </div>
 </body>
