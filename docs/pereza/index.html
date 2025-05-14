@@ -453,6 +453,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_solucionar_la_máquina">Solucionar la máquina</a>
 <ul class="sectlevel2">
+<li><a href="#_crear_nuestro_wordpress">Crear nuestro Wordpress</a></li>
 <li><a href="#_wpscan">WPscan</a></li>
 </ul>
 </li>
@@ -481,11 +482,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Podemos ver como instalar docker-compose para varias distribuciones de linux &#8594; <a href="https://docs.docker.com/compose/install/linux/">Instalar Docker-Compose</a></p>
 </div>
 <div class="paragraph">
-<p>En este caso deberemos descromprimir el 7z creásndose un directorio y acceder con la terminal a este y ejecutar el siguiente comando.</p>
+<p>Necesitaremos descargar primeramente el auto_deploy.sh, el cual se muestra como una pirámide en la página. Después en un directorio deberemos tener el auto_deploy.sh, pereza.tar y docker-compose.yml, deberemos acceder con la terminal a dicho directorio y ejecutar el siguiente comando.</p>
+</div>
+<div class="paragraph">
+<p>(Si el auto_deploy no tiene permisos se los damos mediante <strong>chmod +x</strong>).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo docker-compose up -d --build</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ sudo bash auto_deploy.sh pereza.tar</code></pre>
 </div>
 </div>
 </div>
@@ -552,6 +556,98 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>En esta guía aprenderemos cómo analizar un sitio web desarrollado con WordPress para identificar posibles vulnerabilidades. Utilizaremos herramientas como WPScan para detectar configuraciones inseguras, plugins o temas desactualizados y otros puntos débiles comunes. Después se realizará un ataque de fuerza bruta como parte del reconocimiento activo, pero su explicación detallada se abordará en la sección correspondiente al círculo de la ira.</p>
 </div>
 <div class="sect2">
+<h3 id="_crear_nuestro_wordpress">Crear nuestro Wordpress</h3>
+<div class="paragraph">
+<p>En esta máquina aprenderemos a crear un entorno vulnerable de Wordpress, no nos llevará mucho tiempo, ya que las configuraciones las dejaremos por defecto.</p>
+</div>
+<div class="paragraph">
+<p>Empezamos eligiendo el idioma:</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/idioma.png" alt="Elegir idioma">
+</div>
+</div>
+<div class="paragraph">
+<p>Después configuramos las credenciales, en este caso al ser un administrador perezoso, pongo unas credenciales sencillas porque ya las cambiaré.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/credenciales.png" alt="Configurar credenciales">
+</div>
+</div>
+<div class="paragraph">
+<p>Por lo que instalamos wordpress y accedemos con nuestras credenciales.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/accesoUno.png" alt="Acceder por primera vez">
+</div>
+</div>
+<div class="paragraph">
+<p>De esta forma ya estaría listo nuestro entorno, en caso opcional, podemos darle un estilo a nuestra página o probar a instalar plugins con vulnerabilidades o incluso securizarlo, las posibilidades son infinitas.</p>
+</div>
+<div class="sect3">
+<h4 id="_usar_entorno_acedia">Usar entorno Acedia</h4>
+<div class="paragraph">
+<p>También podeis usar el entorno que he creado importando el .xml dentro de vuestro wordpress:</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/importar1.png" alt="Página de importar">
+</div>
+</div>
+<div class="paragraph">
+<p>Le damos a instalar y después ejecutamos el importador. En este seleccionamos el archivo acediastore.xml que se encuentra en wp-import.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/importar2.png" alt="Importador">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/importar3.png" alt="Importar xml">
+</div>
+</div>
+<div class="paragraph">
+<p>Una vez hecho esto, le damos a enviar.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/importar4.png" alt="Enviar">
+</div>
+</div>
+<div class="paragraph">
+<p>Ya tendríamos el entorno, pero faltan las imágenes.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/importar5.png" alt="Importación concluida">
+</div>
+</div>
+<div class="paragraph">
+<p>Para importar las imágenes, tenemos que ir a medios y volcar la carpeta acedia-imagenes que se encuentra en wp-import dentro del espacio vacío.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/imagenes1.png" alt="Importar imágenes">
+</div>
+</div>
+<div class="paragraph">
+<p>Pero pasarlo no es suficiente, ya que la ruta de estas imagenes es la del mes actual, y la importación se hizo en abril por lo que tenemos que meternos dentro de la máquina modificar la carpeta /wp-content/uploads/2025/(mes actual) a 04/, como se muestra a continuación:</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/imagenes2.png" alt="Cambiar ruta">
+</div>
+</div>
+<div class="paragraph">
+<p>Y ya tendríamos la página sobre la que se basa esta guía.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_wpscan">WPscan</h3>
 <div class="paragraph">
 <p>WPscan es una herramienta de escaneo de seguridad específica para sitios web construidos con WordPress.</p>
@@ -600,6 +696,11 @@ $ docker run -it --rm wpscanteam/wpscan --url https://target.tld/ --enumerate (.
 <h4 id="_reconocimiento">Reconocimiento</h4>
 <div class="paragraph">
 <p>Una vez instalada nuestra herramienta, vamos a proceder a analizar la página.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="assets/Pagina.png" alt="Página web">
+</div>
 </div>
 <div class="paragraph">
 <p>Es importante saber que el login de WordPress está en /wp-admin. También esta /robots.txt que nos puede proporcionar información adicional.</p>
@@ -1119,7 +1220,7 @@ allow from 123.123.123.123
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-14 17:34:29 UTC
+Last updated 2025-05-14 20:08:19 UTC
 </div>
 </div>
 </body>
