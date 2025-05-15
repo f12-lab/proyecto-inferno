@@ -445,7 +445,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_despliegue_de_la_máquina">Despliegue de la máquina</a></li>
-<li><a href="#_escenario_final">Escenario final</a></li>
 <li><a href="#_solucionar_la_máquina">Solucionar la máquina</a>
 <ul class="sectlevel2">
 <li><a href="#_reconocimiento">Reconocimiento</a></li>
@@ -486,16 +485,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_escenario_final">Escenario final</h2>
+<h2 id="_solucionar_la_máquina">Solucionar la máquina</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>En esta máquina pondremos en práctica todos los conceptos aprendidos previamente. Será una prueba final diseñada para aplicar los conocimientos adquiridos. El objetivo es lograr la escalada de privilegios hasta obtener acceso como root, partiendo de un entorno que, aunque vulnerable, se asemeja a uno real. Será necesario realizar primero un reconocimiento, seguido de la ejecución de distintos tipos de ataques. Se fomenta la exploración libre, sin seguir guías preestablecidas; no obstante, proporcionaré algunas pistas para avanzar en caso de ser necesario.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_solucionar_la_máquina">Solucionar la máquina</h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>En esta guía se darán pistas, principalmente herramientas y cómo usarlas. Mucha suerte.</p>
 </div>
@@ -556,7 +550,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="assets/recon/nmap/nmap.png" alt="nmap">
+<img src="assets/recon/nmap/nmap.png" alt="nmap" width="560">
 </div>
 </div>
 <div class="paragraph">
@@ -593,7 +587,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="assets/recon/nmap/nmapVer.png" alt="Versiones nmap">
+<img src="assets/recon/nmap/nmapVer.png" alt="Versiones nmap" width="560">
 </div>
 </div>
 <div class="paragraph">
@@ -639,6 +633,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <pre class="highlight"><code class="language-bash" data-lang="bash">feroxbuster -u http://(IP) -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt --depth 0 --timeout 5</code></pre>
 </div>
 </div>
+<div style="page-break-after: always;"></div>
 <div class="ulist">
 <ul>
 <li>
@@ -709,6 +704,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </details>
+<div style="page-break-after: always;"></div>
 <details>
 <summary class="title">Pista 6</summary>
 <div class="content">
@@ -732,7 +728,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="assets/recon/web/whatweb.png" alt="whatweb">
+<img src="assets/recon/web/whatweb.png" alt="whatweb" width="540">
 </div>
 </div>
 </div>
@@ -837,7 +833,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="assets/atacar/sqli/sqliattack.png" alt="ataque sqli">
+<img src="assets/atacar/sqli/sqliattack.png" alt="ataque sqli" width="640">
 </div>
 </div>
 <div class="paragraph">
@@ -884,6 +880,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </details>
+<div style="page-break-after: always;"></div>
 <details>
 <summary class="title">Pista 12</summary>
 <div class="content">
@@ -897,7 +894,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="assets/atacar/xss/xss.png" alt="xss script">
+<img src="assets/atacar/xss/xss.png" alt="xss script" width="520">
 </div>
 </div>
 <div class="paragraph">
@@ -918,7 +915,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="assets/atacar/xss/cyberchef.png" alt="cyberchef">
+<img src="assets/atacar/xss/cyberchef.png" alt="cyberchef" width="520">
 </div>
 </div>
 </div>
@@ -958,6 +955,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </details>
+<div style="page-break-after: always;"></div>
 <details>
 <summary class="title">Sugerencia</summary>
 <div class="content">
@@ -982,7 +980,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <div class="imageblock text-center">
 <div class="content">
-<img src="assets/atacar/escalada/ssh.png" alt="conexión con el servidor">
+<img src="assets/atacar/escalada/ssh.png" alt="conexión con el servidor" width="450">
 </div>
 </div>
 <div class="paragraph">
@@ -990,7 +988,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="assets/atacar/escalada/sudo-l.png" alt="comando sudo -l">
+<img src="assets/atacar/escalada/sudo-l.png" alt="comando sudo -l" width="450">
 </div>
 </div>
 </div>
@@ -1034,7 +1032,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>Conocerte bien, saber que rama quieres aprender, centrándote en atacar o en defender, es vital para luego hacer los certificados, ya que sabrás en cual encajas mejor.</p>
+<p>Conocerte bien, saber qué rama quieres aprender, centrándote en atacar o en defender, es vital para luego hacer los certificados, ya que sabrás en cual encajas mejor.</p>
 </li>
 <li>
 <p>Hacer muchas máquinas, esto ha sido un ensayo, donde hemos aprendido lo más básico, allí fuera en internet hay máquinas mucho más complejas y divertidas de explorar. Por ello recomiendo:</p>
@@ -1089,7 +1087,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-08 17:12:19 UTC
+Last updated 2025-05-15 19:11:20 UTC
 </div>
 </div>
 </body>
