@@ -548,7 +548,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Conocer la estructura de la base de datos para poder intentar SQLi más específicas.</p>
 </li>
 <li>
-<p>Extraer datos de la base de datos. El proceso es más largo y complejo pero se pueden manipular los errores para extraer datos.</p>
+<p>Extraer datos de la base de datos. El proceso es más largo y complejo, pero se pueden manipular los errores para extraer datos.</p>
 </li>
 </ul>
 </div>
@@ -565,6 +565,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Las inyecciones SQL a ciegas son una variante en la que el atacante no recibe respuestas directas de la base de datos. En lugar de obtener mensajes de error o resultados visibles, debe inferir la información mediante observación indirecta.</p>
 </div>
+<div style="page-break-after: always;"></div>
 <div class="paragraph">
 <p>Este tipo de ataques funciona como un sistema de "verdadero o falso", donde el atacante prueba diferentes consultas y analiza los cambios en el comportamiento del sistema.</p>
 </div>
@@ -639,7 +640,7 @@ Contraseña: 1234</pre>
 <div class="sect4">
 <h5 id="_payloads">Payloads</h5>
 <div class="paragraph">
-<p>Para cada uno de ellos utilizaremos la clausula updatexml(), que permite modificar datos XML dentro de bases de datos MySQL. En nuestro caso lo usaremos para lanzar los errores y mostrar su contenido como un mensaje.</p>
+<p>Para cada uno de ellos utilizaremos la cláusula updatexml(), que permite modificar datos XML dentro de bases de datos MySQL. En nuestro caso lo usaremos para lanzar los errores y mostrar su contenido como un mensaje.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -707,7 +708,7 @@ Contraseña:</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Como podemos ver la sintaxis es la misma que el anterior pero cambia el contenido del concat().</p>
+<p>Como podemos ver la sintaxis es la misma que el anterior, pero cambia el contenido del concat().</p>
 </div>
 <div class="ulist">
 <ul>
@@ -802,7 +803,7 @@ Contraseña:</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Como ya sabemos la tabla y podemos conocer las distintas columnas que tiene, se hace más sencilla la busqueda de información. En este caso, vamos a extraer el nombre del primer usuario.</p>
+<p>Como ya sabemos la tabla y podemos conocer las distintas columnas que tiene, se hace más sencilla la búsqueda de información. En este caso, vamos a extraer el nombre del primer usuario.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -915,7 +916,7 @@ Contraseña:</pre>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>group_concat(table_name)</strong> &#8594; Esta función de MySQL concatena todos los nombres de las tablas en la base de datos, obteniendolas separadas por comas.</p>
+<p><strong>group_concat(table_name)</strong> &#8594; Esta función de MySQL concatena todos los nombres de las tablas en la base de datos, obteniéndolas separadas por comas.</p>
 </li>
 <li>
 <p><strong>information_schema.tables</strong> &#8594; Esta tabla contiene información sobre todas las tablas en todas las bases de datos en MySQL. La consulta se limita a la base de datos actual utilizando WHERE <strong>table_schema=database()</strong>.</p>
@@ -1025,7 +1026,7 @@ Contraseña:</pre>
 <p>En los ataques boolean-based se usan operadores lógicos como AND u OR para alterar las condiciones de una consulta SQL. AND se usa cuando se conoce una condición válida (como un usuario) y se quiere comprobar si otra también lo es, por ejemplo 1=1. OR, en cambio, permite que la consulta sea verdadera si al menos una condición se cumple, como usuario = 'admin' OR 1=1, forzando así una respuesta positiva.</p>
 </div>
 <div class="paragraph">
-<p>En nuestro caso, vamos a usar AND ya que con los anteriores resultado sabemos que existe el usuario <strong>admin</strong> y <strong>user</strong>. En caso de que no conozcamos estos datos se recomienda usar OR.</p>
+<p>En nuestro caso, vamos a usar AND ya que con los anteriores resultados sabemos que existe el usuario <strong>admin</strong> y <strong>user</strong>. En caso de que no conozcamos estos datos se recomienda usar OR.</p>
 </div>
 <div class="sect4">
 <h5 id="_reconocimiento_3">Reconocimiento</h5>
@@ -1182,7 +1183,7 @@ Contraseña:</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Y al igual que el resto se debe de ir carácter por carácter para obtener la pálabra correcta. Se van cambiando posiciones (LIMIT 1,1, LIMIT 2,1, etc.) y posiciones del carácter (SUBSTRING(&#8230;&#8203;,2,1), etc.) para inferir cada tabla y cada letra.</p>
+<p>Y al igual que el resto se debe de ir carácter por carácter para obtener la palabra correcta. Se van cambiando posiciones (LIMIT 1,1, LIMIT 2,1, etc.) y posiciones del carácter (SUBSTRING(&#8230;&#8203;,2,1), etc.) para inferir cada tabla y cada letra.</p>
 </div>
 <div class="paragraph">
 <p><strong>Extraer datos</strong></p>
@@ -1421,7 +1422,7 @@ admin' AND IF(SUBSTRING((SELECT column_name FROM information_schema.columns WHER
 <p><strong>Obtener contraseñas o datos sensibles</strong></p>
 </div>
 <div class="paragraph">
-<p>En este caso vamos a buscar la contraseña <strong>admin123</strong> dentro de los columna <strong>password</strong></p>
+<p>En este caso vamos a buscar la contraseña <strong>admin123</strong> dentro de la columna <strong>password</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1458,7 +1459,7 @@ admin' AND IF(SUBSTRING((SELECT password FROM usuarios LIMIT 1),8,1) = '3', SLEE
 <div class="sect4">
 <h5 id="_aclaración_2">Aclaración</h5>
 <div class="paragraph">
-<p>Como hemos podido ver, ocurre como en el caso anterior aunque cambia un poco la sintaxis, por ello recomiendo el uso de scripts en los ataques a ciegas.</p>
+<p>Como hemos podido ver, ocurre como en el caso anterior, aunque cambia un poco la sintaxis, por ello recomiendo el uso de scripts en los ataques a ciegas.</p>
 </div>
 </div>
 </div>
@@ -1742,7 +1743,7 @@ inferior a 256 --&gt; \c donde 'c' es el carácter no alfanumérico original.</p
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-15 16:24:34 UTC
+Last updated 2025-05-20 19:18:49 UTC
 </div>
 </div>
 </body>

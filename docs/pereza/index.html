@@ -629,7 +629,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Para importar las imágenes, tenemos que ir a medios y volcar la carpeta acedia-imagenes que se encuentra en wp-import dentro del espacio vacío.</p>
+<p>Para importar las imágenes, tenemos que ir a medios y volcar la carpeta acedia-imágenes que se encuentra en wp-import dentro del espacio vacío.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -637,7 +637,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Pero pasarlo no es suficiente, ya que la ruta de estas imagenes es la del mes actual, y la importación se hizo en abril por lo que tenemos que meternos dentro de la máquina modificar la carpeta /wp-content/uploads/2025/(mes actual) a 04/, como se muestra a continuación:</p>
+<p>Pero pasarlo no es suficiente, ya que la ruta de estas imágenes es la del mes actual, y la importación se hizo en abril por lo que tenemos que meternos dentro de la máquina modificar la carpeta /wp-content/uploads/2025/(mes actual) a 04/, como se muestra a continuación:</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -691,7 +691,7 @@ $ docker run -it --rm wpscanteam/wpscan --url https://target.tld/ --enumerate (.
 <p>En caso de usar distribuciones más extrañas puedes <a href="https://www.linuxbabe.com/security/install-wpscan-wp-vulnerability-scanner">ver esto</a>.</p>
 </div>
 <div class="paragraph">
-<p>WPscan es gratis pero mejora con la API, en caso que queramos hacer escaneos más exhaustivos &#8594; <a href="https://wpscan.com/pricing/">ver aquí</a>.</p>
+<p>WPscan es gratis, pero mejora con la API, en caso que queramos hacer escaneos más exhaustivos &#8594; <a href="https://wpscan.com/pricing/">ver aquí</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -839,7 +839,7 @@ X-Powered-By: PHP/8.2.28</pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>XML-RPC es un protocolo que permite a aplicaciones externas interactuar con WordPress (ej: publicación remota). Tener esta habilitado es altamente peligroso y explotable.
+<p>XML-RPC es un protocolo que permite a aplicaciones externas interactuar con WordPress (ej: publicación remota). Tener está habilitado es altamente peligroso y explotable.
 Puede usarse para: ataques de fuerza bruta por amplificación, pingback DDoS o escaneo de usuarios.</p>
 </div>
 <div class="listingblock">
@@ -1074,14 +1074,14 @@ Puede usarse para: ataques de fuerza bruta por amplificación, pingback DDoS o e
 <p>Un ataque de fuerza bruta es un tipo de ataque que utiliza pruebas y errores para descifrar contraseñas, credenciales de inicio de sesión y claves de cifrado. Es una táctica simple pero confiable para obtener acceso no autorizado a cuentas individuales y sistemas y redes de organizaciones.</p>
 </div>
 <div class="paragraph">
-<p>Estos ataques requieren mucho tiempo, especialmente cuando se utilizan contraseñas largas o complejas. Además este proceso puede consumir grandes cantidades de recursos del sistema (como la CPU y la memoria), lo que hace que el ataque sea lento y costoso en términos de rendimiento. Además son más faciles de detectar ya que generan grandes cantidades de tráfico de red o múltiples intentos de inicio de sesión fallidos.</p>
+<p>Estos ataques requieren mucho tiempo, especialmente cuando se utilizan contraseñas largas o complejas. Además, este proceso puede consumir grandes cantidades de recursos del sistema (como la CPU y la memoria), lo que hace que el ataque sea lento y costoso en términos de rendimiento. Además, son más fáciles de detectar ya que generan grandes cantidades de tráfico de red o múltiples intentos de inicio de sesión fallidos.</p>
 </div>
 <div class="paragraph">
 <p>Existen varios tipos, pero nosotros vamos a usar el ataque por diccionario, en este el atacante selecciona un objetivo y luego prueba las posibles contraseñas contra el nombre de usuario de esa persona.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
-<p>Kali Linux viene con varios diccionarios preinstalados en la ruta /usr/share/wordlists, que forman parte de sus herramientas, podemos verlo más en detalle en el siguiente enlace <a href="https://www.kali.org/tools/wordlists/">Wordlists</a>. Recomiendo primeramente probar diccionarios pequeños, sobretodo si encontramos indicios de credenciales por defecto, ya que tardará menos que si utilizamos diccionarios más grandes como <a href="https://github.com/intelligencegroup-io/RockYou2024">rockyou 2024</a> con 9,948,575,739 contraseñas.</p>
+<p>Kali Linux viene con varios diccionarios preinstalados en la ruta /usr/share/wordlists, que forman parte de sus herramientas, podemos verlo más en detalle en el siguiente enlace <a href="https://www.kali.org/tools/wordlists/">Wordlists</a>. Recomiendo primeramente probar diccionarios pequeños, sobre todo si encontramos indicios de credenciales por defecto, ya que tardará menos que si utilizamos diccionarios más grandes como <a href="https://github.com/intelligencegroup-io/RockYou2024">rockyou 2024</a> con 9,948,575,739 contraseñas.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1149,7 +1149,7 @@ Trying root / roost Time: 00:03:02 &lt;=========================================
 <div class="sect3">
 <h4 id="_3_limitar_los_intentos_de_inicio_de_sesión">3. Limitar los intentos de inicio de sesión</h4>
 <div class="paragraph">
-<p>Se puede restringir la cantidad de intentos fallidos de acceso para prevenir ataques de fuerza bruta. Plugins como <a href="https://wordpress.org/plugins/limit-login-attempts-reloaded/">Limit Login Attempts Reloaded</a> pueden ser muy utilies para esta tarea.</p>
+<p>Se puede restringir la cantidad de intentos fallidos de acceso para prevenir ataques de fuerza bruta. Plugins como <a href="https://wordpress.org/plugins/limit-login-attempts-reloaded/">Limit Login Attempts Reloaded</a> pueden ser muy útiles para esta tarea.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1180,7 +1180,7 @@ allow from 123.123.123.123
 <div class="sect3">
 <h4 id="_6_realizar_copias_de_seguridad_periódicas">6. Realizar copias de seguridad periódicas</h4>
 <div class="paragraph">
-<p>Otra de las cosas que hemos visto durante el escaneo es la falta de backups, por lo que es recomendable realizar periodicamente estas copias de seguridad, ya que en caso de ransomware puede no afectarnos tanto, aunque depende de la metodología que se siga. Hay plugins como UpdraftPlus o BlogVault y almacenan las copias en ubicaciones externas como Dropbox o Amazon S3.</p>
+<p>Otra de las cosas que hemos visto durante el escaneo es la falta de backups, por lo que es recomendable realizar periódicamente estas copias de seguridad, ya que en caso de ransomware puede no afectarnos tanto, aunque depende de la metodología que se siga. Hay plugins como UpdraftPlus o BlogVault y almacenan las copias en ubicaciones externas como Dropbox o Amazon S3.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1223,7 +1223,7 @@ allow from 123.123.123.123
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-15 16:52:48 UTC
+Last updated 2025-05-20 19:25:56 UTC
 </div>
 </div>
 </body>

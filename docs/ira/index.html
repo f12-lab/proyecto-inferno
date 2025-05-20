@@ -510,7 +510,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Un ataque de fuerza bruta utiliza el método de prueba y error para adivinar la información de inicio de sesión, las claves de cifrado o encontrar una página web oculta. Los hackers estudian todas las combinaciones posibles con la esperanza de acertar. Aunque todos los ataques de fuerza bruta comparten este principio básico de «prueba y error», existen diferentes tipos de ataques de este tipo, cada uno con su propia metodología y estrategia.</p>
 </div>
 <div class="paragraph">
-<p>A continuación vamos a ver los tipos de ataques más frecuentes:</p>
+<p>A continuación, vamos a ver los tipos de ataques más frecuentes:</p>
 </div>
 <div class="sect2">
 <h3 id="_1_ataque_de_fuerza_bruta_estándar">1. Ataque de fuerza bruta estándar</h3>
@@ -521,7 +521,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_2_ataque_de_fuerza_bruta_con_diccionario">2. Ataque de fuerza bruta con diccionario</h3>
 <div class="paragraph">
-<p>Un ataque de diccionario es aquel en el que el atacante selecciona un objetivo y luego prueba las posibles contraseñas contra el nombre de usuario de esa persona, usando un software normalmente. Este método es más rápido que un ataque de fuerza bruta estándar, aún así suele llevar mucho tiempo y tiene una baja probabilidad de éxito en comparación con los métodos de ataque más nuevos y efectivos.</p>
+<p>Un ataque de diccionario es aquel en el que el atacante selecciona un objetivo y luego prueba las posibles contraseñas contra el nombre de usuario de esa persona, usando un software normalmente. Este método es más rápido que un ataque de fuerza bruta estándar, aún así, suele llevar mucho tiempo y tiene una baja probabilidad de éxito en comparación con los métodos de ataque más nuevos y efectivos.</p>
 </div>
 </div>
 <div class="sect2">
@@ -599,7 +599,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Sniper</strong> &#8594; Este modo prueba una lista de payloads en cada posición de forma individual, manteniendo las demás constantes. Es útil para detectar vulnerabilidades como inyecciones SQL o XSS en parámetros específicos. Por ejemplo, si tienes tres parámetros y una lista de 100 payloads, se realizarán 300 solicitudes (100 por cada parámetro).</p>
 </li>
 <li>
-<p><strong>Battering Ram</strong> &#8594; En este se aplica el mismo payload en todas las posiciones marcadas simultáneamente. Sirve para cuando el mismo valor debe estar presente en múltiples campos, como un token que aparece en varios lugares. Por ejemplo, si marcas dos posiciones y tienes una lista de 50 payloads, se realizarán 50 solicitudes, cada una con el mismo payload en ambas posiciones.​</p>
+<p><strong>Battering Ram</strong> &#8594; En este se aplica el mismo payload en todas las posiciones marcadas simultáneamente. Sirve para cuando el mismo valor debe estar presente en múltiples campos, como un token que aparece en varios lugares. Por ejemplo, si marcas dos posiciones y tienes una lista de 50 payloads, se realizarán 50 solicitudes, cada una con el mismo payload en ambas posiciones.</p>
 </li>
 <li>
 <p><strong>Pitchfork</strong> &#8594; Este utiliza diferentes listas de payloads para cada posición, insertando los payloads correspondientes en paralelo. Se utiliza cuando se necesita probar combinaciones específicas de valores relacionados, como pares de usuario y contraseña correspondientes. Por ejemplo, si tienes dos listas de 100 elementos cada una, se realizarán 100 solicitudes, combinando el primer elemento de cada lista, luego el segundo, y así sucesivamente.</p>
@@ -671,7 +671,7 @@ monkey</code></pre>
 </div>
 </details>
 <div class="paragraph">
-<p>Hay ocasiones en las que no sabremos la identidad del usuario, pero podriamos hacernos a la idea si hacemos un ataque de OSINT a la víctima, conociendo:</p>
+<p>Hay ocasiones en las que no sabremos la identidad del usuario, pero podríamos hacernos a la idea si hacemos un ataque de OSINT a la víctima, conociendo:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -740,7 +740,7 @@ monkey</code></pre>
 <p><a href="https://www.kali.org/tools/spiderfoot/">SpiderFoot</a> &#8594; Automatiza la recopilación de información sobre una entidad específica, incluyendo direcciones IP, nombres de usuario y más.</p>
 </div>
 <div class="paragraph">
-<p><a href="https://www.kali.org/tools/sherlock/">Sherlock</a> &#8594; Sirve para localizar el nombre de usario en distintas plataformas.</p>
+<p><a href="https://www.kali.org/tools/sherlock/">Sherlock</a> &#8594; Sirve para localizar el nombre de usuario en distintas plataformas.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://osintframework.com/">OSINT Framework</a> &#8594; Un conjunto de herramientas categorizadas para facilitar la investigación OSINT.</p>
@@ -752,10 +752,10 @@ monkey</code></pre>
 <div class="sect3">
 <h4 id="_2_ataque_de_fuerza_bruta_con_diccionario_2">2. Ataque de fuerza bruta con diccionario</h4>
 <div class="paragraph">
-<p>En este ataque, aunque ya fue visto en la anterior máquina, lo vimos a través de wpscan. En cambio en esta lo veremos con hydra y burpsuite.</p>
+<p>En este ataque, aunque ya fue visto en la anterior máquina, lo vimos a través de wpscan. En cambio, en esta lo veremos con hydra y burpsuite.</p>
 </div>
 <div class="paragraph">
-<p>Kali viene con varios diccionarios preinstalados en la ruta /usr/share/wordlist. A mi en especial me gusta mucho el de <a href="https://github.com/danielmiessler/SecLists">Seclists</a>, ya que es muy completo. Pero hay que saber usar diccionarios, ya que si usamos primeramente unos muy fuertes nos va a tardar mucho, ya que la desventaja principal de los ataques de fuerza bruta es que usan muchos recursos del ordenador donde se ejecuta y dependiendo de eso, tardará más o menos.</p>
+<p>Kali viene con varios diccionarios preinstalados en la ruta /usr/share/wordlist. A mí en especial me gusta mucho el de <a href="https://github.com/danielmiessler/SecLists">Seclists</a>, ya que es muy completo. Pero hay que saber usar diccionarios, ya que si usamos primeramente unos muy fuertes nos va a tardar mucho, ya que la desventaja principal de los ataques de fuerza bruta es que usan muchos recursos del ordenador donde se ejecuta y dependiendo de eso, tardará más o menos.</p>
 </div>
 <div class="sect4">
 <h5 id="_hydra">Hydra</h5>
@@ -763,7 +763,7 @@ monkey</code></pre>
 <p>Cómo no conocemos ni el usuario ni la contraseña, tendremos que usar diccionarios en ambos campos. Pero antes de esto deberemos hacer un estudio de la página, para saber si usa POST o GET, y ver los IDs de los campos:</p>
 </div>
 <div class="paragraph">
-<p>Si le damos al F12 podremos inspeccionar la estructura de la página, viendo que en los campos del usuario y contraseña, sus IDs son <strong>user</strong> y <strong>pass</strong>.</p>
+<p>Si le damos al F12 podremos inspeccionar la estructura de la página, viendo que, en los campos del usuario y contraseña, sus IDs son <strong>user</strong> y <strong>pass</strong>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -771,7 +771,7 @@ monkey</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Si le damos a Network y enviamos unas credenciales erroneas, veremos que se envían mediante <strong>POST</strong>, además de poder ver la url que será importante para el siguiente comando. Además de conocer el mensaje de error que nos devuelve para poder filtrar, en este caso <strong>"Credenciales incorrectas."</strong>.</p>
+<p>Si le damos a Network y enviamos unas credenciales erróneas, veremos que se envían mediante <strong>POST</strong>, además de poder ver la url que será importante para el siguiente comando. Además de conocer el mensaje de error que nos devuelve para poder filtrar, en este caso <strong>"Credenciales incorrectas."</strong>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -844,7 +844,7 @@ monkey</code></pre>
 <div class="sect4">
 <h5 id="_burpsuite">Burpsuite</h5>
 <div class="paragraph">
-<p>Primeramente recomiendo instalar FoxyProxy en nuestro navegador. Cuando estemos dentro de este, deberemos irnos a Proxies y crear uno nuevo dándole a Add. Deberemos poner la siguiente configuración, para interceptar con Burpsuite en local desde el puerto 8081. Además deberemos añadir en la parte de patrones el que aparece en la siguiente imagen:</p>
+<p>Primeramente, recomiendo instalar FoxyProxy en nuestro navegador. Cuando estemos dentro de este, deberemos irnos a Proxies y crear uno nuevo dándole a Add. Deberemos poner la siguiente configuración, para interceptar con Burpsuite en local desde el puerto 8081. Además, deberemos añadir en la parte de patrones el que aparece en la siguiente imagen:</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -868,7 +868,7 @@ monkey</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>En Burpsuite, en la parte de Proxy, le damos a <strong>Intercept off</strong> para pasarlo a <strong>on</strong> y comenzar a capturar el tráfico. Y en nuestra página ponemos cualquier credenciales y le damos a entrar, enviándonos a Burpsuite directamente.</p>
+<p>En Burpsuite, en la parte de Proxy, le damos a <strong>Intercept off</strong> para pasarlo a <strong>on</strong> y comenzar a capturar el tráfico. Y en nuestra página ponemos cualquier credencial y le damos a entrar, enviándonos a Burpsuite directamente.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -881,7 +881,7 @@ monkey</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>En Burpsuite, nos aparecerá la petición POST que hemos capturado, donde podremos ver los IDs de los campos, por lo que para atacar desde Burpsuite, deberemos pasar esta petición al intruder, le damos clic derecho sobre la petición y la enviamo a este:</p>
+<p>En Burpsuite, nos aparecerá la petición POST que hemos capturado, donde podremos ver los IDs de los campos, por lo que para atacar desde Burpsuite, deberemos pasar esta petición al intruder, le damos clic derecho sobre la petición y la enviamos a este:</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -902,7 +902,7 @@ monkey</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A la derecha nos pedirá igresar un payload, es decir, los diccionarios y deberemos poner el correspondiente payload en la posición correcta. En el 1 va el de los usuario y le pongo el diccionario de nombres de usuario frecuentes y en el 2 va la contraseña y por ello le pongo el diccionario de contraseñas sencillas.</p>
+<p>A la derecha nos pedirá ingresar un payload, es decir, los diccionarios y deberemos poner el correspondiente payload en la posición correcta. En el 1 va el de los usuarios y le pongo el diccionario de nombres de usuario frecuentes y en el 2 va la contraseña y por ello le pongo el diccionario de contraseñas sencillas.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -915,7 +915,7 @@ monkey</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Además en la configuración del Intruder deberemos cambiar dos cosas:</p>
+<p>Además, en la configuración del Intruder deberemos cambiar dos cosas:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1007,7 +1007,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>En este ataque vamos a atacar directamente a la cuenta <strong>admin</strong> con hydra. De esta forma veremos el uso del parametro -l y como actuar en caso de conocer al usuario.</p>
+<p>En este ataque vamos a atacar directamente a la cuenta <strong>admin</strong> con hydra. De esta forma veremos el uso del parámetro -l y cómo actuar en caso de conocer al usuario.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1030,7 +1030,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 <div class="sect4">
 <h5 id="_burpsuite_2">Burpsuite</h5>
 <div class="paragraph">
-<p>En este caso, realizaremos lo ya visto anteriormente hasta la parte del Intruder. En este caso, vamos a usar el Sniper attack, donde se usa en una posicion, un objetivo. Deberemos añadir los símbolos en la parte de la contraseña.</p>
+<p>En este caso, realizaremos lo ya visto anteriormente hasta la parte del Intruder. En este caso, vamos a usar el Sniper attack, donde se usa en una posición, un objetivo. Deberemos añadir los símbolos en la parte de la contraseña.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1083,7 +1083,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Podemos observar que con el último sufijo que hemos introducido es correcto, ya que a variado la longitud. Y cuando quitemos el proxy ya estermos dentro.</p>
+<p>Podemos observar que con el último sufijo que hemos introducido es correcto, ya que ha variado la longitud. Y cuando quitemos el proxy ya extermos dentro.</p>
 </div>
 </div>
 </div>
@@ -1138,7 +1138,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 <div class="sect2">
 <h3 id="_rce">RCE</h3>
 <div class="paragraph">
-<p>Una vez dentro, gracias a los ataques de fuerza bruta, en el panel de administrador se puede acceder a una linea de comandos para administrar desde la web, y también se puede acceder a una página para subir archivos y poder verlos mediante un enlace. A continuación vamos a ver estos dos tipos de ataque RCE:</p>
+<p>Una vez dentro, gracias a los ataques de fuerza bruta, en el panel de administrador se puede acceder a una linea de comandos para administrar desde la web, y también se puede acceder a una página para subir archivos y poder verlos mediante un enlace. A continuación, vamos a ver estos dos tipos de ataque RCE:</p>
 </div>
 <div class="sect3">
 <h4 id="_1_rce_directo_mediante_inyección_de_comandos_2">1. RCE directo mediante inyección de comandos.</h4>
@@ -1235,7 +1235,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 <div class="sect4">
 <h5 id="_reverse_shell">Reverse Shell</h5>
 <div class="paragraph">
-<p>Al ser root, podemos hacer todo lo que queramos, cómo si queremos borrar todo el sistema, pero también podemos mantenernos persistentes en él o acceder para tener una terminal más comoda. Hay miles de cosas que podemos hacer en está situación, por lo que vamos a ver cómo realizar una reverse shell desde la web.</p>
+<p>Al ser root, podemos hacer todo lo que queramos, cómo si queremos borrar todo el sistema, pero también podemos mantenernos persistentes en él o acceder para tener una terminal más cómoda. Hay miles de cosas que podemos hacer en esta situación, por lo que vamos a ver cómo realizar una reverse shell desde la web.</p>
 </div>
 <div class="paragraph">
 <p>Abrimos una terminal con netcat y nos ponemos a la escucha:</p>
@@ -1268,7 +1268,7 @@ $ crunch 7 7 user^^^ &gt;&gt; diccionario.txt</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Ya que somos root, y estamos con infltrados en el sistema, he pensado que estaría bien tener en cuenta algunas prácticas para limpiar nuestro rastro:</p>
+<p>Ya que somos root, y estamos como infltrados en el sistema, he pensado que estaría bien tener en cuenta algunas prácticas para limpiar nuestro rastro:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1403,7 +1403,7 @@ $ ./covermyass</code></pre>
 <div class="sect3">
 <h4 id="_2_rce_mediante_subida_de_archivos_maliciosos_2">2. RCE mediante subida de archivos maliciosos.</h4>
 <div class="paragraph">
-<p>Ahora nos iremos a la parte de subir archivos, donde primeramente provaremos a subir uno de ejemplo:</p>
+<p>Ahora nos iremos a la parte de subir archivos, donde primeramente probaremos a subir uno de ejemplo:</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1438,7 +1438,7 @@ $ ./covermyass</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>De esta forma, a través de este archivo podremos ejecutar comandos como administrador, deremos usar lo siguiente en la url del archivo "?cmd=(comando)", así enviamos el comando para que el GET lo obtenga y lo pase.</p>
+<p>De esta forma, a través de este archivo podremos ejecutar comandos como administrador, daremos usar lo siguiente en la url del archivo "?cmd=(comando)", así enviamos el comando para que el GET lo obtenga y lo pase.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1587,7 +1587,7 @@ $ ./covermyass</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-15 17:23:05 UTC
+Last updated 2025-05-20 19:31:03 UTC
 </div>
 </div>
 </body>

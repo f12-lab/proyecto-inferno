@@ -515,14 +515,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Los ataques distribuidos de denegación de servicio (DDoS) son aquellos que se producen cuando un atacante envía tráfico artificial desde varios dispositivos a los servidores que hospedan una web o una aplicación para que estos dejen de estar disponibles para los usuarios; existen diferentes tipos de ataques DDoS, pero todos tienen el mismo fin: saturar un servidor con tráfico ilegítimo, para detener la operatividad de un servicio en línea de forma temporal o permanente.</p>
 </div>
 <div class="paragraph">
-<p>Por otra parte tenemos los ataques de denegación de servicio (DoS) donde solo proviene de una sola fuente.</p>
+<p>Por otra parte, tenemos los ataques de denegación de servicio (DoS) donde solo proviene de una sola fuente.</p>
 </div>
 <div class="sect2">
 <h3 id="_cómo_se_producen_los_ataques_ddos">¿Cómo se producen los ataques DDoS?</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Para generar ese tráfico artificial, primeramente necesitaríamos muchos ordenadores, es decir, obtener el servicio de una botnet. Para ello se infectan con malware dispositivos, creando ordenadores zombie. Una vez se tienen varios dispositivos infectados se configuran los servidores de comando y control (C2) para manejar la botnet.</p>
+<p>Para generar ese tráfico artificial, primeramente, necesitaríamos muchos ordenadores, es decir, obtener el servicio de una botnet. Para ello se infectan con malware dispositivos, creando ordenadores zombie. Una vez se tienen varios dispositivos infectados se configuran los servidores de comando y control (C2) para manejar la botnet.</p>
 </li>
 <li>
 <p>El atacante enviará órdenes a los bots para comenzar a generar tráfico masivo hacia los servidores víctima. Estos ataques utilizan diferentes técnicas para enviar paquetes de datos hacia el objetivo, los cuales veremos más adelante.</p>
@@ -547,13 +547,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Como indica el nombre este ataque ya no es distribuido, asi que solamente se realiza desde un solo dispositivo o IP.</p>
+<p>Como indica el nombre este ataque ya no es distribuido, así que solamente se realiza desde un solo dispositivo o IP.</p>
 </li>
 <li>
 <p>El atacante hace un envío masivo de peticiones o explotación de vulnerabilidades desde una única máquina. Y se espera a que se consuman todos los recursos del servidor (CPU, memoria, ancho de banda).</p>
 </li>
 <li>
-<p>Como podemos observar la finalidad es la misma que la del ataque DDoS, unicamente que este requiere menos recursos y es más sencillo de mitigar, ya que se puede banear la IP exacta que envía tantas peticiones por segundo, aunque ya veremos más adelante cómo mitigar este tipo de ataques.</p>
+<p>Como podemos observar la finalidad es la misma que la del ataque DDoS, únicamente que este requiere menos recursos y es más sencillo de mitigar, ya que se puede banear la IP exacta que envía tantas peticiones por segundo, aunque ya veremos más adelante cómo mitigar este tipo de ataques.</p>
 </li>
 </ol>
 </div>
@@ -598,7 +598,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="_b_syn_flood">b. SYN Flood</h4>
 <div class="paragraph">
-<p>En este caso se envian repetidamente paquetes de solicitud de conexión inicial (SYN), el atacante puede sobrecargar todos los puertos disponibles en el servidor víctima, lo que hará que el dispositivo responda al tráfico legítimo muy lentamente o incluso que no responda en absoluto.</p>
+<p>En este caso se envían repetidamente paquetes de solicitud de conexión inicial (SYN), el atacante puede sobrecargar todos los puertos disponibles en el servidor víctima, lo que hará que el dispositivo responda al tráfico legítimo muy lentamente o incluso que no responda en absoluto.</p>
 </div>
 <div class="paragraph">
 <p>Este ataque aprovecha el proceso de las conexiones TCP. Como ya sabemos, en una situación normal se producen los siguientes procesos:</p>
@@ -630,7 +630,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>También hay varios formas de llevarlo a cabo:</p>
+<p>También hay varias formas de llevarlo a cabo:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -665,7 +665,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ol>
 </div>
 <div class="paragraph">
-<p>Entoces, si tiene que realizar este proceso para una petición, podemos llegar a imaginar que ocurre si se envían muchas peticiones. Como resultado de que el servidor víctima utiliza recursos para comprobar y luego responder a cada paquete UDP recibido, los recursos del objetivo pueden agotarse muy rápido cuando se recibe una gran avalancha de paquetes UDP, lo que provoca una denegación de servicio al tráfico normal.</p>
+<p>Entonces, si tiene que realizar este proceso para una petición, podemos llegar a imaginar que ocurre si se envían muchas peticiones. Como resultado de que el servidor víctima utiliza recursos para comprobar y luego responder a cada paquete UDP recibido, los recursos del objetivo pueden agotarse muy rápido cuando se recibe una gran avalancha de paquetes UDP, lo que provoca una denegación de servicio al tráfico normal.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -724,7 +724,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Los datos, o el tráfico de la red, suelen desglosarse en pequeños fragmentos y, luego, etiquetarse con un número específico en lo que se conoce como el campo "Fragment Offset". Volver a organizarlos en el orden correcto una vez que llegan es lo que suele suceder cuando no hay un ataque de por medio.</p>
 </div>
 <div class="paragraph">
-<p>Entonces durante un ataque Teardrop, el ciberdelincuente inyecta un error en el campo "Fragment Offset", que interrumpe el proceso de resecuenciamiento. Como resultado, el sistema recolecta un grupo grande de datos fragmentados dañados que no se pueden volver a ensamblar adecuadamente. Lamentablemente, tu sistema se sobrecarga y se bloquea sin advertencias (adecuadas).</p>
+<p>Entonces durante un ataque Teardrop, el ciberdelincuente inyecta un error en el campo "Fragment Offset", que interrumpe el proceso de secuenciamiento. Como resultado, el sistema recolecta un grupo grande de datos fragmentados dañados que no se pueden volver a ensamblar adecuadamente. Lamentablemente, tu sistema se sobrecarga y se bloquea sin advertencias (adecuadas).</p>
 </div>
 <div class="paragraph">
 <p>Este ataque afectaba principalmente a sistemas antiguos como Windows 95, NT y algunas versiones de Linux</p>
@@ -738,10 +738,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="_c_ping_of_death_pod">c. Ping of Death (PoD)</h4>
 <div class="paragraph">
-<p>Este ataque es el precursos del <strong>Ping flood</strong> visto anteriormente. Consiste en el envio de paquetes más extensos que el tamaño máximo de paquetes de una conexión a Internet.</p>
+<p>Este ataque es el precursos del <strong>Ping flood</strong> visto anteriormente. Consiste en el envío de paquetes más extensos que el tamaño máximo de paquetes de una conexión a Internet.</p>
 </div>
 <div class="paragraph">
-<p>Estos paquetes son superior a 65,535 bytes, lo que provoca errores de reensamblaje en sistemas antiguos y puede causar fallos del sistema o reinicios. Este ataque aprovecha vulnerabilidades específicas en el manejo de fragmentación de paquetes de ciertos sistemas operativos más antiguos.</p>
+<p>Estos paquetes son superiores a 65,535 bytes, lo que provoca errores de reensamblaje en sistemas antiguos y puede causar fallos del sistema o reinicios. Este ataque aprovecha vulnerabilidades específicas en el manejo de fragmentación de paquetes de ciertos sistemas operativos más antiguos.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -761,7 +761,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>En este ataque un atacante aprovecha la funcionalidad de los solucionadores de DNS abiertos para sobrecargar una red o servidor específico con una cantidad amplificada de tráfico, impidiendo el acceso.</p>
 </div>
 <div class="paragraph">
-<p>Consiste en enviar consultas breves que derivan en extensas respuestas que permiten aumentar el volumen del tráfico, produciendo la caida del servidor. También hay que tener en cuenta el efecto devastador que tiene esto realizado por una botnet.</p>
+<p>Consiste en enviar consultas breves que derivan en extensas respuestas que permiten aumentar el volumen del tráfico, produciendo la caída del servidor. También hay que tener en cuenta el efecto devastador que tiene esto realizado por una botnet.</p>
 </div>
 <div class="paragraph">
 <p>Este ataque se ejecuta de la siguiente manera:</p>
@@ -769,7 +769,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>El atacante utiliza un punto de conexión en riesgo para enviar paquetes UDP con direcciones IP falsificadas a un recursor de DNS. La dirección falsificada en los paquetes señala a la dirección IP real de la víctima.</p>
+<p>El atacante utiliza un punto de conexión en riesgo para enviar paquetes UDP con direcciones IP falsificadas a un servidor DNS recursivo. La dirección falsificada en los paquetes señala a la dirección IP real de la víctima.</p>
 </li>
 <li>
 <p>Cada uno de los paquetes UDP realiza una solicitud a un solucionador de DNS, que a menudo aprueba un argumento como "CUALQUIERA" para recibir la respuesta más extensa posible.</p>
@@ -883,13 +883,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Ataque HTTP GET</strong></p>
 </div>
 <div class="paragraph">
-<p>Varios dispositivos envian múltiples solicitudes de imágenes, archivos o algún otro activo desde un servidor objetivo. Cuando el objetivo se vea inundado con solicitudes y respuestas entrantes, se producirá una denegación de servicio</p>
+<p>Varios dispositivos envían múltiples solicitudes de imágenes, archivos o algún otro activo desde un servidor objetivo. Cuando el objetivo se vea inundado con solicitudes y respuestas entrantes, se producirá una denegación de servicio.</p>
 </div>
 <div class="paragraph">
 <p><strong>Ataque HTTP POST</strong></p>
 </div>
 <div class="paragraph">
-<p>Este tipo de ataque se hace a través de los formularios, donde se suelen enviar los datos a una base de datos. El proceso de gestionar los datos del formulario y ejecutar los comandos necesarios de la base de datos es relativamente intensivo en comparación con la cantidad de potencia de procesamiento y el ancho de banda que se necesita para enviar la solicitud POST. Este ataque utiliza la disparidad en el consumo relativo de recursos, al enviar muchas solicitudes POST directamente a un servidor objetivo hasta que se sature su capacidad</p>
+<p>Este tipo de ataque se hace a través de los formularios, donde se suelen enviar los datos a una base de datos. El proceso de gestionar los datos del formulario y ejecutar los comandos necesarios de la base de datos es relativamente intensivo en comparación con la cantidad de potencia de procesamiento y el ancho de banda que se necesita para enviar la solicitud POST. Este ataque utiliza la disparidad en el consumo relativo de recursos, al enviar muchas solicitudes POST directamente a un servidor objetivo hasta que se sature su capacidad.</p>
 </div>
 </div>
 <div class="sect3">
@@ -929,7 +929,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_solucionar_la_máquina">Solucionar la máquina</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Vamos a ver en esta guía cómo realizar ataques de denagación de servicios y cómo estos afectan a un servidor mal configurado. Aprenderemos principalmente cómo realizarlos y ver lo que ocurre en nuestra máquina.</p>
+<p>Vamos a ver en esta guía cómo realizar ataques de denegación de servicios y cómo estos afectan a un servidor mal configurado. Aprenderemos principalmente cómo realizarlos y ver lo que ocurre en nuestra máquina.</p>
 </div>
 <div class="paragraph">
 <p>Para ello utilizaremos varias herramientas que estarán disponibles en el contenedor <strong>dos</strong>:</p>
@@ -960,7 +960,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 <div class="paragraph">
-<p>Tendremos tres imagenes, dos son del servidor y la otra es un entorno de ataque, donde están todas las herramientas configuradas y listas para usar. Si queremos usar este entorno, en una terminal ponemos:</p>
+<p>Tendremos tres imágenes, dos son del servidor y la otra es un entorno de ataque, donde están todas las herramientas configuradas y listas para usar. Si queremos usar este entorno, en una terminal ponemos:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1513,7 +1513,7 @@ Además en una red local, los fragmentos IP llegan demasiado rápido y no genera
 <div class="sect4">
 <h5 id="_requisitos_3">Requisitos</h5>
 <div class="paragraph">
-<p>Vamos a usar una antiguo script de C, por lo que haremos lo siguiente:</p>
+<p>Vamos a usar un antiguo script de C, por lo que haremos lo siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1524,7 +1524,7 @@ $ gcc dnsdrdos.c -o dnsdrdos.o -Wall -ansi</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Una vez compilado el script, necesitamos crear una lista de servidores dns, que serán los que envien paquetes al servidor víctima:</p>
+<p>Una vez compilado el script, necesitamos crear una lista de servidores dns, que serán los que envíen paquetes al servidor víctima:</p>
 </div>
 <div class="paragraph">
 <p>Podemos obtener los servidores dns de la siguiente página &#8594; <a href="https://public-dns.info/" class="bare">https://public-dns.info/</a></p>
@@ -1701,7 +1701,7 @@ $ python3 impulse.py --help</code></pre>
 <div class="sect4">
 <h5 id="_reconocimiento">Reconocimiento</h5>
 <div class="paragraph">
-<p>En este caso, este ataque sirve unicamente para servidores con servicio memcached, este servicio suele estar presente en el puerto 11211.</p>
+<p>En este caso, este ataque sirve únicamente para servidores con servicio memcached, este servicio suele estar presente en el puerto 11211.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1726,6 +1726,7 @@ $ sudo apt install python3 python3-pip python3-dev python3-venv build-essential<
 <div class="paragraph">
 <p>Hay varias herramientas que puedan realizar este ataque:</p>
 </div>
+<div style="page-break-after: always;"></div>
 <div class="ulist">
 <ul>
 <li>
@@ -1817,7 +1818,7 @@ $ docker run -it memcrashed</code></pre>
 <p><strong><a href="https://sourceforge.net/projects/highorbitioncannon/">High Orbit Ion Cannon (HOIC)</a></strong> &#8594; Considerada la sucesora de LOIC, HOIC es capaz de generar un volumen aún mayor de tráfico hacia el objetivo. Utiliza scripts llamados "boosters" para aumentar la efectividad del ataque y puede apuntar a múltiples URLs simultáneamente.</p>
 </li>
 <li>
-<p><strong><a href="https://github.com/R3DHULK/HULK">HULK (HTTP Unbearable Load King)</a></strong> &#8594; Esta herramienta genera tráfico HTTP único y obfusca las solicitudes para evadir sistemas de detección de intrusos. Su objetivo es desbordar el servidor con solicitudes únicas, dificultando su mitigación.</p>
+<p><strong><a href="https://github.com/R3DHULK/HULK">HULK (HTTP Unbearable Load King)</a></strong> &#8594; Esta herramienta genera tráfico HTTP único y ofusca las solicitudes para evadir sistemas de detección de intrusos. Su objetivo es desbordar el servidor con solicitudes únicas, dificultando su mitigación.</p>
 </li>
 <li>
 <p><strong><a href="https://sourceforge.net/projects/torshammer/">Tor&#8217;s Hammer</a></strong> &#8594; Diseñada para realizar ataques de denegación de servicio a través de la red Tor, esta herramienta envía solicitudes POST lentas para mantener abiertas las conexiones y agotar los recursos del servidor.</p>
@@ -1828,10 +1829,10 @@ $ docker run -it memcrashed</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>Algunas de estas herramientas pueden no ser muy eficaces actualmente como puede ser LOIC, HOIC, HULK. Pero por otra parte tenemos herramientas que pueden ser utiles en la actualidad como Slowloris, Tor&#8217;s Hammer, UFONet.</p>
+<p>Algunas de estas herramientas pueden no ser muy eficaces actualmente como puede ser LOIC, HOIC, HULK. Pero por otra parte tenemos herramientas que pueden ser útiles en la actualidad como Slowloris, Tor&#8217;s Hammer, UFONet.</p>
 </div>
 <div class="paragraph">
-<p>De todas formas, el efecto que pueden tener depende de la herramienta que escojamos. Por ello he encontrado una herramienta que puede realizar 56 metodos de ataques DDoS:</p>
+<p>De todas formas, el efecto que pueden tener depende de la herramienta que escojamos. Por ello he encontrado una herramienta que puede realizar 56 métodos de ataques DDoS:</p>
 </div>
 <div class="paragraph">
 <p><a href="https://github.com/MatrixTM/MHDDoS">MHDDoS</a> &#8594; Es una herramienta escrita en Python 3 que permite realizar ataques de denegación de servicio distribuido (DDoS) mediante una amplia variedad de métodos tanto para la capa 7 (HTTP/HTTPS) como para la capa 4 (red).</p>
@@ -1851,6 +1852,7 @@ $ docker run -it memcrashed</code></pre>
 <div class="paragraph">
 <p>Es necesario instalar npm para esta herramienta:</p>
 </div>
+<div style="page-break-after: always;"></div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">$ apt update
@@ -1877,7 +1879,7 @@ $ npm install -g rudyjs</code></pre>
 <p><strong>-d 5</strong> &#8594; Retraso de 5 segundos entre el envío de pequeños fragmentos de datos.</p>
 </li>
 <li>
-<p><strong>-n 500</strong> &#8594; Intenta abrir 500 conexiones simultáneas al servidor, manteniendolas abiertas</p>
+<p><strong>-n 500</strong> &#8594; Intenta abrir 500 conexiones simultáneas al servidor, manteniéndolas abiertas</p>
 </li>
 <li>
 <p><strong>-m "POST"</strong> &#8594; Indica que el ataque usará el método POST.</p>
@@ -1908,7 +1910,7 @@ $ npm install -g rudyjs</code></pre>
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="assets/imagenes-vuln/4/RUDY/tcpdump.png" alt="Tcpdump" width="500">
+<img src="assets/imagenes-vuln/4/RUDY/tcpdump.png" alt="Tcpdump" width="550">
 </div>
 </div>
 </div>
@@ -1989,7 +1991,7 @@ $ npm install -g rudyjs</code></pre>
 <div class="sect3">
 <h4 id="_c_udp_flood_3">c. UDP Flood</h4>
 <div class="paragraph">
-<p>La mayoría de los sistemas operativos limitan la tasa de respuesta de los paquetes ICMP, principalmente para interrumpir los ataque DDoS que requieren una respuesta ICMP. El problema es que los paquetes legítimos también pueden ser filtrados en el proceso. Si la inundación UDP tiene un volumen lo suficientemente alto como para saturar la tabla de estado del firewall del servidor objetivo, no se podría mitigar ya que el cuello de botella se producirá en la parte previa del dispositivo objetivo.</p>
+<p>La mayoría de los sistemas operativos limitan la tasa de respuesta de los paquetes ICMP, principalmente para interrumpir los ataques DDoS que requieren una respuesta ICMP. El problema es que los paquetes legítimos también pueden ser filtrados en el proceso. Si la inundación UDP tiene un volumen lo suficientemente alto como para saturar la tabla de estado del firewall del servidor objetivo, no se podría mitigar ya que el cuello de botella se producirá en la parte previa del dispositivo objetivo.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2016,7 +2018,7 @@ $ npm install -g rudyjs</code></pre>
 <p><strong>Aumentar la disponibilidad del servidor</strong> &#8594; Aumentar el número máximo de clientes que el servidor permitirá en cualquier momento aumentará el número de conexiones que el atacante debe hacer antes de poder sobrecargar el servidor. Aunque, un atacante puede escalar el número de ataques para superar la capacidad del servidor, independientemente de los aumentos.</p>
 </li>
 <li>
-<p><strong>Limitar la velocidad de las solicitudes entrantes</strong> &#8594; Restringir el acceso en función de ciertos factores de uso ayudará a mitigar un ataque Slowloris. Técnicas como la limitación del número máximo de conexiones que puede realizar una única dirección IP, la restricción de las velocidades de transferencia lentas, y la limitación del tiempo máximo que un cliente puede permanecer conectado son enfoques para limitar la eficacia de los ataques bajos y lentos. Por ejemplo configurando límites en Apache/Nginx (Timeout, KeepAliveTimeout) o implementar mod_evasive en Apache o limit_req en Nginx.</p>
+<p><strong>Limitar la velocidad de las solicitudes entrantes</strong> &#8594; Restringir el acceso en función de ciertos factores de uso ayudará a mitigar un ataque Slowloris. Técnicas como la limitación del número máximo de conexiones que puede realizar una única dirección IP, la restricción de las velocidades de transferencia lentas, y la limitación del tiempo máximo que un cliente puede permanecer conectado son enfoques para limitar la eficacia de los ataques bajos y lentos. Por ejemplo, configurando límites en Apache/Nginx (Timeout, KeepAliveTimeout) o implementar mod_evasive en Apache o limit_req en Nginx.</p>
 </li>
 <li>
 <p><strong>Protección basada en la nube</strong> &#8594; Usar un servicio que pueda funcionar como proxy inverso, protegiendo el servidor de origen o un balanceador de carga que detecte y limite conexiones lentas.</p>
@@ -2030,7 +2032,7 @@ $ npm install -g rudyjs</code></pre>
 <div class="sect3">
 <h4 id="_b_teardrop_attack_2">b. Teardrop Attack</h4>
 <div class="paragraph">
-<p>Ciertamente la técnica de ataque <strong>Teardrop</strong> está anticuanda, por lo que las siguientes recomendaciones también se pueden aplicar a las demás.</p>
+<p>Ciertamente la técnica de ataque <strong>Teardrop</strong> está anticuada, por lo que las siguientes recomendaciones también se pueden aplicar a las demás.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2166,6 +2168,11 @@ $ npm install -g rudyjs</code></pre>
 <li>
 <p><strong>Configurar límites en el tamaño y duración de las solicitudes</strong> &#8594; Es posible establecer reglas que restrinjan la cantidad de tiempo que una solicitud puede permanecer abierta sin enviar datos, evitando que los atacantes mantengan sesiones activas por largos períodos.</p>
 </li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="ulist">
+<ul>
 <li>
 <p><strong>Implementar mecanismos de detección de tráfico anómalo</strong> &#8594; El monitoreo en tiempo real permite detectar patrones de comportamiento sospechosos, como múltiples conexiones que envían datos extremadamente despacio. Sistemas de prevención de intrusos (IPS) pueden ayudar a bloquear estos intentos.</p>
 </li>
@@ -2185,7 +2192,7 @@ $ npm install -g rudyjs</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-15 11:45:35 UTC
+Last updated 2025-05-20 19:14:25 UTC
 </div>
 </div>
 </body>

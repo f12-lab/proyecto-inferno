@@ -554,6 +554,7 @@ Element.outerHTML</pre>
 <div class="paragraph">
 <p>Sin olvidar las librerías como JQuery, en donde utiliza métodos específicos para facilitar algunas funciones tradicionales del propio JavaScript, u otras librerías sin la adecuada codificación de los datos:</p>
 </div>
+<div style="page-break-after: always;"></div>
 <div class="literalblock">
 <div class="content">
 <pre>$.parseHTML()
@@ -652,11 +653,12 @@ wrapInner()</pre>
 <div class="sect3">
 <h4 id="_despliegue_de_servidor_a_la_escucha">Despliegue de servidor a la escucha</h4>
 <div class="paragraph">
-<p>Siendo atacantes, vamos a crear un archivos .py con el siguiente script. Este script crea un servidor local que está a la escucha en el puerto 1337.</p>
+<p>Siendo atacantes, vamos a crear un archivo .py con el siguiente script. Este script crea un servidor local que está a la escucha en el puerto 1337.</p>
 </div>
 <div class="paragraph">
 <p>Código tomado de <a href="https://skf.gitbook.io/asvs-write-ups/httponly-session-hijacking-xss/httponly-session-hijacking-xss#exploitation">Security Knowledge Framework</a></p>
 </div>
+<div style="page-break-after: always;"></div>
 <details>
 <summary class="title">Ver código</summary>
 <div class="content">
@@ -679,7 +681,7 @@ if __name__ == "__main__":
 </div>
 </details>
 <div class="paragraph">
-<p>Para poder utilizar este código deberemos tener descargado python3 y después descargaremos las librerias flask y requests. Por último iniciamos el programa.</p>
+<p>Para poder utilizar este código deberemos tener descargado python3 y después descargaremos las librerías flask y requests. Por último, iniciamos el programa.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -820,6 +822,11 @@ $ python3 app.py</code></pre>
 <li>
 <p><strong>Validación</strong> &#8594; La validación es el acto de filtrar la entrada del usuario para que se eliminen todas las partes malintencionadas, sin eliminar necesariamente todo el código que contiene. Uno de los tipos de validación más reconocibles en el desarrollo web es permitir algunos elementos HTML (como &lt;em&gt; y &lt;strong&gt;) pero no permitir otros (como &lt;script&gt;).</p>
 </li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="ulist">
+<ul>
 <li>
 <p><strong>Clasificar en listas</strong> &#8594; Poner en la lista negra como no válida aquellas cadenas que coincidan con el patrón, la lista negra puede resultar complejo al tener que plantearse las posibilidades. Podríamos usar listas blancas, en lugar de definir un patrón prohibido, un enfoque de lista blanca define un patrón permitido y marca el ingreso como inválido si no coincide con este patrón. Esto resulta mucho más sencillo y longevo (de larga duración).</p>
 </li>
@@ -847,7 +854,7 @@ $ python3 app.py</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-11 11:39:42 UTC
+Last updated 2025-05-20 18:56:12 UTC
 </div>
 </div>
 </body>

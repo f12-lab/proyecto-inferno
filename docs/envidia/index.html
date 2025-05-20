@@ -516,7 +516,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Escalada de privilegios vertical</strong> &#8594; El atacante comienza con una cuenta de bajo nivel (por ejemplo, un usuario estándar) y busca elevar sus privilegios para obtener acceso administrativo (como root en Linux o administrador en Windows). El objetivos comunes es acceder a datos sensibles, instalar malware, ejecutar comandos como administrador.</p>
+<p><strong>Escalada de privilegios vertical</strong> &#8594; El atacante comienza con una cuenta de bajo nivel (por ejemplo, un usuario estándar) y busca elevar sus privilegios para obtener acceso administrativo (como root en Linux o administrador en Windows). El objetivo común es acceder a datos sensibles, instalar malware, ejecutar comandos como administrador.</p>
 </li>
 <li>
 <p><strong>Escalada de privilegios horizontal</strong> &#8594; El atacante ya posee una cuenta privilegiada, pero intenta acceder a recursos o funciones que están fuera del alcance original de ese usuario. En aplicaciones web implica acceder a cuentas de otros usuarios, como acceder al panel de administrador desde una cuenta normal.</p>
@@ -527,7 +527,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_vectores_de_ataque">Vectores de ataque</h3>
 <div class="paragraph">
-<p>Nosostros nos vamos a centrar en la escalada de privilegios vertical.</p>
+<p>Nosotros nos vamos a centrar en la escalada de privilegios vertical.</p>
 </div>
 <div class="sect3">
 <h4 id="_1_archivo_sudoers">1. Archivo sudoers</h4>
@@ -555,7 +555,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="_3_cron_ejecutando_script_editable">3. Cron ejecutando script editable</h4>
 <div class="paragraph">
-<p>Primeramente debemos entender crontab, hay dos tipos:</p>
+<p>Primeramente, debemos entender crontab, hay dos tipos:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -642,7 +642,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>En esta guía nos centraremos en la escalada de privilegios vertical, aprendiendo cómo elevar los privilegios desde un usuario estándar en distintos contextos. En esta máquina, simularemos que ya hemos obtenido las credenciales de un usuario. Es importante mencionar que existen muchas técnicas para escalar privilegios, pero aquí veremos las más comunes.</p>
 </div>
 <div class="paragraph">
-<p>Además, a lo largo de esta máquina veremos vulnerabilidades de binarios asi que recomiendo este repositorio: <a href="https://gtfobins.github.io/">GTFOBins</a></p>
+<p>Además, a lo largo de esta máquina veremos vulnerabilidades de binarios así que recomiendo este repositorio: <a href="https://gtfobins.github.io/">GTFOBins</a></p>
 </div>
 <div class="paragraph">
 <p>Debemos tener en cuenta que hay tres servicios activos:</p>
@@ -709,7 +709,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect4">
 <h5 id="_less">less</h5>
 <div class="paragraph">
-<p>Buscnado en GTFOBins, en la sección de <strong>Sudo</strong> encontraremos cómo vulnerarlo &#8594; <a href="https://gtfobins.github.io/gtfobins/less/">GTFOBins less</a></p>
+<p>Buscando en GTFOBins, en la sección de <strong>Sudo</strong> encontraremos cómo vulnerarlo &#8594; <a href="https://gtfobins.github.io/gtfobins/less/">GTFOBins less</a></p>
 </div>
 <div class="paragraph">
 <p>Entonces, como este comando usa root, lo que necesitaremos es crear una shell dentro de él, entonces los comandos que ejecute esa shell serán de administrador y habremos escalado:</p>
@@ -757,7 +757,7 @@ $ !/bin/sh</code></pre>
 <div class="sect3">
 <h4 id="_reconocimiento_2">Reconocimiento</h4>
 <div class="paragraph">
-<p>Primeramente vamos a buscar los binarios SUID que hay en el sistema:</p>
+<p>Primeramente, vamos a buscar los binarios SUID que hay en el sistema:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -781,7 +781,7 @@ $ !/bin/sh</code></pre>
 <div class="sect3">
 <h4 id="_escalada_2">Escalada</h4>
 <div class="paragraph">
-<p>Es un código escrito en python3 que inicia una shell, cómo tiene el bit SUID, abrerá dicha shell como root. Por lo que nos disponemos a ejecutarlo:</p>
+<p>Es un código escrito en python3 que inicia una shell, cómo tiene el bit SUID, abrirá dicha shell como root. Por lo que nos disponemos a ejecutarlo:</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -789,7 +789,7 @@ $ !/bin/sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Y cómo podemos ver somos root, esto es muy útil conocerlo, ya que si un servicio con privilegios de root le diese el bit SUID a un archivo, este se ejecutaría con permisos de root, lo cual lo vamos a ver en el siguiente vector.</p>
+<p>Y cómo podemos ver somos root, esto es muy útil conocerlo, ya que, si un servicio con privilegios de root le diese el bit SUID a un archivo, este se ejecutaría con permisos de root, lo cual lo vamos a ver en el siguiente vector.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -857,7 +857,7 @@ $ !/bin/sh</code></pre>
 <div class="sect3">
 <h4 id="_escalada_3">Escalada</h4>
 <div class="paragraph">
-<p>Cómo tiene permisos de escritura para otros, podemos editarlo y sobrescribir en el archivo. Asi que vamos a ejecutar una shell como root creando en /tmp el archivo rootbash:</p>
+<p>Cómo tiene permisos de escritura para otros, podemos editarlo y sobrescribir en el archivo. Así que vamos a ejecutar una shell como root creando en /tmp el archivo rootbash:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -954,7 +954,7 @@ $ echo 'chmod +s /tmp/rootbash' &gt;&gt; /usr/local/bin/hora.sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Estos nos aparecerán en hexadecimal, para entenderlo podemos usar <strong>capsh</strong>, el cual podemos instalar en nuestro sistema y decodificar cada hexadecimal. En este caso solo tenemos tres números, pero antes de esto debemos entender las lineas:</p>
+<p>Estos nos aparecerán en hexadecimal, para entenderlo podemos usar <strong>capsh</strong>, el cual podemos instalar en nuestro sistema y decodificar cada hexadecimal. En este caso solo tenemos tres números, pero antes de esto debemos entender las líneas:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1002,7 +1002,7 @@ CapAmb -&gt; Ambient capabilities</code></pre>
 <div class="sect3">
 <h4 id="_reconocimiento_5">Reconocimiento:</h4>
 <div class="paragraph">
-<p>Primeramente podemos ver nuestro /home si hay algún script que utilice algún comando normal, como ls, head, etc. En nuestro caso tenemos uno que se llama top10.py, si lo inspeccionamos muestra los 10 primeros usuarios y tiene permisos de root ya que tiene el bit SUID:</p>
+<p>Primeramente, podemos ver nuestro /home si hay algún script que utilice algún comando normal, como ls, head, etc. En nuestro caso tenemos uno que se llama <strong>top10</strong>, si lo inspeccionamos muestra los 10 primeros usuarios y tiene permisos de root ya que tiene el bit SUID:</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1026,7 +1026,7 @@ CapAmb -&gt; Ambient capabilities</code></pre>
 <div class="sect3">
 <h4 id="_escalada_5">Escalada</h4>
 <div class="paragraph">
-<p>Por lo que nosotros vamos a cambiar el path para que primero mire donde estamos y crearemos un script que nos de una shell como root.</p>
+<p>Por lo que nosotros vamos a cambiar el path para que primero mire donde estamos y crearemos un script que nos dé una shell como root.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1113,7 +1113,7 @@ CapAmb -&gt; Ambient capabilities</code></pre>
 <p><strong>Aplicar el principio de privilegio mínimo</strong> &#8594; Evitar que usuarios no administradores tengan acceso a binarios sensibles.</p>
 </li>
 <li>
-<p><strong>Habilitar autenticación multifactor y segmentación de red para minimizar impacto en caso de explotación.</strong></p>
+<p><strong>Habilitar autentificación multifactor y segmentación de red para minimizar impacto en caso de explotación.</strong></p>
 </li>
 </ul>
 </div>
@@ -1221,7 +1221,7 @@ CapAmb -&gt; Ambient capabilities</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-15 17:56:46 UTC
+Last updated 2025-05-20 19:34:16 UTC
 </div>
 </div>
 </body>
